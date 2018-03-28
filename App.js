@@ -14,9 +14,39 @@ const Home = () => (
   </Text>
 )
 
-const About = () => (
+const Articles = () => (
   <Text style={styles.header}>
-    About
+    Articles
+  </Text>
+)
+
+const Podcasts = () => (
+  <Text style={styles.header}>
+    Podcasts
+  </Text>
+)
+
+const Events = () => (
+  <Text style={styles.header}>
+    Events
+  </Text>
+)
+
+const Basics = () => (
+  <Text style={styles.header}>
+    The Basics
+  </Text>
+)
+
+const Glossary = () => (
+  <Text style={styles.header}>
+    Glossary
+  </Text>
+)
+
+const Store = () => (
+  <Text style={styles.header}>
+    Store
   </Text>
 )
 
@@ -70,22 +100,50 @@ export default class App extends React.Component {
                   <Text>Home</Text>
               </Link>
               <Link
-                to="/about"
+                to="/articles"
                 underlayColor='#f0f4f7'
                 style={styles.navItem}>
-                  <Text>About</Text>
+                  <Text>Articles</Text>
               </Link>
               <Link
-                to="/topics"
+                to="/podcasts"
                 underlayColor='#f0f4f7'
                 style={styles.navItem} >
-                  <Text>Topics</Text>
+                  <Text>Podcasts</Text>
+              </Link>
+              <Link
+                to="/events"
+                underlayColor='#f0f4f7'
+                style={styles.navItem} >
+                  <Text>Events</Text>
+              </Link>
+              <Link
+                to="/basics"
+                underlayColor='#f0f4f7'
+                style={styles.navItem} >
+                  <Text>The Basics</Text>
+              </Link>
+              <Link
+                to="/glossary"
+                underlayColor='#f0f4f7'
+                style={styles.navItem} >
+                  <Text>Glossary</Text>
+              </Link>
+              <Link
+                to="/store"
+                underlayColor='#f0f4f7'
+                style={styles.navItem} >
+                  <Text>Store</Text>
               </Link>
             </View>
 
             <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route path="/topics" component={Topics}/>
+            <Route path="/articles" component={Articles}/>
+            <Route path="/podcasts" component={Podcasts}/>
+            <Route path="/events" component={Events}/>
+            <Route path="/basics" component={Basics}/>
+            <Route path="/glossary" component={Glossary}/>
+            <Route path="/store" component={Store}/>
           </View>
         </NativeRouter>
     )
@@ -94,15 +152,19 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'row',
     marginTop: 25,
     padding: 10,
   },
   header: {
+    flex: 1,
     fontSize: 20,
   },
   nav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
   },
   navItem: {
     flex: 1,
