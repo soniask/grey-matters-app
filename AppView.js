@@ -1,21 +1,21 @@
-import React from 'react'
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import { NativeRouter, Route, Link } from 'react-router-native'
-import styles from './src/styles.js'
+import { NativeRouter, Route, Link } from 'react-router-native';
 import { Header } from 'react-native-elements';
-import Menu from './src/modules/menu/Menu'
-import Home from './src/modules/home/Home'
-import Articles from './src/modules/articles/Articles'
-import Podcasts from './src/modules/podcasts/Podcasts'
-import Videos from './src/modules/videos/Videos'
-import Events from './src/modules/events/Events'
-import Basics from './src/modules/basics/Basics'
-import Glossary from './src/modules/glossary/Glossary'
-import Store from './src/modules/store/Store'
+import styles from './src/styles.js';
+import Menu from './src/modules/menu/Menu';
+import Home from './src/modules/home/Home';
+import Articles from './src/modules/articles/Articles';
+import Podcasts from './src/modules/podcasts/Podcasts';
+import Videos from './src/modules/videos/Videos';
+import Events from './src/modules/events/Events';
+import Basics from './src/modules/basics/Basics';
+import Glossary from './src/modules/glossary/Glossary';
+import Store from './src/modules/store/Store';
 import AppHeader from './src/modules/shared/AppHeader.js';
 import Profile from './src/modules/profile/Profile.js';
 

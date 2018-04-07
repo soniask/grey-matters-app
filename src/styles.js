@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import {
   StyleSheet,
-} from 'react-native'
+} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     padding: 10,
+  },
+  profileNavItemView: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   navItemText: {
     color: '#FFFFFF',
