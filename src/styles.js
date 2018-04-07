@@ -38,7 +38,11 @@ const styles = StyleSheet.create({
   },
   navItemText: {
     color: '#FFFFFF',
-  }
+  },
+  mainContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
 })
 
 export default styles;

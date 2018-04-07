@@ -31,7 +31,7 @@ export default class AppView extends React.Component {
             rightComponent={{ icon: 'search', color: '#282828' }}
             outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
           />
-          <View style={{flex: 1, flexDirection: 'row',}}>
+          <View style={styles.mainContainer}>
             <Menu />
             <Route exact path="/" component={Home} />
             <Route path="/articles" component={Articles} />
