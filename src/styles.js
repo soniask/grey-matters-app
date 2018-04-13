@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    flex: 1,
+    // flex: 1,
     fontSize: 20,
     alignItems: 'center',
   },
   nav: {
-    flex: 2,
+    width: 300,
     flexDirection: 'column',
     justifyContent: 'space-around',
     backgroundColor: '#282828',

@@ -6,23 +6,11 @@ import {
 } from 'react-native';
 import MenuLinks from './MenuLinks';
 
-class Menu extends React.Component {
-  constructor(props) {
-    super (props);
-  }
-
-  render () {
-    if (this.props.show) {
-      return (
-        <MenuLinks 
-          show={this.props.show}
-          />
-      );
-    } else {
-      return null;
-    }
-  }
-}
+const Menu = (props) => (
+    props.show 
+    ? <MenuLinks />
+    : null
+)
 
 const mapStateToProps = state => ({
   show: state.show,
