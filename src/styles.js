@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   nav: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
     width: 300,
     flexDirection: 'column',
     justifyContent: 'space-around',

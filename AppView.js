@@ -32,7 +32,6 @@ export default class AppView extends React.Component {
             outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
           />
           <View style={styles.mainContainer}>
-            <Menu />
             <Route exact path="/" component={Home} />
             <Route path="/articles" component={Articles} />
             <Route path="/podcasts" component={Podcasts} />
@@ -42,6 +41,7 @@ export default class AppView extends React.Component {
             <Route path="/glossary" component={Glossary} />
             <Route path="/store" component={Store} />
             <Route path="/profile" component={Profile} />
+            <Menu />
           </View>
         </View>
       </NativeRouter>
