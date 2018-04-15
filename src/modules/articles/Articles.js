@@ -15,12 +15,12 @@ const Articles = () => (
     {
       [0, 1, 2, 3, 4].map((i) => (
         <View key={i} style={[styles.box]}>
-          <Image style={{flex: 3}} 
+          <Image style={styles.image} 
                 source={{uri: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg'}}
           />
-          <View style={{flex: 4, paddingLeft: 10}}>
-            <View style={{flexDirection: 'row', alignItems: 'flex-start', paddingBottom: 5}}>
-              <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+          <View style={styles.informationBox}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>
                 These Titles Can Surprisingly Get Quite Long
               </Text>
               <Icon name='ios-bookmark-outline' type='ionicon' />
@@ -28,15 +28,15 @@ const Articles = () => (
             <View style={styles.metaData}>
               <View style={styles.author}>
                 <Text>AUTHOR</Text>
-                <Text style={{color: '#1ba5b8'}}>JESSE MILES</Text>
+                <Text style={styles.blue}>JESSE MILES</Text>
               </View>
               <View style={styles.date}>
                 <Text>8/5/15</Text>
               </View>
             </View>
-            <Text style={{paddingTop: 5}}>
+            <Text style={styles.description}>
               Lorem ipsum dolor sit amet, consectetur adipi...
-              <Text style={{color: '#1ba5b8'}}>READ MORE</Text>
+              <Text style={styles.blue}>READ MORE</Text>
             </Text>
           </View>
         </View>
@@ -62,6 +62,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
+  image: {
+    flex: 3
+  },
+  informationBox: {
+    flex: 4, 
+    paddingLeft: 10
+  },
+  titleContainer: {
+    flexDirection: 'row', 
+    alignItems: 'flex-start', 
+    paddingBottom: 5
+  },
+  titleText: {
+    fontSize: 18, 
+    fontWeight: 'bold'
+  },
   metaData: {
     flexDirection: 'row', 
     borderTopColor: '#ff404e',
@@ -83,6 +99,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     alignItems: 'flex-end',
     justifyContent: 'center'
+  },
+  description: {
+    paddingTop: 5
+  },
+  blue: {
+    color: '#1ba5b8'
   }
 });
 
