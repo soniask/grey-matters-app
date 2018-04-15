@@ -16,7 +16,7 @@ import Events from './src/modules/events/Events';
 import Basics from './src/modules/basics/Basics';
 import Glossary from './src/modules/glossary/Glossary';
 import Store from './src/modules/store/Store';
-import AppHeader from './src/modules/shared/AppHeader.js';
+import MenuIcon from './src/modules/shared/MenuIcon.js';
 import Profile from './src/modules/profile/Profile.js';
 
 
@@ -26,7 +26,7 @@ export default class AppView extends React.Component {
       <NativeRouter>
         <View style={styles.container}>
           <Header
-            leftComponent={<AppHeader />}
+            leftComponent={<MenuIcon />}
             centerComponent={{ text: 'GREY MATTERS', style: { color: '#282828' } }}
             rightComponent={{ icon: 'search', color: '#282828' }}
             outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}

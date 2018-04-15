@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    // flex: 1,
     fontSize: 20,
     alignItems: 'center',
   },
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    flexDirection: 'row',
   },
 })
 
