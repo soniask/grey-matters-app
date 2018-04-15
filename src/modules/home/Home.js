@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import {
 	Text,
-} from 'react-native'
+} from 'react-native';
 
-import styles from '../../styles.js'
+import styles from '../../styles.js';
 
 const Home = () => (
 	<Text style={styles.title}>

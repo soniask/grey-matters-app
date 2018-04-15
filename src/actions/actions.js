@@ -1,9 +1,9 @@
 export const actionConstants = {
-  SHOW: 'SHOW_MENU',
+  SHOW: 'SHOW_MENU'
 }
 
 export const actions = {
-  showMenu,
+  showMenu
 }
 
 function showMenu(show = true) {
