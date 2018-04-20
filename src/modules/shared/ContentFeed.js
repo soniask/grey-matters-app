@@ -5,13 +5,11 @@ import {
   View,
   Image,
 } from 'react-native';
+import { Link } from 'react-router-native';
 import { Icon } from 'react-native-elements';
 import styles from './contentFeedStyles';
 
-const ContentFeed = (props) => {
-  console.log('HELLO YES I AM PRINTING');
-  console.log(props);
-  return (
+const ContentFeed = (props) => (
   <ScrollView>
     <View style={[styles.content]}>
     {
@@ -36,16 +34,18 @@ const ContentFeed = (props) => {
                 <Text>{item.time}</Text>
               </View>
             </View>
-            <Text style={styles.description}>
-              {item.description}...
-              <Text style={styles.blue}>READ MORE</Text>
-            </Text>
+            <Link to={"/"+item.type}>
+              <Text style={styles.description}>
+                {item.description}...
+                <Text style={styles.blue}>READ MORE</Text>
+              </Text>
+            </Link>
           </View>
         </View>
       ))
     }
     </View>
   </ScrollView>
-)}
+)
 
 export default ContentFeed;
