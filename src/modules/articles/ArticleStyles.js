@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     paddingTop: 5
   },
   blue: {
-    color: '#1ba5b8'
-  }
+    color: '#1ba5b8',
+  },
 })
 
 export default styles;

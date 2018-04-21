@@ -14,6 +14,7 @@ import Article from './src/modules/articles/Article';
 import Podcasts from './src/modules/podcasts/Podcasts';
 import Videos from './src/modules/videos/Videos';
 import Events from './src/modules/events/Events';
+import ClubEvent from './src/modules/events/ClubEvent';
 import Basics from './src/modules/basics/Basics';
 import Glossary from './src/modules/glossary/Glossary';
 import GlossaryPage from './src/modules/glossary/GlossaryPage';
@@ -41,7 +42,7 @@ export default class AppView extends React.Component {
             <Route path="/videos" component={Videos} />
             {/* <Route path="/video" component={Video} /> */}
             <Route path="/events" component={Events} />
-            {/* <Route path="/event" component={ClubEvent} /> */}
+            <Route path="/clubevent" component={ClubEvent} />
             <Route path="/basics" component={Basics} />
             <Route path="/glossary" component={Glossary} />
             <Route path="/glossarypage" component={GlossaryPage} />
