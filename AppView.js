@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { NativeRouter, Route, Link } from 'react-router-native';
+import { NativeRouter, Route, Link, BackButton as RouterBackButton } from 'react-router-native';
 import { Header } from 'react-native-elements';
 import styles from './src/styles.js';
 import { history } from './src/store';
@@ -37,6 +37,7 @@ class AppView extends React.Component {
     return (
       <NativeRouter history={history}>
         <View style={styles.container}>
+          <RouterBackButton />
           <Route path="/" component={AppHeader} />
           <View style={styles.mainContainer}>
             <Route exact path="/" component={Home} />
