@@ -5,6 +5,7 @@ import {
 	Text,
 	ScrollView,
 } from 'react-native';
+import styles from './HomeStyles';
 
 const Home = () => {
 	const article = {

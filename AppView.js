@@ -21,6 +21,7 @@ import GlossaryPage from './src/modules/glossary/GlossaryPage';
 import Store from './src/modules/store/Store';
 import MenuIcon from './src/modules/shared/MenuIcon.js';
 import Profile from './src/modules/profile/Profile.js';
+import AppHeader from './src/modules/shared/AppHeader.js';
 
 
 export default class AppView extends React.Component {
@@ -28,12 +29,7 @@ export default class AppView extends React.Component {
     return (
       <NativeRouter>
         <View style={styles.container}>
-          <Header
-            leftComponent={<MenuIcon />}
-            centerComponent={{ text: 'GREY MATTERS', style: { color: '#282828' } }}
-            rightComponent={{ icon: 'search', color: '#282828' }}
-            outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
-          />
+          <Route path="/" component={AppHeader} />
           <View style={styles.mainContainer}>
             <Route exact path="/" component={Home} />
             <Route path="/articles" component={Articles} />
