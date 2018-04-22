@@ -4,9 +4,11 @@ import {
   Text,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 import { NativeRouter, Route, Link } from 'react-router-native';
 import { Header } from 'react-native-elements';
 import styles from './src/styles.js';
+import { history } from './src/store';
 import Menu from './src/modules/menu/Menu';
 import Home from './src/modules/home/Home';
 import Articles from './src/modules/articles/Articles';
@@ -20,20 +22,20 @@ import Glossary from './src/modules/glossary/Glossary';
 import GlossaryPage from './src/modules/glossary/GlossaryPage';
 import Store from './src/modules/store/Store';
 import MenuIcon from './src/modules/shared/MenuIcon.js';
+import SearchIcon from './src/modules/shared/SearchIcon.js';
+import SettingsIcon from './src/modules/profile/SettingsIcon.js';
 import Profile from './src/modules/profile/Profile.js';
 
 
-export default class AppView extends React.Component {
+class AppView extends React.Component {
+  constructor (props) {
+    super(props);
+  }
   render () {
+    console.log(this.props);
     return (
-      <NativeRouter>
+      <NativeRouter history={history}>
         <View style={styles.container}>
-          <Header
-            leftComponent={<MenuIcon />}
-            centerComponent={{ text: 'GREY MATTERS', style: { color: '#282828' } }}
-            rightComponent={{ icon: 'search', color: '#282828' }}
-            outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
-          />
           <View style={styles.mainContainer}>
             <Route exact path="/" component={Home} />
             <Route path="/articles" component={Articles} />
@@ -56,3 +58,9 @@ export default class AppView extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  settings: state.settings,
+});
+
+export default connect(mapStateToProps)(AppView);

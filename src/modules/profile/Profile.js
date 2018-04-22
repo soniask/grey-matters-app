@@ -4,11 +4,15 @@ import {
 	View,
 	StyleSheet,
 } from 'react-native';
-import { Avatar } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
+import MenuIcon from '../shared/MenuIcon.js';
+import SearchIcon from '..//shared/SearchIcon.js';
+import SettingsIcon from './SettingsIcon.js';
 
 
-const Profile = () => {
+const Profile = (props) => {
 	user = {
 		'name': 'Jane Smith',
 		'bookmarks': [
@@ -41,6 +45,12 @@ const Profile = () => {
 	};
 	return (
 	<View>
+		<Header
+			leftComponent={<MenuIcon />}
+			centerComponent={{ text: 'GREY MATTERS', style: { color: '#282828' } }}
+			rightComponent={props.location.pathname == '/profile' ? <SettingsIcon /> : <SearchIcon />}
+			outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
+		/>
 		<View style={{alignItems: 'center'}}>
 			<Avatar
 				xlarge
@@ -85,4 +95,8 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default Profile;
+const mapStateToProps = state => ({
+	show: state.show,
+});
+
+export default connect(mapStateToProps)(Profile);
