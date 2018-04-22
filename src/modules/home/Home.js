@@ -5,12 +5,7 @@ import {
 	Text,
 	ScrollView,
 } from 'react-native';
-import { connect } from 'react-redux';
-import { Header } from 'react-native-elements';
 import styles from './HomeStyles';
-import MenuIcon from '../shared/MenuIcon.js';
-import SearchIcon from '../shared/SearchIcon.js';
-import SettingsIcon from '../profile/SettingsIcon.js';
 
 const Home = (props) => {
 	const article = {
@@ -28,15 +23,8 @@ Scientists have grappled with the question of how memories are stored for quite 
     key: 1,
     type: 'article',
 	}
-	console.log(props);
 	return (
 	<View>
-		<Header
-			leftComponent={<MenuIcon />}
-			centerComponent={{ text: 'GREY MATTERS', style: { color: '#282828' } }}
-			rightComponent={props.location.pathname == '/profile' ? <SettingsIcon /> : <SearchIcon />}
-			outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
-		/>
 		<ScrollView>
 			<View>
 				<Image source={{uri: article.imgURI}} style={styles.image}/>
@@ -61,8 +49,5 @@ Scientists have grappled with the question of how memories are stored for quite 
 		</ScrollView>
 	</View>
 )}
-const mapStateToProps = state => ({
-	show: state.show,
-});
 
-export default connect(mapStateToProps)(Home);
+export default Home;

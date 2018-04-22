@@ -25,6 +25,7 @@ import MenuIcon from './src/modules/shared/MenuIcon.js';
 import SearchIcon from './src/modules/shared/SearchIcon.js';
 import SettingsIcon from './src/modules/profile/SettingsIcon.js';
 import Profile from './src/modules/profile/Profile.js';
+import AppHeader from './src/modules/shared/AppHeader.js';
 
 
 class AppView extends React.Component {
@@ -36,6 +37,7 @@ class AppView extends React.Component {
     return (
       <NativeRouter history={history}>
         <View style={styles.container}>
+          <Route path="/" component={AppHeader} />
           <View style={styles.mainContainer}>
             <Route exact path="/" component={Home} />
             <Route path="/articles" component={Articles} />

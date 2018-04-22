@@ -45,12 +45,6 @@ const Profile = (props) => {
 	};
 	return (
 	<View>
-		<Header
-			leftComponent={<MenuIcon />}
-			centerComponent={{ text: 'GREY MATTERS', style: { color: '#282828' } }}
-			rightComponent={props.location.pathname == '/profile' ? <SettingsIcon /> : <SearchIcon />}
-			outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
-		/>
 		<View style={{alignItems: 'center'}}>
 			<Avatar
 				xlarge
