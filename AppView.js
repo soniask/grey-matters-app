@@ -26,6 +26,7 @@ import SearchIcon from './src/modules/shared/SearchIcon.js';
 import SettingsIcon from './src/modules/profile/SettingsIcon.js';
 import Profile from './src/modules/profile/Profile.js';
 import AppHeader from './src/modules/shared/AppHeader.js';
+import Search from './src/modules/search/Search.js';
 
 
 class AppView extends React.Component {
@@ -33,13 +34,13 @@ class AppView extends React.Component {
     super(props);
   }
   render () {
-    console.log(this.props);
     return (
       <NativeRouter history={history}>
         <View style={styles.container}>
           <Route path="/" component={AppHeader} />
           <View style={styles.mainContainer}>
             <Route exact path="/" component={Home} />
+            <Route path="/search" component={Search} />
             <Route path="/articles" component={Articles} />
             <Route path="/article" component={Article} />
             <Route path="/podcasts" component={Podcasts} />
