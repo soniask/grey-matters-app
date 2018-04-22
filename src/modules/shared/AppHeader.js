@@ -5,6 +5,7 @@ import MenuIcon from './MenuIcon';
 import SearchIcon from './SearchIcon';
 import BackButton from './BackButton';
 import SettingsIcon from './SettingsIcon';
+import { routes } from '../../constants';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -24,10 +25,11 @@ class AppHeader extends Component {
 
   getCenterComponent() {
     const location = this.props.location.pathname;
-    if (location === '/search') {
-      return { text: 'SEARCH', style: { color: '#282828' } }
+    const route = routes.find(route => route.path === location);
+    if (route) {
+      return { text: route.name, style: { color: '#282828' } };
     } else {
-      return { text: 'GREY MATTERS', style: { color: '#282828' } }
+      return { text: 'GREY MATTERS', style: { color: '#282828' } };
     }
   }
 
