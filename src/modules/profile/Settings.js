@@ -1,14 +1,23 @@
 import React from 'react';
 import {
+	View,
 	Text,
+	StyleSheet,
 } from 'react-native';
-
-import styles from '../../styles.js';
+import styles from './SettingsStyles';
 
 const Settings = () => (
-	<Text style={styles.title}>
-		Settings
-	</Text>
+	<View style={styles.container}>
+		<Text style={styles.option}>
+			Edit Profile
+		</Text>
+		<Text style={styles.option}>
+			Change Password
+		</Text>
+		<Text style={styles.option}>
+			Notifications
+		</Text>
+	</View>
 )
 
 export default Settings;

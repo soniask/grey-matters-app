@@ -4,6 +4,7 @@ import { Header } from 'react-native-elements';
 import MenuIcon from './MenuIcon';
 import SearchIcon from './SearchIcon';
 import BackButton from './BackButton';
+import SettingsIcon from './SettingsIcon';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class AppHeader extends Component {
   getRightComponent() {
     const location = this.props.location.pathname;
     if (location === '/profile') {
-      return { icon: 'settings', color: '#282828' };
+      return <SettingsIcon />;
     } else if (location === '/search') {
       return null;
     } else {
@@ -45,7 +46,7 @@ class AppHeader extends Component {
         leftComponent={this.getLeftComponent()}
         centerComponent={this.getCenterComponent()}
         rightComponent={this.getRightComponent()}
-        outerContainerStyles={{ backgroundColor: '#E6E6E8', alignSelf: 'stretch' }}
+        outerContainerStyles={{ backgroundColor: '#fff', alignSelf: 'stretch' }}
       />
     );
   }
