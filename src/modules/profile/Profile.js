@@ -7,10 +7,7 @@ import {
 import { connect } from 'react-redux';
 import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
-import MenuIcon from '../shared/MenuIcon.js';
-import SearchIcon from '..//shared/SearchIcon.js';
-import SettingsIcon from './SettingsIcon.js';
-
+import styles from './ProfileStyles';
 
 const Profile = (props) => {
 	user = {
@@ -61,33 +58,6 @@ const Profile = (props) => {
 		<ContentFeed list={user.bookmarks} />
 	</View>
 )}
-
-const styles = StyleSheet.create({
-	name: {
-		fontSize: 25,
-		fontWeight: 'bold',
-		paddingBottom: 25,
-	},
-	tabs: {
-		flexDirection: 'row', 
-	},
-	tab: {
-		flex: 1,
-		fontSize: 18,
-		color: '#BABABA',
-	},
-	tabLeft: {
-		textAlign: 'right',
-		paddingRight: 10,
-	},
-	tabRight: {
-		textAlign: 'left',
-		paddingLeft: 10,
-	},
-	tabSelected: {
-		color: 'black',
-	}
-})
 
 const mapStateToProps = state => ({
 	show: state.show,

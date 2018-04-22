@@ -21,11 +21,9 @@ import Basics from './src/modules/basics/Basics';
 import Glossary from './src/modules/glossary/Glossary';
 import GlossaryPage from './src/modules/glossary/GlossaryPage';
 import Store from './src/modules/store/Store';
-import MenuIcon from './src/modules/shared/MenuIcon.js';
-import SearchIcon from './src/modules/shared/SearchIcon.js';
-import SettingsIcon from './src/modules/profile/SettingsIcon.js';
 import Profile from './src/modules/profile/Profile.js';
 import AppHeader from './src/modules/shared/AppHeader.js';
+import Settings from './src/modules/profile/Settings';
 
 
 class AppView extends React.Component {
@@ -52,7 +50,7 @@ class AppView extends React.Component {
             <Route path="/glossarypage" component={GlossaryPage} />
             <Route path="/store" component={Store} />
             <Route path="/profile" component={Profile} />
-            {/* <Route path="/settings" component={Settings} /> */}
+            <Route path="/settings" component={Settings} />
             <Menu />
           </View>
         </View>
