@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 15,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   sectionHeaderBox: {
     paddingBottom: 2,
@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     fontSize: 20, 
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   paragraph: {
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
 })
 
