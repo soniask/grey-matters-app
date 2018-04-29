@@ -4,6 +4,7 @@ import {
 	Text,
 	StyleSheet,
 } from 'react-native';
+import { Link } from 'react-router-native';
 import styles from './SettingsStyles';
 
 const Settings = () => (
@@ -17,6 +18,11 @@ const Settings = () => (
 		<Text style={styles.option}>
 			Notifications
 		</Text>
+		<Link to="/signup" >
+			<Text style={styles.option}>
+				Sign Up
+			</Text>
+		</Link>
 	</View>
 )
 
