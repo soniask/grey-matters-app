@@ -20,6 +20,7 @@ const Profile = (props) => {
 				publishTime: '11/7/14',
 				description: 'One of the most frequent decisions we make is what to eat, but just because',
 				type: 'article',
+				_id: 1,
 			},
 			{
 				imgURI: 'http://greymattersjournal.com/wp-content/uploads/2014/10/640px-Taenia_solium_scolex.jpg',
@@ -28,6 +29,7 @@ const Profile = (props) => {
 				publishTime: '15 minutes',
 				description: 'For most people, the mere thought of a parasite setting up residence in their tissues is enough to induce a',
 				type: 'podcast',
+				_id: 2,
 			},
 			{
 				imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
@@ -36,6 +38,7 @@ const Profile = (props) => {
 				publishTime: '13 minutes',
 				description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
 				type: 'video',
+				_id: 3,
 			},
 		],
 	};

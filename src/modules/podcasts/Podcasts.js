@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text, Button } from 'react-native';
+import { Text } from 'react-native';
 import ContentFeed from '../shared/ContentFeed';
 import { contentActions } from '../../actions/contentActions';
 import Loading from '../shared/Loading';
