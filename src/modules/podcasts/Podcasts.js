@@ -1,51 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Text, Button } from 'react-native';
 import ContentFeed from '../shared/ContentFeed';
+import { contentActions } from '../../actions/contentActions';
+import Loading from '../shared/Loading';
 
-const Podcasts = () => {
-  podcasts = [
-    {
-      imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
-      title: 'Of Computers and Brains',
-      author: 'JESSE MILES',
-      time: '13 minutes',
-      description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
-      key: 1
-    },
-    {
-      imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
-      title: 'Of Computers and Brains',
-      author: 'JESSE MILES',
-      time: '13 minutes',
-      description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
-      key: 2
-    },
-    {
-      imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
-      title: 'Of Computers and Brains',
-      author: 'JESSE MILES',
-      time: '13 minutes',
-      description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
-      key: 3
-    },
-    {
-      imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
-      title: 'Of Computers and Brains',
-      author: 'JESSE MILES',
-      time: '13 minutes',
-      description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
-      key: 4
-    },
-    {
-      imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
-      title: 'Of Computers and Brains',
-      author: 'JESSE MILES',
-      time: '13 minutes',
-      description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
-      key: 5
-    },
-  ]
-  return (
-    <ContentFeed list={podcasts}/>
-)}
+class Podcasts extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default Podcasts;
+  componentDidMount() {
+    this.props.getContents({ type: 'podcast' });
+  }
+
+  render() {
+    console.log(this.props.contents)
+    if (this.props.isGettingContents) {
+      return (
+        <Loading />
+      );
+    }
+
+    if (!this.props.contents) {
+      return (
+        <Text>
+          No Content Available
+        </Text>
+      );
+    }
+    return (
+      <ContentFeed 
+        list={this.props.contents}
+        page='podcasts'
+      />
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  contents: state.content.contents,
+  isGettingContents: state.content.isGettingContents,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getContents: contentActions.getContents,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Podcasts);
+

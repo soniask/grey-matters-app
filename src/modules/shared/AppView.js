@@ -48,7 +48,7 @@ class AppView extends React.Component {
             <Route exact path="/articles" component={Articles} />
             <Route exact path="/articles/:id" component={Article} />
             <Route exact path="/podcasts" component={Podcasts} />
-            {/* <Route exact path="/videos" component={Videos} /> */}
+            <Route exact path="/videos" component={Videos} />
             <Route exact path="/events" component={Events} />
             <Route exact path="/clubevent" component={ClubEvent} />
             <Route exact path="/basics" component={Basics} />

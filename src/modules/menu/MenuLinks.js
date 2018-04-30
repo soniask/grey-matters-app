@@ -49,13 +49,13 @@ const MenuLinks = (props) => (
       style={styles.navItem}>
       <Text style={styles.navItemText}>Podcasts</Text>
     </Link>
-    {/* <Link
+    <Link
       to="/videos"
       underlayColor='#f0f4f7'
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>Videos</Text>
-    </Link> */}
+    </Link>
     <Link
       to="/events"
       underlayColor='#f0f4f7'

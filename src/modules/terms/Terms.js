@@ -1,28 +1,3 @@
-const styles = StyleSheet.create({
-  content: {
-    alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10,
-  },
-  box: {
-    alignSelf: 'stretch',
-    paddingTop: 20,
-    paddingBottom: 20,
-    borderBottomColor: '#333',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  word: {
-    fontSize: 18, 
-    fontWeight: 'bold',
-    color: '#1ba5b8'
-  },
-  definition: {
-    paddingTop: 5
-  },
-});
-
-//////////////////////////////////////
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -35,6 +10,7 @@ import {
 } from 'react-native';
 import { Link } from 'react-router-native';
 import { termsActions } from '../../actions';
+import styles from './TermsStyles';
 
 class Terms extends Component {
   constructor(props) {
