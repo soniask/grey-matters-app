@@ -8,7 +8,7 @@ import { Route } from 'react-router'
 
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
  
-import reducer from './reducers/reducer'; //Import the reducer
+import rootReducer from './reducers'; //Import the reducer
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -17,6 +17,6 @@ const history = createHistory()
 const middleware = routerMiddleware(history)
 
 // Connect our store to the reducers
-const store = createStore(reducer, applyMiddleware(middleware));
+const store = createStore(rootReducer, applyMiddleware(middleware));
 
 export default store;

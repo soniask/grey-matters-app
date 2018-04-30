@@ -13,7 +13,7 @@ const Menu = (props) => (
 )
 
 const mapStateToProps = state => ({
-  show: state.show,
+  show: state.menu.show,
 });
 
 export default connect(mapStateToProps)(Menu);

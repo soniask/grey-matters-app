@@ -8,7 +8,7 @@ import {
 
 import { NativeRouter, Route, Link } from 'react-router-native';
 import { Avatar } from 'react-native-elements';
-import { actions } from '../../actions/actions';
+import { menuActions } from '../../actions';
 import styles from '../../styles.js';
 
 const MenuLinks = (props) => (
@@ -88,11 +88,11 @@ const MenuLinks = (props) => (
 )
 
 const mapStateToProps = state => ({
-  show: state.show,
+  show: state.menu.show,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  ...actions,
+  showMenu: menuActions.showMenu,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuLinks);

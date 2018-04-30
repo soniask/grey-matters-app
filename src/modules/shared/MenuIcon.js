@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { actions } from '../../actions/actions';
+import { menuActions } from '../../actions';
 
 class MenuIcon extends React.Component {
   render () {
@@ -19,11 +19,11 @@ class MenuIcon extends React.Component {
 } 
 
 const mapStateToProps = state => ({
-  show: state.show,
+  show: state.menu.show,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  ...actions,
+  showMenu: menuActions.showMenu,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuIcon);

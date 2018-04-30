@@ -9,7 +9,6 @@ import { NativeRouter, Route, Link, BackButton as RouterBackButton } from 'react
 import { Header } from 'react-native-elements';
 import styles from '../../styles.js';
 import { history } from '../../store';
-import Landing from '../landing/Landing';
 import Menu from '../menu/Menu';
 import Home from '../home/Home';
 import Articles from '../articles/Articles';
