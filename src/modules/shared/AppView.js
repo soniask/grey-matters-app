@@ -41,22 +41,22 @@ class AppView extends React.Component {
           <RouterBackButton />
           <Route path="/" component={AppHeader} />
           <View style={styles.mainContainer}>
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Home} />
-            <Route path="/search" component={Search} />
-            <Route path="/articles" component={Articles} />
-            <Route path="/article" component={Article} />
-            <Route path="/podcasts" component={Podcasts} />
-            <Route path="/videos" component={Videos} />
-            <Route path="/events" component={Events} />
-            <Route path="/clubevent" component={ClubEvent} />
-            <Route path="/basics" component={Basics} />
-            <Route path="/glossary" component={Glossary} />
-            <Route path="/glossarypage" component={GlossaryPage} />
-            <Route path="/store" component={Store} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/settings" component={Settings} />
+            <Route exact path="/search" component={Search} />
+            <Route exact path="/articles" component={Articles} />
+            <Route exact path="/articles/:id" component={Article} />
+            <Route exact path="/podcasts" component={Podcasts} />
+            <Route exact path="/videos" component={Videos} />
+            <Route exact path="/events" component={Events} />
+            <Route exact path="/clubevent" component={ClubEvent} />
+            <Route exact path="/basics" component={Basics} />
+            <Route exact path="/glossary" component={Glossary} />
+            <Route exact path="/glossarypage" component={GlossaryPage} />
+            <Route exact path="/store" component={Store} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/settings" component={Settings} />
             <Menu />
           </View>
         </View>

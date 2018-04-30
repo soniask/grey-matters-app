@@ -8,22 +8,39 @@ const CONTENT_INITIAL = {
 export const contentReducer = (state = CONTENT_INITIAL, action) => {
 	switch (action.type) {
 		case contentConstants.GET_CONTENTS_REQUEST:
-		return {
+			return {
 				...state,
 				isGettingContents: true,
-		};
+			};
 		case contentConstants.GET_CONTENTS_SUCCESS:
-		return {
+			return {
 				...state,
 				contents: action.payload,
 				isGettingContents: false,
-		};
+			};
 		case contentConstants.GET_CONTENTS_FAILURE:
-		return {
+			return {
 				...state,
 				contents: null,
 				isGettingContents: false,
+			};
+		case contentConstants.GET_CONTENT_REQUEST:
+		return {
+		  ...state,
+		  isGettingContent: true,
 		};
+		case contentConstants.GET_CONTENT_SUCCESS:
+			return {
+			...state,
+			content: action.payload,
+			isGettingContent: false,
+			};
+		case contentConstants.GET_CONTENT_FAILURE:
+			return {
+			...state,
+			content: null,
+			isGettingContent: false,
+			};
 		default:
 			return state;
 	}

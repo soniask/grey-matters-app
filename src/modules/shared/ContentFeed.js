@@ -13,8 +13,8 @@ const ContentFeed = (props) => (
   <ScrollView>
     <View style={[styles.content]}>
     {
-      props.list.map((item) => (
-        <View key={item.title} style={[styles.box]}>
+      props.list ? props.list.map((item) => (
+        <View key={item._id} style={[styles.box]}>
           <Image style={styles.image} 
                 source={{uri: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg'}}
           />
@@ -29,13 +29,13 @@ const ContentFeed = (props) => (
               <View style={styles.author}>
                 <Text>AUTHOR</Text>
                 {/* How to access creator names? */}
-                <Text style={styles.blue}>{item.creators}</Text>
+                <Text style={styles.blue}>{item.creators[0].name}</Text>
               </View>
               <View style={styles.date}>
                 <Text>{item.publishTime}</Text>
               </View>
             </View>
-            <Link to={"/"+item.type}>
+            <Link to={`/${props.page}/${item._id}`}>
               <Text style={styles.description}>
                 {item.description}...
                 <Text style={styles.blue}>READ MORE</Text>
@@ -43,7 +43,7 @@ const ContentFeed = (props) => (
             </Link>
           </View>
         </View>
-      ))
+      )) : null
     }
     </View>
   </ScrollView>
