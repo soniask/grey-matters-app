@@ -2,7 +2,7 @@ import { push } from 'react-router-redux';
 import axios from 'axios';
 import queryString from 'query-string';
 
-const baseURL = 'http://10.1.10.119:8080/api/';
+const baseURL = 'http://10.0.1.5:8080/api/';
 
 // Types
 export const contentConstants = {

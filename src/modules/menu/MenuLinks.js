@@ -49,13 +49,13 @@ const MenuLinks = (props) => (
       style={styles.navItem}>
       <Text style={styles.navItemText}>Podcasts</Text>
     </Link>
-    <Link
+    {/* <Link
       to="/videos"
       underlayColor='#f0f4f7'
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>Videos</Text>
-    </Link>
+    </Link> */}
     <Link
       to="/events"
       underlayColor='#f0f4f7'
@@ -71,19 +71,19 @@ const MenuLinks = (props) => (
       <Text style={styles.navItemText}>The Basics</Text>
     </Link>
     <Link
-      to="/glossary"
+      to="/terms"
       underlayColor='#f0f4f7'
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>Glossary</Text>
     </Link>
-    <Link
+    {/* <Link
       to="/store"
       underlayColor='#f0f4f7'
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>Store</Text>
-    </Link>
+    </Link> */}
   </View>
 )
 

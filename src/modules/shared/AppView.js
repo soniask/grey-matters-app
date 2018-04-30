@@ -18,8 +18,8 @@ import Videos from '../videos/Videos';
 import Events from '../events/Events';
 import ClubEvent from '../events/ClubEvent';
 import Basics from '../basics/Basics';
-import Glossary from '../glossary/Glossary';
-import GlossaryPage from '../glossary/GlossaryPage';
+import Terms from '../terms/Terms';
+import GlossaryPage from '../terms/Term';
 import Store from '../store/Store';
 import Profile from '../profile/Profile.js';
 import AppHeader from './AppHeader.js';
@@ -48,13 +48,13 @@ class AppView extends React.Component {
             <Route exact path="/articles" component={Articles} />
             <Route exact path="/articles/:id" component={Article} />
             <Route exact path="/podcasts" component={Podcasts} />
-            <Route exact path="/videos" component={Videos} />
+            {/* <Route exact path="/videos" component={Videos} /> */}
             <Route exact path="/events" component={Events} />
             <Route exact path="/clubevent" component={ClubEvent} />
             <Route exact path="/basics" component={Basics} />
-            <Route exact path="/glossary" component={Glossary} />
-            <Route exact path="/glossarypage" component={GlossaryPage} />
-            <Route exact path="/store" component={Store} />
+            <Route exact path="/terms" component={Terms} />
+            <Route exact path="/terms/:id" component={GlossaryPage} />
+            {/* <Route exact path="/store" component={Store} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/settings" component={Settings} />
             <Menu />
