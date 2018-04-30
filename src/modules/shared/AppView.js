@@ -19,7 +19,7 @@ import Events from '../events/Events';
 import ClubEvent from '../events/ClubEvent';
 import Basics from '../basics/Basics';
 import Terms from '../terms/Terms';
-import GlossaryPage from '../terms/Term';
+import Term from '../terms/Term';
 import Store from '../store/Store';
 import Profile from '../profile/Profile.js';
 import AppHeader from './AppHeader.js';
@@ -53,7 +53,7 @@ class AppView extends React.Component {
             <Route exact path="/clubevent" component={ClubEvent} />
             <Route exact path="/basics" component={Basics} />
             <Route exact path="/terms" component={Terms} />
-            <Route exact path="/terms/:id" component={GlossaryPage} />
+            <Route exact path="/terms/:id" component={Term} />
             {/* <Route exact path="/store" component={Store} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/settings" component={Settings} />

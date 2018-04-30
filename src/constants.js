@@ -7,7 +7,7 @@ export const routes = [
   { path:"/events", component:"Events", name:"Events" },
   { path:"/basics", component:"Basics", name:"Basics" },
   { path:"/terms", component:"Terms", name:"Glossary" },
-  { path:"/glossarypage", component:"GlossaryPage", name:"Glossary Page" },
+  { path:"/term", component:"Term", name:"Glossary Page" },
   { path:"/store", component:"Store", name:"Store" },
   { path:"/profile", component:"Profile", name:"Profile" },
   { path:"/settings", component:"Settings", name:"Settings" },
