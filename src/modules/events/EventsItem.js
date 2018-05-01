@@ -8,7 +8,7 @@ import { Link } from 'react-router-native';
 import styles from './EventsItemStyles';
 
 const EventsItem = (props) => (
-  <Link to="/clubevent" >
+  <Link to={`/events/${props.event._id}`} >
     <View style={styles.event}>
       <View style={styles.eventHeader}>
         <View style={{justifyContent: 'center', backgroundColor: "#1ba5b8"}}>
