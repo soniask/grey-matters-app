@@ -15,7 +15,6 @@ class Articles extends Component {
   }
 
   render() {
-    console.log(this.props.contents)
     if (this.props.isGettingContents) {
       return (
         <Text>

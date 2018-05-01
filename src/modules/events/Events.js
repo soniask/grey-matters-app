@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Text,
   View,
@@ -7,37 +9,64 @@ import {
 import { Icon } from 'react-native-elements';
 import EventsItem from './EventsItem';
 import styles from './EventsStyles'
+import { eventsActions } from '../../actions';
+import Loading from '../shared/Loading';
 
+class Events extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-const Events = () => {
-  upcoming = [
-    {"id": 1, "date": "Feb 26", "time": "11:30-1:00pm", "name": "Event Name", "location": "Location"}
-  ];
-  past = [
-    {"id": 2, "date": "Mar 2", "time": "11:30-1:00pm", "name": "Event Name", "location": "Location"},
-    {"id": 3, "date": "Mar 10", "time": "11:30-1:00pm", "name": "Event Name", "location": "Location"}
-  ];
-  return (
-  <ScrollView>
-    <View style={[styles.content]}>
-      <Text style={styles.sectionHeader}>
-        Upcoming
-      </Text>
-      {
-        upcoming.map((event) => (
-          <EventsItem key={event.id}  event={event} />
-        ))
-      }
-      <Text style={styles.sectionHeader}>
-        Past
-      </Text>
-      {
-        past.map((event) => (
-          <EventsItem key={event.id}  event={event} />
-        ))
-      }
-    </View>
-  </ScrollView>
-)}
+  componentDidMount() {
+    this.props.getEvents();
+  }
 
-export default Events;
+  render() {
+    if (this.props.isGettingEvents) {
+      return (
+        <Loading />
+      );
+    }
+
+    if (!this.props.events) {
+      return (
+        <Text>
+          No Content Available
+        </Text>
+      );
+    }
+    return (
+      <ScrollView>
+        <View style={[styles.content]}>
+          <Text style={styles.sectionHeader}>
+            Upcoming
+          </Text>
+          {
+            this.props.events.map((event) => (
+              <EventsItem key={event._id}  event={event} />
+            ))
+          }
+          {/* <Text style={styles.sectionHeader}>
+            Past
+          </Text>
+          {
+            past.map((event) => (
+              <EventsItem key={event.id}  event={event} />
+            ))
+          } */}
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  events: state.events.events,
+  isGettingEvents: state.events.isGettingEvents,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getEvents: eventsActions.getEvents,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Events);

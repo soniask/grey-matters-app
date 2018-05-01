@@ -16,7 +16,6 @@ class Podcasts extends Component {
   }
 
   render() {
-    console.log(this.props.contents)
     if (this.props.isGettingContents) {
       return (
         <Loading />
@@ -49,4 +48,3 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Podcasts);
-

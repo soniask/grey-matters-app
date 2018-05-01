@@ -4,12 +4,14 @@ import { combineReducers } from 'redux';
 import { menuReducer } from './menuReducer';
 import { contentReducer } from './contentReducer';
 import { termsReducer } from './termsReducer';
+import { eventsReducer } from './eventsReducer';
 
 const rootReducer = combineReducers({
   router: routerReducer,
   menu: menuReducer,
   content: contentReducer,
   terms: termsReducer,
+  events: eventsReducer,
 });
 
 export default rootReducer;
