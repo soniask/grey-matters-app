@@ -47,16 +47,13 @@ function login({ email, password }) {
       if (res.data.success) {
         dispatch(success(res.data));
         dispatch(push('/profile'));
-        // dispatch(alertActions.success(`Welcome ${res.data.name}!`));
         // cookies.set('token', res.data.token, { path: '/' }); //TODO: find app equivalent of this
       } else {
         dispatch(failure(res.data.message));
-        // dispatch(alertActions.error(res.data.message));
       }
     })
     .catch(error => {
       dispatch(failure('Unable to Complete Request'));
-      // dispatch(alertActions.error('Unable to Complete Request'));
     });
   };
 
@@ -65,44 +62,8 @@ function login({ email, password }) {
   function failure(message) { return { type: authConstants.LOGIN_FAILURE, message } }
 }
 
-// function tokenLogin() {
-//   return dispatch => {
-//     if (!token) {
-//       dispatch(failure());
-//     } else {
-//       dispatch(request());
-//       axios({
-//         method: 'get',
-//         url: '/user',
-//         baseURL,
-//         headers: {'x-access-token': token},
-//       })
-//       .then(res => {
-//         if (res.data.success) {
-//           dispatch(success(res.data));
-//           console.log(`Welcome ${res.data.name}!`);
-//         //   dispatch(alertActions.success(`Welcome ${res.data.name}!`));
-//         } else {
-//           dispatch(failure());
-//           console.log(res.data.message);
-//         //   dispatch(alertActions.error(res.data.message));
-//         }
-//       })
-//       .catch(error => {
-//           console.log(error)
-//         dispatch(failure());
-//       });
-//     }
-//   };
-
-//   function request() { return { type: authConstants.TOKEN_LOGIN_REQUEST } }
-//   function success(user) { return { type: authConstants.TOKEN_LOGIN_SUCCESS, user } }
-//   function failure() { return { type: authConstants.TOKEN_LOGIN_FAILURE } }
-// }
-
 function logout() {
   return dispatch => {
-    // dispatch(alertActions.success(`Logged Out!`));
     dispatch(success());
     dispatch(push('/'));
   };
@@ -135,7 +96,6 @@ function signup({ name, email, password, role='reader' }) {
     })
     .catch(error => {
       dispatch(failure('Unable to Complete Request'));
-      // dispatch(alertActions.error('Unable to Complete Request'));
     });
   };
 
