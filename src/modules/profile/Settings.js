@@ -15,9 +15,9 @@ const Settings = () => (
 		<Text style={styles.option}>
 			Change Password
 		</Text>
-		<Text style={styles.option}>
+		{/* <Text style={styles.option}>
 			Notifications
-		</Text>
+		</Text> */}
 		<Link to="/signup" >
 			<Text style={styles.option}>
 				Sign Up

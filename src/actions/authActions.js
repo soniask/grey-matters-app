@@ -23,7 +23,7 @@ export const authActions = {
   login,
 //   tokenLogin,
 //   logout,
-//   signup,
+  signup,
 };
 
 // Implementations
@@ -52,7 +52,7 @@ function login({ email, password }) {
         // cookies.set('token', res.data.token, { path: '/' }); //TODO: find app equivalent of this
       } else {
         dispatch(failure());
-        console.log('line 58: ' + alertActions.error(res.data.message));
+        console.log('line 58: ' + res.data.message);
         // dispatch(alertActions.error(res.data.message));
       }
     })
@@ -113,38 +113,38 @@ function login({ email, password }) {
 //   function success() { return { type: authConstants.LOGOUT } }
 // }
 
-// function signup({ name, email, password, role }) {
-//   return dispatch => {
-//     dispatch(request());
+function signup({ name, email, password, role='reader' }) {
+  return dispatch => {
+    dispatch(request());
 
-//     axios({
-//       method: 'post',
-//       url: '/createUser',
-//       baseURL,
-//       data: {
-//         name,
-//         email,
-//         password,
-//         role: 'reader',
-//       }
-//     })
-//     .then(res => {
-//       if (res.data.success) {
-//         dispatch(success(res.data));
-//         dispatch(push('/login'));
-//         dispatch(alertActions.success('Account successfully created! Try logging in now.'));
-//       } else {
-//         dispatch(failure());
-//         dispatch(alertActions.error(res.data.message));
-//       }
-//     })
-//     .catch(error => {
-//       dispatch(failure());
-//       dispatch(alertActions.error('Unable to Complete Request'));
-//     });
-//   };
+    axios({
+      method: 'post',
+      url: '/createUser',
+      baseURL,
+      data: {
+        name,
+        email,
+        password,
+        role,
+      }
+    })
+    .then(res => {
+      if (res.data.success) {
+        dispatch(success(res.data));
+        dispatch(push('/'));
+        console.log("Sign up successful");
+      } else {
+        dispatch(failure());
+        console.log(res.data.message);
+      }
+    })
+    .catch(error => {
+      dispatch(failure());
+      dispatch(alertActions.error('Unable to Complete Request'));
+    });
+  };
 
-//   function request() { return { type: authConstants.SIGNUP_REQUEST } }
-//   function success() { return { type: authConstants.SIGNUP_SUCCESS } }
-//   function failure() { return { type: authConstants.SIGNUP_FAILURE } }
-// }
+  function request() { return { type: authConstants.SIGNUP_REQUEST } }
+  function success() { return { type: authConstants.SIGNUP_SUCCESS } }
+  function failure() { return { type: authConstants.SIGNUP_FAILURE } }
+}

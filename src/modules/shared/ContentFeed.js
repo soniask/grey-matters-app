@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Text,
   ScrollView,
@@ -23,13 +24,15 @@ const ContentFeed = (props) => (
               <Text style={styles.titleText}>
                 {item.title}
               </Text>
-              <Icon name='ios-bookmark-outline' type='ionicon' />
+              { props.user ? (<Icon name='ios-bookmark-outline' type='ionicon' />) : null }
+              
             </View>
             <View style={styles.metaData}>
               <View style={styles.author}>
                 <Text>AUTHOR</Text>
-                {/* How to access creator names? */}
-                <Text style={styles.blue}>{item.creators[0].name}</Text>
+                {/* TODO: How to access creator names? Looks like an id so 
+                try fetching corresponding user*/}
+                <Text style={styles.blue}>{item.creators[0]}</Text>
               </View>
               <View style={styles.date}>
                 <Text>{item.publishTime}</Text>
@@ -49,4 +52,8 @@ const ContentFeed = (props) => (
   </ScrollView>
 )
 
-export default ContentFeed;
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(ContentFeed);

@@ -20,7 +20,7 @@ class Profile extends Component {
 			{
 				imgURI: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg',
 				title: 'Food for Thought: How the Brain Controls What You Eat',
-				creators: [{ name: 'LEANN NGUYEN' }],
+				creators: ['LEANN NGUYEN'],
 				publishTime: '11/7/14',
 				description: 'One of the most frequent decisions we make is what to eat, but just because',
 				type: 'article',
@@ -29,7 +29,7 @@ class Profile extends Component {
 			{
 				imgURI: 'http://greymattersjournal.com/wp-content/uploads/2014/10/640px-Taenia_solium_scolex.jpg',
 				title: 'Tapeworms on the Brain',
-				creators: [{ name: 'BENJAMIN CORDY' }],
+				creators: ['BENJAMIN CORDY'],
 				publishTime: '15 minutes',
 				description: 'For most people, the mere thought of a parasite setting up residence in their tissues is enough to induce a',
 				type: 'podcast',
@@ -38,7 +38,7 @@ class Profile extends Component {
 			{
 				imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
 				title: 'Of Computers and Brains',
-				creators: [{ name: 'JESSE MILES' }],
+				creators: ['JESSE MILES'],
 				publishTime: '13 minutes',
 				description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
 				type: 'video',
