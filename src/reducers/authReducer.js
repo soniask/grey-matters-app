@@ -68,6 +68,11 @@ export const authReducer = (state = AUTH_INITIAL, action) => {
         ...state,
         user: null,
       };
+    case authConstants.CLEAR_MESSAGE:
+      return {
+        ...state,
+        message: null,
+      };
     default:
       return state;
   }

@@ -16,6 +16,7 @@ export const authConstants = {
   SIGNUP_SUCCESS: 'AUTH_SIGNUP_SUCCESS',
   SIGNUP_FAILURE: 'AUTH_SIGNUP_FAILURE',
   LOGOUT: 'AUTH_LOGOUT',
+  CLEAR_MESSAGE: 'AUTH_CLEAR_MESSAGE',
 };
 
 // Creators
@@ -24,11 +25,11 @@ export const authActions = {
 //   tokenLogin,
   logout,
   signup,
+  clearMessage,
 };
 
 // Implementations
 function login({ email, password }) {
-  console.log(`login called with parameters ${email} and ${password}`)
   return dispatch => {
     dispatch(request());
 
@@ -44,21 +45,17 @@ function login({ email, password }) {
     })
     .then(res => {
       if (res.data.success) {
-        console.log(`login axios request returned success`);
-        console.log(res.data);
         dispatch(success(res.data));
         dispatch(push('/profile'));
         // dispatch(alertActions.success(`Welcome ${res.data.name}!`));
         // cookies.set('token', res.data.token, { path: '/' }); //TODO: find app equivalent of this
       } else {
         dispatch(failure(res.data.message));
-        console.log('line 58: ' + res.data.message);
         // dispatch(alertActions.error(res.data.message));
       }
     })
     .catch(error => {
       dispatch(failure('Unable to Complete Request'));
-      console.log('Unable to Complete Request');
       // dispatch(alertActions.error('Unable to Complete Request'));
     });
   };
@@ -132,10 +129,8 @@ function signup({ name, email, password, role='reader' }) {
       if (res.data.success) {
         dispatch(success(res.data));
         dispatch(push('/profile'));
-        console.log("Sign up successful");
       } else {
         dispatch(failure(res.data.message));
-        console.log(res.data.message);
       }
     })
     .catch(error => {
@@ -147,4 +142,8 @@ function signup({ name, email, password, role='reader' }) {
   function request() { return { type: authConstants.SIGNUP_REQUEST } }
   function success(data) { return { type: authConstants.SIGNUP_SUCCESS, data } }
   function failure(message) { return { type: authConstants.SIGNUP_FAILURE, message } }
+}
+
+function clearMessage() {
+  return {type: authConstants.CLEAR_MESSAGE}
 }

@@ -17,6 +17,10 @@ class Signup extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.clearMessage();
+  }
+
   render() {
     return (
       <View>
@@ -67,7 +71,8 @@ const mapStateToProps = state => ({
 });
   
 const mapDispatchToProps = dispatch => bindActionCreators({
-	signup: authActions.signup,
+  signup: authActions.signup,
+  clearMessage: authActions.clearMessage,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
