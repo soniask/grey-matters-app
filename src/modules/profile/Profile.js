@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
 	Text,
 	View,
 	StyleSheet,
 } from 'react-native';
-import { connect } from 'react-redux';
 import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
 import styles from './ProfileStyles';
 
-const Profile = (props) => {
-	user = {
-		'name': 'Jane Smith',
-		'bookmarks': [
+class Profile extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+		bookmarks = [
 			{
 				imgURI: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg',
 				title: 'Food for Thought: How the Brain Controls What You Eat',
@@ -40,29 +44,46 @@ const Profile = (props) => {
 				type: 'video',
 				_id: 3,
 			},
-		],
-	};
-	return (
-	<View>
-		<View style={{alignItems: 'center'}}>
-			<Avatar
-				xlarge
-				rounded
-				source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
-				containerStyle={{marginTop: 20, marginBottom: 15}}
-			/>
-			<Text style={styles.name}>{user.name}</Text>
-			<View style={styles.tabs}>
-				<Text style={[styles.tab, styles.tabLeft, styles.tabSelected]}>Bookmarks</Text>
-				<Text style={[styles.tab, styles.tabRight]}>Notes</Text>
+		];
+		return (
+			<View>
+					{
+						this.props.user ? (
+							<View>
+								<View style={{alignItems: 'center'}}>
+									<Avatar
+										xlarge
+										rounded
+										title={this.props.user.name.substring(0, 1)}
+										containerStyle={{marginTop: 20, marginBottom: 15}}
+									/>
+									<Text style={styles.name}>{this.props.user.name}</Text>
+									<View style={styles.tabs}>
+										<Text style={[styles.tab, styles.tabLeft, styles.tabSelected]}>Bookmarks</Text>
+										<Text style={[styles.tab, styles.tabRight]}>Notes</Text>
+									</View>
+								</View>
+								<ContentFeed list={bookmarks} />
+							</View>
+						) : (
+							<View style={{alignItems: 'center'}}>
+								<Avatar
+									xlarge
+									rounded
+									icon={{name: 'person'}}
+									containerStyle={{marginTop: 20, marginBottom: 15}}
+								/>
+								<Text>Sign up under settings to unlock bookmarks and notes</Text>
+							</View>
+						)
+					}
 			</View>
-		</View>
-		<ContentFeed list={user.bookmarks} />
-	</View>
-)}
+		)
+	}
+}
 
 const mapStateToProps = state => ({
-	show: state.show,
+	user: state.auth.user
 });
 
 export default connect(mapStateToProps)(Profile);

@@ -19,13 +19,22 @@ const MenuLinks = (props) => (
       onPress={() => props.showMenu(!props.show)}
       style={styles.profileNavItem}>
       <View style={styles.profileNavItemView}>
-        <Avatar
-          xlarge
-          rounded
-          source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
-          activeOpacity={0.7}
-        />
-        <Text style={styles.navItemText}>Jane Smith</Text>
+        {props.user ? (
+          <Avatar
+            xlarge
+            rounded
+            activeOpacity={0.7}
+            title={props.user.name.substring(0, 1)}
+          />
+        ) : (
+          <Avatar
+            xlarge
+            rounded
+            activeOpacity={0.7}
+            icon={{name: 'person'}}
+          />
+        )}
+        <Text style={styles.navItemText}>{props.user ? props.user.name : ""}</Text>
       </View>
     </Link>
     <Link
@@ -89,6 +98,7 @@ const MenuLinks = (props) => (
 
 const mapStateToProps = state => ({
   show: state.menu.show,
+  user: state.auth.user,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

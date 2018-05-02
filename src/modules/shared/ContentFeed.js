@@ -35,7 +35,7 @@ const ContentFeed = (props) => (
                 <Text>{item.publishTime}</Text>
               </View>
             </View>
-            <Link to={`/${props.page}/${item._id}`}>
+            <Link to={`/${item.type}s/${item._id}`}>
               <Text style={styles.description}>
                 {item.description}...
                 <Text style={styles.blue}>READ MORE</Text>

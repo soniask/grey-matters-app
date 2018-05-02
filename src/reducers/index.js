@@ -5,8 +5,10 @@ import { menuReducer } from './menuReducer';
 import { contentReducer } from './contentReducer';
 import { termsReducer } from './termsReducer';
 import { eventsReducer } from './eventsReducer';
+import { authReducer } from './authReducer';
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   router: routerReducer,
   menu: menuReducer,
   content: contentReducer,
