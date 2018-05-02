@@ -67,12 +67,14 @@ function getContent(id) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
-        dispatch(alertActions.error(res.data.message));
+        console.log(res.data.message);
+        // dispatch(alertActions.error(res.data.message));
       }
     })
     .catch(error => {
       dispatch(failure(error));
-      dispatch(alertActions.error('Unable to Get Content'));
+      console.log('Unable to Get Content')
+      // dispatch(alertActions.error('Unable to Get Content'));
     });
   };
 

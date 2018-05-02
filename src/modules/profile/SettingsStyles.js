@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
 	option: {
 		fontSize: 20,
 		paddingBottom: 15,
+	},
+	grey: {
+		color: '#C4C4C4',
 	}
 })
 

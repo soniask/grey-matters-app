@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-native';
 import {
 	Text,
 	View,
@@ -86,4 +87,4 @@ const mapStateToProps = state => ({
 	user: state.auth.user
 });
 
-export default connect(mapStateToProps)(Profile);
+export default withRouter(connect(mapStateToProps)(Profile));

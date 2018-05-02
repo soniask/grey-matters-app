@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
-import { Link } from 'react-router-native';
+import { Link, withRouter } from 'react-router-native';
 import styles from '../../styles.js';
 import { authActions } from '../../actions/authActions.js';
 
@@ -34,15 +34,22 @@ class Login extends Component {
 				title='Log In'
 				onPress={() => this.props.login({email: this.email, password: this.password})}
 			/>
+			{this.props.message ? (
+				<Text style={{color: 'red', textAlign: 'center'}}>{this.props.message}</Text>
+			) : null}
 		</View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+	message: state.auth.message
+});
   
 const mapDispatchToProps = dispatch => bindActionCreators({
 	login: authActions.login,
 }, dispatch);
 
-export default connect(null, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
   
 
