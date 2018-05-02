@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput } from 'react-native';
-import { Header } from 'react-native-elements';
+import { Header, FormInput, Icon } from 'react-native-elements';
 import MenuIcon from './MenuIcon';
 import SearchIcon from './SearchIcon';
 import BackButton from './BackButton';
@@ -26,6 +25,16 @@ class AppHeader extends Component {
   getCenterComponent() {
     const location = this.props.location.pathname;
     const route = routes.find(route => route.path === location);
+    if (location === '/search') {
+      return (
+        <FormInput
+          placeholder='Search'
+          leftIcon={
+            <Icon name='search' color= '#282828' />
+          }
+        />
+      )
+    }
     if (route) {
       return { text: route.name, style: { color: '#282828' } };
     } else {
