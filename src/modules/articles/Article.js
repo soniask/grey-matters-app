@@ -21,6 +21,7 @@ class Article extends Component {
   }
 
   componentDidMount() {
+    this.props.clearTerms();
     this.props.getContent(this.props.match.params.id);
   }
 
@@ -36,17 +37,6 @@ class Article extends Component {
   }
 
   render() {
-//     if (this.props.terms) {
-//       console.log(this.props.terms);
-//     }
-//     const body = `
-//     What H.M. lost, we now know,
-// 		was a critical part of his identity.
-// 		—Dr. Thomas Carew
-    
-    
-// Scientists have grappled with the question of <span>Synapse</span> how memories are stored for quite some time. Today many technologies exist that allow for a variety of approaches to answering this question, but one tactic that has withstood the test of time has been the study of amnesiacs1. Henry Molaison, referred to as patient H.M., was one such amnesiac who gained fame for his willingness to partake in scientific studies. Over 100 scientists and teams have studied H.M., making him one of the most heavily examined amnesiacs of all time1 . Over the years, study of H.M.’s brain helped to reveal some of the structural components of memory2`
-
     if (this.props.isGettingContent) {
       return (
         <Loading />
