@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+imprort 
 import {
   Text,
   View,
@@ -18,6 +19,10 @@ class ClubEvent extends Component {
 
   componentDidMount() {
     this.props.getEvent(this.props.match.params.id);
+  }
+
+  handleUrlPress() {
+    // LinkingIOS.openURL('https://www.youtube.com/watch?v=NYIdmpp69MY');
   }
 
   render() {
@@ -56,7 +61,12 @@ class ClubEvent extends Component {
           </View>
           <Text style={styles.description}>{this.props.event.description}</Text>
           <Text style={styles.bold}>Watch it here!</Text>
-          <Text style={styles.blue}>{'Live stream link'}</Text>
+          <Text 
+            style={styles.blue}
+            onPress={() => this.handleUrlPress()}
+          >
+            {'Live stream link'}
+          </Text>
         </View>
         <Button
           title='RSVP'
