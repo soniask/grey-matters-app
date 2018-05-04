@@ -8,8 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { contentActions } from '../../actions';
-import { searchActions } from '../../actions';
-import ContentFeed from '../shared/ContentFeed';
+import SearchResults from './SearchResults';
 import styles from './SearchStyles';
 
 class Search extends Component {
@@ -24,71 +23,7 @@ class Search extends Component {
   render() {
     if (this.props.contents) {
       return (
-        <View>
-          <View style={styles.resultsContainer}>
-            <ContentFeed list={this.props.contents} />
-          </View>
-            <View style={styles.tabsContainer}>
-              <View style={styles.tab}>
-                <Text 
-                  style={styles.tabText}
-                  onPress={() => this.props.toggleSortOptions(!this.props.showSortOptions)}
-                >
-                  Sort
-                </Text>
-                {
-                  this.props.showSortOptions ? (
-                    <View style={styles.optionsContainer}>
-                      <Text 
-                        style={styles.option}
-                        onPress={() => this.props.toggleSortOptions(!this.props.showSortOptions)}
-                      >
-                        Most Popular
-                      </Text>
-                      <Text
-                        style={styles.option}
-                        onPress={() => this.props.toggleSortOptions(!this.props.showSortOptions)}
-                      >
-                        Most Recent
-                      </Text>
-                    </View>
-                  ) : null
-                }
-              </View>
-              <View style={styles.tab}>
-                <Text 
-                  style={styles.tabText}
-                  onPress={() => this.props.toggleFilterOptions(!this.props.showFilterOptions)}
-                >
-                  Filter
-                </Text>
-                {
-                  this.props.showFilterOptions ? (
-                    <View style={styles.optionsContainer}>
-                      <Text 
-                        style={styles.option}
-                        onPress={() => this.props.toggleFilterOptions(!this.props.showFilterOptions)}
-                      >
-                        Articles
-                      </Text>
-                      <Text
-                        style={styles.option}
-                        onPress={() => this.props.toggleFilterOptions(!this.props.showFilterOptions)}
-                      >
-                        Podcasts
-                      </Text>
-                      <Text
-                        style={styles.option}
-                        onPress={() => this.props.toggleFilterOptions(!this.props.showFilterOptions)}
-                      >
-                        Videos
-                      </Text>
-                    </View>
-                  ) : null
-                }
-              </View>
-            </View>
-        </View>
+        <SearchResults />
       )
     }
     return (
@@ -125,15 +60,11 @@ class Search extends Component {
 const mapStateToProps = state => ({
   contents: state.content.contents,
   isGettingContents: state.content.isGettingContents,
-  showSortOptions: state.search.showSortOptions,
-  showFilterOptions: state.search.showFilterOptions,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getContents: contentActions.getContents,
   clearContents: contentActions.clearContents,
-  toggleSortOptions: searchActions.toggleSortOptions,
-  toggleFilterOptions: searchActions.toggleFilterOptions,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
