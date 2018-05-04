@@ -13,12 +13,15 @@ export const contentConstants = {
   GET_CONTENT_REQUEST: 'GET_CONTENT_REQUEST',
   GET_CONTENT_SUCCESS: 'GET_CONTENT_SUCCESS',
   GET_CONTENT_FAILURE: 'GET_CONTENT_FAILURE',
+
+  CLEAR_CONTENTS: 'CLEAR_CONTENTS',
 };
 
 // Creators
 export const contentActions = {
   getContents,
   getContent,
+  clearContents,
 };
 
 // Implementations
@@ -77,4 +80,8 @@ function getContent(id) {
   function request() { return { type: contentConstants.GET_CONTENT_REQUEST } }
   function success(payload) { return { type: contentConstants.GET_CONTENT_SUCCESS, payload } }
   function failure() { return { type: contentConstants.GET_CONTENT_FAILURE } }
+}
+
+function clearContents() {
+  return {type: contentConstants.CLEAR_CONTENTS}
 }

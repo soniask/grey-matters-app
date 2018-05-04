@@ -35,7 +35,7 @@ const ContentFeed = (props) => (
                 <Text style={styles.blue}>{item.creators[0]}</Text>
               </View>
               <View style={styles.date}>
-                <Text>{item.publishTime}</Text>
+                <Text>{new Date(item.publishTime).toLocaleDateString()}</Text>
               </View>
             </View>
             <Link to={`/${item.type}s/${item._id}`}>

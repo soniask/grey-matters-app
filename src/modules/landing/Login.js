@@ -6,7 +6,8 @@ import {
   View
 } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
-import { Link, withRouter } from 'react-router-native';
+import { Link } from 'react-router-native';
+import { withRouter } from 'react-router';
 import styles from '../../styles.js';
 import { authActions } from '../../actions/authActions.js';
 
@@ -14,7 +15,7 @@ import { authActions } from '../../actions/authActions.js';
 class Login extends Component {
   constructor(props) {
     super(props);
-  }
+	}
 
   render() {
     return (
@@ -43,7 +44,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-	message: state.auth.message
+	message: state.auth.message,
 });
   
 const mapDispatchToProps = dispatch => bindActionCreators({

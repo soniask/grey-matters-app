@@ -41,6 +41,11 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 			content: null,
 			isGettingContent: false,
 			};
+		case contentConstants.CLEAR_CONTENTS:
+			return {
+				...state,
+				contents: null,
+			}
 		default:
 			return state;
 	}

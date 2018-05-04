@@ -46,6 +46,14 @@ const styles = StyleSheet.create({
   blue: {
     color: '#1ba5b8',
   },
+  dialog: {
+    backgroundColor: 'white',
+    padding: 20,
+  },
+  term: {
+    fontSize: 20,
+  }
+
 })
 
 export default styles;

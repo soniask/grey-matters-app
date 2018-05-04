@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import { baseURL } from './index';
 import storage from 'redux-persist/es/storage';
+import { history } from '../store';
 
 // Types
 export const authConstants = {
@@ -46,7 +47,7 @@ function login({ email, password }) {
     .then(res => {
       if (res.data.success) {
         dispatch(success(res.data));
-        dispatch(push('/profile'));
+        // dispatch(push('/'));
         // cookies.set('token', res.data.token, { path: '/' }); //TODO: find app equivalent of this
       } else {
         dispatch(failure(res.data.message));

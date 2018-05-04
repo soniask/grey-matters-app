@@ -6,7 +6,6 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
 import EventsItem from './EventsItem';
 import styles from './EventsStyles'
 import { eventsActions } from '../../actions';
