@@ -85,7 +85,6 @@ class Article extends Component {
             height="35%"
             bottom
             centerH
-            onDismiss={() => {console.log('Dismissed')}}
             animationConfig={{duration: 250}}
           >
             <View style={styles.dialog}>
