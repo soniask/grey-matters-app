@@ -43,11 +43,11 @@ class Home extends Component {
 							<View style={styles.metaData}>
 								<View style={[styles.large, styles.metaDataBox]}>
 									<Text>AUTHOR</Text>
-									<Text style={styles.blue}>{this.props.contents[0].creators[0]}</Text>
+									<Text style={styles.blue}>{this.props.contents[0].creators[0].name.name}</Text>
 								</View>
 								<View style={[styles.large, styles.metaDataBox]}>
 									<Text>ARTIST</Text>
-									<Text style={styles.blue}>{this.props.contents[0].creators[0]}</Text>
+									<Text style={styles.blue}>{this.props.contents[0].creators[0].name.name}</Text>
 								</View>
 								<View style={[styles.small, styles.metaDataBox]}>
 									<Text>{ new Date(this.props.contents[0].publishTime).toLocaleDateString()}</Text>

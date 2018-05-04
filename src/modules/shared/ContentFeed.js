@@ -30,9 +30,7 @@ const ContentFeed = (props) => (
             <View style={styles.metaData}>
               <View style={styles.author}>
                 <Text>AUTHOR</Text>
-                {/* TODO: How to access creator names? Looks like an id so 
-                try fetching corresponding user*/}
-                <Text style={styles.blue}>{item.creators[0]}</Text>
+                <Text style={styles.blue}>{item.creators[0].name}</Text>
               </View>
               <View style={styles.date}>
                 <Text>{new Date(item.publishTime).toLocaleDateString()}</Text>

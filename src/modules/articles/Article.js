@@ -61,7 +61,7 @@ class Article extends Component {
             <View style={styles.metaData}>
               <View style={styles.author}>
                 <Text>AUTHOR</Text>
-                <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
+                <Text style={styles.blue}>{this.props.content.creators[0].name}</Text>
               </View>
               <View style={styles.date}>
                 <Text>{new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
