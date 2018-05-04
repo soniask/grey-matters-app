@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
 	View,
 	Image,
@@ -6,127 +8,67 @@ import {
 	ScrollView,
 } from 'react-native';
 import styles from './HomeStyles';
+import { contentActions } from '../../actions';
+import Loading from '../shared/Loading';
 
-const Home = (props) => {
-	const article = {
-    imgURI: 'http://greymattersjournal.com/wp-content/uploads/2018/01/HM-700x757.png',
-    title: 'In the Memory of Henry Molaison',
-		author: 'NICOLE RIELY',
-		artist: 'JUSTIN WATERHOUSE',
-    time: '1/15/18',
-		text: `
-		What H.M. lost, we now know,
-		was a critical part of his identity.
-		—Dr. Thomas Carew
-		
-Scientists have grappled with the question of how memories are stored for quite some time. Today many technologies exist that allow for a variety of approaches to answering this question, but one tactic that has withstood the test of time has been the study of amnesiacs1. Henry Molaison, referred to as patient H.M., was one such amnesiac who gained fame for his willingness to partake in scientific studies. Over 100 scientists and teams have studied H.M., making him one of the most heavily examined amnesiacs of all time1 . Over the years, study of H.M.’s brain helped to reveal some of the structural components of memory2 .`,
-    key: 1,
-    type: 'article',
-	}
-	return (
-	<View>
-		<ScrollView>
+class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.getContents({ type: 'article', state: 'published' });
+  }
+
+  render() {
+    if (this.props.isGettingContents) {
+      return (
+        <Loading />
+      );
+    }
+    if (!this.props.contents) {
+      return (
+        <Text>
+          No Content Available
+        </Text>
+      );
+    }
+    return (
 			<View>
-				<Image source={{uri: article.imgURI}} style={styles.image}/>
-				<View style={styles.container}>
-					<Text style={styles.title}>{article.title}</Text>
-					<View style={styles.metaData}>
-						<View style={[styles.large, styles.metaDataBox]}>
-							<Text>AUTHOR</Text>
-							<Text style={styles.blue}>{article.author}</Text>
-						</View>
-						<View style={[styles.large, styles.metaDataBox]}>
-							<Text>ARTIST</Text>
-							<Text style={styles.blue}>{article.artist}</Text>
-						</View>
-						<View style={[styles.small, styles.metaDataBox]}>
-							<Text>{article.time}</Text>
+				<ScrollView>
+					<View>
+						<Image style={styles.image} source={{uri: 'http://greymattersjournal.com/wp-content/uploads/2018/01/HM-700x757.png'}}/>
+						<View style={styles.container}>
+							<Text style={styles.title}>{this.props.contents[0].title}</Text>
+							<View style={styles.metaData}>
+								<View style={[styles.large, styles.metaDataBox]}>
+									<Text>AUTHOR</Text>
+									<Text style={styles.blue}>{this.props.contents[0].creators[0]}</Text>
+								</View>
+								<View style={[styles.large, styles.metaDataBox]}>
+									<Text>ARTIST</Text>
+									<Text style={styles.blue}>{this.props.contents[0].creators[0]}</Text>
+								</View>
+								<View style={[styles.small, styles.metaDataBox]}>
+									<Text>{ new Date(this.props.contents[0].publishTime).toLocaleDateString()}</Text>
+								</View>
+							</View>
+							<Text>{this.props.contents[0].body}</Text>
 						</View>
 					</View>
-					<Text>{article.text}</Text>
-				</View>
+				</ScrollView>
 			</View>
-		</ScrollView>
-	</View>
-)}
+    );
+  }
+}
 
-export default Home;
+const mapStateToProps = state => ({
+  contents: state.content.contents,
+  isGettingContents: state.content.isGettingContents,
+});
 
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getContents: contentActions.getContents,
+}, dispatch);
 
-
-//////////////////////////////////////////////////////////////////////////////////
-
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import {
-// 	View,
-// 	Image,
-// 	Text,
-// 	ScrollView,
-// } from 'react-native';
-// import styles from './HomeStyles';
-// import { contentActions } from '../../actions';
-// import Loading from '../shared/Loading';
-
-// class Home extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   componentDidMount() {
-//     this.props.getContent(); //how to get latest???
-//   }
-
-//   render() {
-//     if (this.props.isGettingContent) {
-//       return (
-//         <Loading />
-//       );
-//     }
-//     if (!this.props.content) {
-//       return (
-//         <Text>
-//           No Content Available
-//         </Text>
-//       );
-//     }
-//     return (
-// 			<View>
-// 				<ScrollView>
-// 					<View>
-// 						<Image style={styles.image} source={{uri: 'http://greymattersjournal.com/wp-content/uploads/2018/01/HM-700x757.png'}}/>
-// 						<View style={styles.container}>
-// 							<Text style={styles.title}>{this.props.content.title}</Text>
-// 							<View style={styles.metaData}>
-// 								<View style={[styles.large, styles.metaDataBox]}>
-// 									<Text>AUTHOR</Text>
-// 									<Text style={styles.blue}>{this.props.content.creators[0]}</Text>
-// 								</View>
-// 								<View style={[styles.large, styles.metaDataBox]}>
-// 									<Text>ARTIST</Text>
-// 									<Text style={styles.blue}>{this.props.content.creators[0]}</Text>
-// 								</View>
-// 								<View style={[styles.small, styles.metaDataBox]}>
-// 									<Text>{this.props.content.publishTime.toLocaleDateString()}</Text>
-// 								</View>
-// 							</View>
-// 							<Text>{this.props.content.body}</Text>
-// 						</View>
-// 					</View>
-// 				</ScrollView>
-// 			</View>
-//     );
-//   }
-// }
-
-// const mapStateToProps = state => ({
-//   content: state.content.content,
-//   isGettingContent: state.content.isGettingContent,
-// });
-
-// const mapDispatchToProps = dispatch => bindActionCreators({
-//   getContent: contentActions.getContent,
-// }, dispatch);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
