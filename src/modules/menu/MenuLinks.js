@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native';
 
-import { NativeRouter, Route, Link } from 'react-router-native';
+import { Link } from 'react-router-native';
 import { Avatar } from 'react-native-elements';
 import { menuActions } from '../../actions';
 import styles from '../../styles.js';

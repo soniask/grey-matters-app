@@ -11,7 +11,7 @@ class Articles extends Component {
   }
 
   componentDidMount() {
-    this.props.getContents({ type: 'article' });
+    this.props.getContents({ type: 'article', state: 'published' });
   }
 
   render() {

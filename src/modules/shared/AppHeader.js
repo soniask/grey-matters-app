@@ -15,7 +15,7 @@ class AppHeader extends Component {
     const location = this.props.location.pathname;
     if (location === '/profile') {
       return <SettingsIcon />;
-    } else if (['/signup', '/login', '/search'].includes(location)) {
+    } else if (['/signup', '/login', '/search', '/settings'].includes(location)) {
       return null;
     } else {
       return <SearchIcon />;
@@ -44,7 +44,7 @@ class AppHeader extends Component {
 
   getLeftComponent() {
     const location = this.props.location.pathname;
-    if (['/signup', '/login', '/search'].includes(location)) {
+    if (['/signup', '/login', '/search', '/settings'].includes(location)) {
       return <BackButton />;
     } else {
       return <MenuIcon />;

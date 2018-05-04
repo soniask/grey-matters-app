@@ -2,13 +2,13 @@ import React from 'react';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from "redux-thunk";
-import createHistory from 'history/createMemoryHistory'
+import { createMemoryHistory } from 'history'
 import { Route } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import rootReducer from './reducers'; //Import the reducer
 
 // Create a history of your choosing (we're using a browser history in this case)
-const history = createHistory()
+const history = createMemoryHistory()
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = [thunk, routerMiddleware(history)];

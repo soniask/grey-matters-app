@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
   blue: {
     color: '#1ba5b8',
   },
+  a: {
+    color: '#1ba5b8',
+    textDecorationLine: 'underline',
+  }
 })
 
 export default styles;
