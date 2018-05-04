@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Header, FormInput, Icon } from 'react-native-elements';
+import { Header } from 'react-native-elements';
 import MenuIcon from './MenuIcon';
 import SearchIcon from './SearchIcon';
+import SearchInput from '../search/SearchInput';
 import BackButton from './BackButton';
 import SettingsIcon from './SettingsIcon';
 import { routes } from '../../constants';
@@ -27,12 +28,7 @@ class AppHeader extends Component {
     const route = routes.find(route => route.path === location);
     if (location === '/search') {
       return (
-        <FormInput
-          placeholder='Search'
-          leftIcon={
-            <Icon name='search' color= '#282828' />
-          }
-        />
+        <SearchInput />
       )
     }
     if (route) {
