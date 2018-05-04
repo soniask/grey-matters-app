@@ -58,7 +58,7 @@ class Video extends Component {
               <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
             </View>
             <View style={styles.date}>
-              <Text>{this.props.content.publishTime}</Text>
+              <Text>{new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
             </View>
           </View>
           <Text>{this.props.content.body}</Text>
