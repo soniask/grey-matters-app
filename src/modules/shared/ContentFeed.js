@@ -9,6 +9,7 @@ import {
 import { Link } from 'react-router-native';
 import { Icon } from 'react-native-elements';
 import styles from './contentFeedStyles';
+import { creatorTitles } from '../../constants';
 
 const ContentFeed = (props) => (
   <ScrollView>
@@ -29,7 +30,7 @@ const ContentFeed = (props) => (
             </View>
             <View style={styles.metaData}>
               <View style={styles.author}>
-                <Text>AUTHOR</Text>
+                <Text>{creatorTitles[item.type].toUpperCase()}</Text>
                 <Text style={styles.blue}>{item.creators[0].name}</Text>
               </View>
               <View style={styles.date}>

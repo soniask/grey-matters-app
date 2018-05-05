@@ -27,7 +27,7 @@ class Article extends Component {
   }
 
   handleTermPress(term) {
-    let pattern = /<span>(.+)<\/span>/i;
+    let pattern = /<span>([\w\s]+)<\/span>/;
     let match = term.match(pattern);
     console.log(match[1]);
     this.props.getTerms({ term: match[1] });
