@@ -40,9 +40,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center'
   },
-  description: {
-    paddingTop: 5
-  },
   blue: {
     color: '#1ba5b8',
   },
@@ -52,8 +49,10 @@ const styles = StyleSheet.create({
   },
   term: {
     fontSize: 20,
-  }
-
+  },
+  description: {
+    paddingTop: 5
+  },
 })
 
 export default styles;

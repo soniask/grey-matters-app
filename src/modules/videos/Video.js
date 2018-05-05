@@ -13,6 +13,7 @@ import {
 import Loading from '../shared/Loading';
 import { contentActions } from '../../actions';
 import styles from '../articles/ArticleStyles';
+import References from '../shared/References';
 
 class Video extends Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class Video extends Component {
             </View>
           </View>
           <Text>{this.props.content.body}</Text>
+          {this.props.content.references && <References references={this.props.content.references}/>}
         </View>
       </View>
     );

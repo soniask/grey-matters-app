@@ -10,6 +10,7 @@ import {
 import styles from './HomeStyles';
 import { contentActions } from '../../actions';
 import Loading from '../shared/Loading';
+import References from '../shared/References';
 
 class Home extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class Home extends Component {
 								</View>
 							</View>
 							<Text>{this.props.contents[0].body}</Text>
+							{this.props.contents[0].references && <References references={this.props.contents[0].references}/>}
 						</View>
 					</View>
 				</ScrollView>

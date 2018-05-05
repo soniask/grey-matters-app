@@ -14,6 +14,7 @@ import styles from './ArticleStyles';
 import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
+import References from '../shared/References';
 
 class Article extends Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class Article extends Component {
             >
               {this.props.content.body}
             </ParsedText>
+            {this.props.content.references && <References references={this.props.content.references}/>}
           </View>
         </ScrollView>
         {this.props.terms && this.props.terms.length > 0 ? (
@@ -90,7 +92,7 @@ class Article extends Component {
             <View style={styles.dialog}>
               <Text style={styles.term}>{this.props.terms[0].term}</Text>
               <Link to={`/terms/${this.props.terms[0]._id}`}>
-                <Text >{this.props.terms[0].description}</Text>
+                <Text>{this.props.terms[0].description}</Text>
               </Link>
               <View >
                 <Button text60 label="Done" link onPress={() => this.props.clearTerms()} />
