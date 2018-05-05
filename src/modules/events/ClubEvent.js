@@ -10,6 +10,7 @@ import {
 import styles from './ClubEventStyles';
 import { Button } from 'react-native-elements';
 import { eventsActions } from '../../actions';
+import Loading from '../shared/Loading';
 
 class ClubEvent extends Component {
   constructor(props) {
@@ -27,9 +28,7 @@ class ClubEvent extends Component {
   render() {
     if(this.props.isGettingEvent) {
       return (
-        <Text>
-          Loading
-        </Text>
+        <Loading />
       )
     }
     if (!this.props.event) {

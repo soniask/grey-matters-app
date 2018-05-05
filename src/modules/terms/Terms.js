@@ -11,6 +11,7 @@ import {
 import { Link } from 'react-router-native';
 import { termsActions } from '../../actions';
 import styles from './TermsStyles';
+import Loading from '../shared/Loading';
 
 class Terms extends Component {
   constructor(props) {
@@ -24,9 +25,7 @@ class Terms extends Component {
   render() {
     if(this.props.isGettingTerms) {
       return (
-        <Text>
-          Loading
-        </Text>
+        <Loading />
       )
     }
     if (!this.props.terms) {

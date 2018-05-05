@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import {
 	Text,
-} from 'react-native'
+} from 'react-native';
 
-import styles from '../../styles.js'
+import styles from './LoadingStyles';
 
 const Loading = () => (
   <Text style={styles.title}>
-    Loading
+    Loading...
   </Text>
 )
 

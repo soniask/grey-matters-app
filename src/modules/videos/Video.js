@@ -27,7 +27,6 @@ class Video extends Component {
   render() {
     let youtubeLink = 'https://www.youtube.com/watch?v=NYIdmpp69MY'
     let embedLink = youtubeLink.replace('watch?v=', 'embed/');
-    console.log(embedLink);
 
     if (this.props.isGettingContent) {
       return (
@@ -42,7 +41,7 @@ class Video extends Component {
         </Text>
       );
     }
-
+    console.log(this.props.content.creators);
     return (
       <View>
         <View style={{height: 300}}>
