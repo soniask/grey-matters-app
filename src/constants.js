@@ -12,3 +12,9 @@ export const routes = [
   { path:"/profile", component:"Profile", name:"Profile" },
   { path:"/settings", component:"Settings", name:"Settings" },
 ];
+
+export const creatorTitles = {
+  article: "author",
+  podcast: "host",
+  video: "producer",
+};

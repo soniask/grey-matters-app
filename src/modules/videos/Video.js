@@ -13,6 +13,7 @@ import {
 import Loading from '../shared/Loading';
 import { contentActions } from '../../actions';
 import styles from '../articles/ArticleStyles';
+import References from '../shared/References';
 
 class Video extends Component {
   constructor(props) {
@@ -26,7 +27,6 @@ class Video extends Component {
   render() {
     let youtubeLink = 'https://www.youtube.com/watch?v=NYIdmpp69MY'
     let embedLink = youtubeLink.replace('watch?v=', 'embed/');
-    console.log(embedLink);
 
     if (this.props.isGettingContent) {
       return (
@@ -41,7 +41,7 @@ class Video extends Component {
         </Text>
       );
     }
-
+    console.log(this.props.content.creators);
     return (
       <View>
         <View style={{height: 300}}>
@@ -52,16 +52,18 @@ class Video extends Component {
           />
         </View>
         <View style={styles.container}>
+          <Text style={styles.titleText}>{this.props.content.title}</Text>
           <View style={styles.metaData}>
             <View style={styles.author}>
               <Text>AUTHOR</Text>
-              <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
+              <Text style={styles.blue}>{this.props.content.creators[0].name}</Text>
             </View>
             <View style={styles.date}>
               <Text>{new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
             </View>
           </View>
           <Text>{this.props.content.body}</Text>
+          {this.props.content.references && <References references={this.props.content.references}/>}
         </View>
       </View>
     );

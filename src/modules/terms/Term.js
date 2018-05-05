@@ -39,6 +39,7 @@ class Term extends Component {
       <ScrollView>
         <Image style={styles.image} source={{uri: 'http://3.bp.blogspot.com/-oulaC4PV0sw/V1Y4OskA1yI/AAAAAAAAb20/_clCVq9Y7DsvpM7CQU6PBJCTwC9D-VEsQCK4B/s1600/synapse.jpg'}}/>
         <View style={styles.container}>
+          <Text style={styles.title}>{this.props.term.term}</Text>
           <View>
             <View style={styles.sectionHeaderBox}>
               <Text style={styles.sectionHeader}>Definition</Text>

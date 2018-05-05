@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-native';
-import { Dialog, Button } from 'react-native-ui-lib';
 import ParsedText from 'react-native-parsed-text';
 import {
   Text,
@@ -14,6 +13,8 @@ import styles from './ArticleStyles';
 import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
+import References from '../shared/References';
+import TermDialog from './TermDialog';
 
 class Article extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Article extends Component {
   }
 
   handleTermPress(term) {
-    let pattern = /<span>(.+)<\/span>/i;
+    let pattern = /<span>([\w\s]+)<\/span>/;
     let match = term.match(pattern);
     console.log(match[1]);
     this.props.getTerms({ term: match[1] });
@@ -59,45 +60,31 @@ class Article extends Component {
               {this.props.content.title}
             </Text>
             <View style={styles.metaData}>
-              <View style={styles.author}>
+              <View style={[styles.rightBorder, styles.metaDataBox]}>
                 <Text>AUTHOR</Text>
                 <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
               </View>
-              <View style={styles.date}>
-                <Text>{new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
+              <View style={[styles.rightBorder, styles.metaDataBox]}>
+                <Text>ARTIST</Text>
+                <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
+              </View>
+              <View style={[styles.metaDataBox]}>
+                <Text>{ new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
               </View>
             </View>
             <ParsedText
               parse={
                 [
-                  {pattern: /<span>(.+)<\/span>/i, style: styles.blue, onPress: (term) => this.handleTermPress(term), renderText: this.renderText},
+                  {pattern: /<span>([\w\s]+)<\/span>/, style: styles.blue, onPress: (term) => this.handleTermPress(term), renderText: this.renderText},
                 ]
               }
             >
               {this.props.content.body}
             </ParsedText>
+            {this.props.content.references && <References references={this.props.content.references}/>}
           </View>
         </ScrollView>
-        {this.props.terms && this.props.terms.length > 0 ? (
-          <Dialog
-            visible={true}
-            width="100%"
-            height="35%"
-            bottom
-            centerH
-            animationConfig={{duration: 250}}
-          >
-            <View style={styles.dialog}>
-              <Text style={styles.term}>{this.props.terms[0].term}</Text>
-              <Link to={`/terms/${this.props.terms[0]._id}`}>
-                <Text >{this.props.terms[0].description}</Text>
-              </Link>
-              <View >
-                <Button text60 label="Done" link onPress={() => this.props.clearTerms()} />
-              </View>
-            </View>
-          </Dialog>
-        ) : null}
+        {this.props.terms && <TermDialog terms={this.props.terms} />}
       </View>
     );
   }

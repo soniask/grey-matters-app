@@ -5,6 +5,12 @@ const styles = StyleSheet.create({
 		alignSelf: 'stretch',
 		height: 300
 	},
+	title: {
+		fontSize: 25, 
+		fontWeight: 'bold',
+		textAlign: 'center',
+		paddingBottom: 10,
+	},
 	container: {
 		paddingTop: 15,
 		paddingLeft: 20,

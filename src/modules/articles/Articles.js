@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Text, Button } from 'react-native';
 import ContentFeed from '../shared/ContentFeed';
 import { contentActions } from '../../actions/contentActions';
+import Loading from '../shared/Loading';
 
 class Articles extends Component {
   constructor(props) {
@@ -17,9 +18,7 @@ class Articles extends Component {
   render() {
     if (this.props.isGettingContents) {
       return (
-        <Text>
-          Loading
-        </Text>
+        <Loading />
       );
     }
 

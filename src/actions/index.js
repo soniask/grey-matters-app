@@ -5,3 +5,4 @@ export * from './termsActions';
 export * from './eventsActions';
 export * from './authActions';
 export * from './searchActions';
+export * from './usersActions';

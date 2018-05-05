@@ -19,9 +19,11 @@ class Settings extends Component {
 	render() {
 	  return (
 		<View style={styles.container}>
-			<Text style={this.props.user ? styles.option : [styles.option, styles.grey]}>
-				Edit Profile
-			</Text>
+			<Link to="/editProfile">
+				<Text style={this.props.user ? styles.option : [styles.option, styles.grey]}>
+					Edit Profile
+				</Text>
+			</Link>
 			<Text style={this.props.user ? styles.option : [styles.option, styles.grey]}>
 				Change Password
 			</Text>

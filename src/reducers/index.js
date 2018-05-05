@@ -7,6 +7,7 @@ import { termsReducer } from './termsReducer';
 import { eventsReducer } from './eventsReducer';
 import { authReducer } from './authReducer';
 import { searchReducer } from './searchReducer';
+import { usersReducer } from './usersReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   terms: termsReducer,
   events: eventsReducer,
   search: searchReducer,
+  users: usersReducer,
 });
 
 export default rootReducer;

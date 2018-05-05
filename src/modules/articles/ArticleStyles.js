@@ -25,6 +25,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 10
   },
+  metaDataBox: {
+    flex: 1,
+    marginTop: 5,
+    marginBottom: 5,
+    paddingLeft: 13,
+    alignItems: 'flex-start',
+  },
+  rightBorder: {
+		borderRightColor: '#ff404e',
+    borderRightWidth: 1,
+	},
   author: {
     flex: 3,
     marginTop: 10,
@@ -40,9 +51,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center'
   },
-  description: {
-    paddingTop: 5
-  },
   blue: {
     color: '#1ba5b8',
   },
@@ -52,8 +60,10 @@ const styles = StyleSheet.create({
   },
   term: {
     fontSize: 20,
-  }
-
+  },
+  description: {
+    paddingTop: 5
+  },
 })
 
 export default styles;

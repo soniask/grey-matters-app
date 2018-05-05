@@ -1,9 +1,6 @@
 import { push } from 'react-router-redux';
 import axios from 'axios';
-import { AsyncStorage } from 'react-native';
 import { baseURL } from './index';
-import storage from 'redux-persist/es/storage';
-import { history } from '../store';
 
 // Types
 export const authConstants = {

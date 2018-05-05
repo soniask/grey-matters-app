@@ -10,6 +10,7 @@ import {
 import styles from './ClubEventStyles';
 import { Button } from 'react-native-elements';
 import { eventsActions } from '../../actions';
+import Loading from '../shared/Loading';
 
 class ClubEvent extends Component {
   constructor(props) {
@@ -27,9 +28,7 @@ class ClubEvent extends Component {
   render() {
     if(this.props.isGettingEvent) {
       return (
-        <Text>
-          Loading
-        </Text>
+        <Loading />
       )
     }
     if (!this.props.event) {
@@ -45,17 +44,20 @@ class ClubEvent extends Component {
         <View style={styles.mainContainer}>
           <View style={styles.metaData}>
             <View style={[styles.small, styles.metaDataBox]}>
+              <Text>{"DATE"}</Text>
               <Text>
               {new Date(this.props.event.dateStart).toLocaleDateString("en-US",{month: 'long', day: 'numeric'})}
               </Text>
             </View>
             <View style={[styles.small, styles.metaDataBox]}>
+              <Text>{"TIME"}</Text>
               <Text>
-              {new Date(this.props.event.dateStart).toLocaleTimeString("en-US",{hour: 'numeric', minute: 'numeric'})}
+                {new Date(this.props.event.dateStart).toLocaleTimeString("en-US",{hour: 'numeric', minute: 'numeric'})}
               </Text>
             </View>
             <View style={[styles.large, styles.metaDataBox]}>
               <Text>{"LOCATION"}</Text>
+              <Text>{this.props.event.location}</Text>
             </View>
           </View>
           <Text style={styles.description}>{this.props.event.description}</Text>

@@ -46,10 +46,10 @@ class Profile extends Component {
 			},
 		];
 		return (
-			<View>
+			<View style={{flex:1}}>
 					{
 						this.props.user ? (
-							<View>
+							<View style={{flex:1}}>
 								<View style={{alignItems: 'center'}}>
 									<Avatar
 										xlarge
@@ -73,7 +73,7 @@ class Profile extends Component {
 									icon={{name: 'person'}}
 									containerStyle={{marginTop: 20, marginBottom: 15}}
 								/>
-								<Text>Sign up under settings to unlock bookmarks and notes</Text>
+								<Text>Sign up under settings to unlock bookmarks</Text>
 							</View>
 						)
 					}

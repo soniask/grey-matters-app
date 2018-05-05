@@ -23,23 +23,24 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomColor: '#ff404e',
     borderBottomWidth: 1,
+    marginBottom: 10
   },
   metaDataBox: {
+    flex: 1,
     marginTop: 5,
     marginBottom: 5,
     paddingLeft: 13,
     alignItems: 'flex-start',
   },
-  small: {
-    flex: 1,
-  },
-  large: {
-		flex: 2,
+  rightBorder: {
 		borderRightColor: '#ff404e',
     borderRightWidth: 1,
 	},
 	blue: {
     color: '#1ba5b8',
+  },
+  body: {
+    paddingTop: 10,
   },
 })
 
