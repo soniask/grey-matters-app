@@ -28,6 +28,7 @@ import Search from '../search/Search.js';
 import Settings from '../profile/Settings';
 import Signup from '../landing/Signup.js';
 import Login from '../landing/Login.js';
+import EditProfile from '../profile/EditProfile';
 
 
 class AppView extends React.Component {
@@ -58,6 +59,7 @@ class AppView extends React.Component {
             <Route exact path="/terms/:id" component={Term} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/settings" component={Settings} />
+            <Route exact path="/editProfile" component={EditProfile} />
             <Menu />
           </View>
         </View>

@@ -70,7 +70,7 @@ class Article extends Component {
             <ParsedText
               parse={
                 [
-                  {pattern: /<span>(.+)<\/span>/i, style: styles.blue, onPress: (term) => this.handleTermPress(term), renderText: this.renderText},
+                  {pattern: /<span>([\w\s]+)<\/span>/, style: styles.blue, onPress: (term) => this.handleTermPress(term), renderText: this.renderText},
                 ]
               }
             >
