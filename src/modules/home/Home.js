@@ -42,19 +42,19 @@ class Home extends Component {
 						<View style={styles.container}>
 							<Text style={styles.title}>{this.props.contents[0].title}</Text>
 							<View style={styles.metaData}>
-								<View style={[styles.large, styles.metaDataBox]}>
+								<View style={[styles.rightBorder, styles.metaDataBox]}>
 									<Text>AUTHOR</Text>
 									<Text style={styles.blue}>{this.props.contents[0].creators[0].name}</Text>
 								</View>
-								<View style={[styles.large, styles.metaDataBox]}>
+								<View style={[styles.rightBorder, styles.metaDataBox]}>
 									<Text>ARTIST</Text>
 									<Text style={styles.blue}>{this.props.contents[0].creators[0].name}</Text>
 								</View>
-								<View style={[styles.small, styles.metaDataBox]}>
+								<View style={[styles.metaDataBox]}>
 									<Text>{ new Date(this.props.contents[0].publishTime).toLocaleDateString()}</Text>
 								</View>
 							</View>
-							<Text>{this.props.contents[0].body}</Text>
+							<Text style={styles.body}>{this.props.contents[0].body}</Text>
 							{this.props.contents[0].references && <References references={this.props.contents[0].references}/>}
 						</View>
 					</View>
