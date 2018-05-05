@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-native';
-import { Dialog, Button } from 'react-native-ui-lib';
 import ParsedText from 'react-native-parsed-text';
 import {
   Text,
@@ -15,6 +14,7 @@ import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
 import References from '../shared/References';
+import TermDialog from './TermDialog';
 
 class Article extends Component {
   constructor(props) {
@@ -80,26 +80,7 @@ class Article extends Component {
             {this.props.content.references && <References references={this.props.content.references}/>}
           </View>
         </ScrollView>
-        {this.props.terms && this.props.terms.length > 0 ? (
-          <Dialog
-            visible={true}
-            width="100%"
-            height="35%"
-            bottom
-            centerH
-            animationConfig={{duration: 250}}
-          >
-            <View style={styles.dialog}>
-              <Text style={styles.term}>{this.props.terms[0].term}</Text>
-              <Link to={`/terms/${this.props.terms[0]._id}`}>
-                <Text>{this.props.terms[0].description}</Text>
-              </Link>
-              <View >
-                <Button text60 label="Done" link onPress={() => this.props.clearTerms()} />
-              </View>
-            </View>
-          </Dialog>
-        ) : null}
+        {this.props.terms && <TermDialog terms={this.props.terms} />}
       </View>
     );
   }

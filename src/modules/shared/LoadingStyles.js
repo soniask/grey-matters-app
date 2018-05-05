@@ -5,7 +5,7 @@ import {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
     color: '#282828',
