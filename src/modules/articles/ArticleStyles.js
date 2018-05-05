@@ -25,6 +25,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 10
   },
+  metaDataBox: {
+    flex: 1,
+    marginTop: 5,
+    marginBottom: 5,
+    paddingLeft: 13,
+    alignItems: 'flex-start',
+  },
+  rightBorder: {
+		borderRightColor: '#ff404e',
+    borderRightWidth: 1,
+	},
   author: {
     flex: 3,
     marginTop: 10,

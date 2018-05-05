@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomColor: '#ff404e',
     borderBottomWidth: 1,
-    height: 50,
+    marginBottom: 10
   },
   metaDataBox: {
     flex: 1,

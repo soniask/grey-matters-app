@@ -60,12 +60,16 @@ class Article extends Component {
               {this.props.content.title}
             </Text>
             <View style={styles.metaData}>
-              <View style={styles.author}>
+              <View style={[styles.rightBorder, styles.metaDataBox]}>
                 <Text>AUTHOR</Text>
-                <Text style={styles.blue}>{this.props.content.creators[0].name}</Text>
+                <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
               </View>
-              <View style={styles.date}>
-                <Text>{new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
+              <View style={[styles.rightBorder, styles.metaDataBox]}>
+                <Text>ARTIST</Text>
+                <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
+              </View>
+              <View style={[styles.metaDataBox]}>
+                <Text>{ new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
               </View>
             </View>
             <ParsedText
