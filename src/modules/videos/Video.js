@@ -52,6 +52,7 @@ class Video extends Component {
           />
         </View>
         <View style={styles.container}>
+          <Text style={styles.titleText}>{this.props.content.title}</Text>
           <View style={styles.metaData}>
             <View style={styles.author}>
               <Text>AUTHOR</Text>
