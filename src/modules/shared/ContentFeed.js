@@ -10,6 +10,7 @@ import { Link } from 'react-router-native';
 import { Icon } from 'react-native-elements';
 import styles from './contentFeedStyles';
 import { creatorTitles } from '../../constants';
+import BookmarkIcon from './BookmarkIcon';
 
 const ContentFeed = (props) => (
   <ScrollView>
@@ -25,8 +26,7 @@ const ContentFeed = (props) => (
               <Text style={styles.titleText}>
                 {item.title}
               </Text>
-              { props.user ? (<Icon name='ios-bookmark-outline' type='ionicon' />) : null }
-              
+              { props.user && <BookmarkIcon item={item}/> }
             </View>
             <View style={styles.metaData}>
               <View style={styles.author}>
