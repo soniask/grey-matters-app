@@ -8,15 +8,17 @@ import { eventsReducer } from './eventsReducer';
 import { authReducer } from './authReducer';
 import { searchReducer } from './searchReducer';
 import { usersReducer } from './usersReducer';
+import { profileReducer } from './profileReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  router: routerReducer,
-  menu: menuReducer,
   content: contentReducer,
-  terms: termsReducer,
   events: eventsReducer,
+  menu: menuReducer,
+  profile: profileReducer,
+  router: routerReducer,
   search: searchReducer,
+  terms: termsReducer,
   users: usersReducer,
 });
 

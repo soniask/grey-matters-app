@@ -1,9 +1,9 @@
 import { searchConstants } from '../actions';
 
 const SEARCH_INITIAL = {
-    showSortOptions: false,
-    showFilterOptions: false,
-  };
+	showSortOptions: false,
+	showFilterOptions: false,
+};
 
 export const searchReducer = (state = SEARCH_INITIAL, action) => {
     switch (action.type) {
