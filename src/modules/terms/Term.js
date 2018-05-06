@@ -26,6 +26,10 @@ class Term extends Component {
     this.notes = "a junction between two nerve cells, consisting of a minute gap across which impulses pass by diffusion of a neurotransmitter."
   }
 
+  componentWillUnmount() {
+    console.log(this.notes);
+  }
+
   render() {
     if (this.props.isGettingTerm) {
       return (
