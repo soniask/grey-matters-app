@@ -55,7 +55,7 @@ class Term extends Component {
             <View style={styles.sectionHeaderBox}>
               <Text style={styles.sectionHeader}>Definition</Text>
             </View>
-            <Text style={styles.paragraph}>{this.props.term.description}</Text>
+            <Text style={styles.paragraph}>{this.props.term.definition}</Text>
           </View>
           <View>
             <View style={styles.sectionHeaderBox}>
