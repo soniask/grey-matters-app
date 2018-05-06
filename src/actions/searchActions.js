@@ -26,7 +26,7 @@ export const searchActions = {
 function getSearch(filters = {}) {
   const query = queryString.stringify(filters);
   return dispatch => {
-    dispatch(request());
+    dispatch(request(filters.q));
 
     axios({
       method: 'get',
@@ -49,7 +49,7 @@ function getSearch(filters = {}) {
     });
   };
 
-  function request() { return { type: searchConstants.SEARCH_REQUEST } }
+  function request(searchTerm) { return { type: searchConstants.SEARCH_REQUEST, searchTerm } }
   function success(payload) { return { type: searchConstants.SEARCH_SUCCESS, payload } }
   function failure() { return { type: searchConstants.SEARCH_FAILURE } }
 }

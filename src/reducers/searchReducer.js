@@ -10,6 +10,7 @@ export const searchReducer = (state = SEARCH_INITIAL, action) => {
 		case searchConstants.SEARCH_REQUEST:
 			return {
 				...state,
+				searchTerm: action.searchTerm,
 				isGettingSearch: true,
 			};
 		case searchConstants.SEARCH_SUCCESS:

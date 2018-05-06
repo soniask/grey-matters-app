@@ -61,19 +61,28 @@ class SearchResults extends Component {
 									<View style={styles.optionsContainer}>
 										<Text 
 											style={styles.option}
-											onPress={() => this.props.toggleFilterOptions(!this.props.showFilterOptions)}
+											onPress={() => {
+												this.props.toggleFilterOptions(!this.props.showFilterOptions);
+												this.props.getSearch({ q: this.props.searchTerm, type: 'article' })
+											}}
 										>
 											Articles
 										</Text>
 										<Text
 											style={styles.option}
-											onPress={() => this.props.toggleFilterOptions(!this.props.showFilterOptions)}
+											onPress={() => {
+												this.props.toggleFilterOptions(!this.props.showFilterOptions);
+												this.props.getSearch({ q: this.props.searchTerm, type: 'podcast' })
+											}}
 										>
 											Podcasts
 										</Text>
 										<Text
 											style={styles.option}
-											onPress={() => this.props.toggleFilterOptions(!this.props.showFilterOptions)}
+											onPress={() => {
+												this.props.toggleFilterOptions(!this.props.showFilterOptions);
+												this.props.getSearch({ q: this.props.searchTerm, type: 'video' })
+											}}
 										>
 											Videos
 										</Text>
@@ -89,6 +98,7 @@ class SearchResults extends Component {
 
 const mapStateToProps = state => ({
   searchResults: state.search.searchResults,
+  searchTerm: state.search.searchTerm,
   showSortOptions: state.search.showSortOptions,
   showFilterOptions: state.search.showFilterOptions,
 });

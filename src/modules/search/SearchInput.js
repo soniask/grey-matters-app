@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { contentActions } from '../../actions';
+import { searchActions } from '../../actions';
 import SearchResults from './SearchResults';
 import styles from './SearchStyles';
 
@@ -27,7 +28,7 @@ class SearchInput extends Component {
             onChangeText={(text) => this.searchTerm = text}
             onSubmitEditing={() => {
               console.log(this.searchTerm);
-              this.props.getContents();
+              this.props.getSearch({ q: this.searchTerm});
             }}
           />
         </View>
@@ -36,7 +37,7 @@ class SearchInput extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getContents: contentActions.getContents,
+  getSearch: searchActions.getSearch,
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(SearchInput);

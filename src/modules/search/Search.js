@@ -16,6 +16,10 @@ class Search extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.clearSearch();
+  }
+
   render() {
     if (this.props.searchResults) {
       return (
@@ -65,6 +69,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getSearch: searchActions.getSearch,
+  clearSearch: searchActions.clearSearch,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
