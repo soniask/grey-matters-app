@@ -6,7 +6,7 @@ const SEARCH_INITIAL = {
 };
 
 export const searchReducer = (state = SEARCH_INITIAL, action) => {
-    switch (action.type) {
+	switch (action.type) {
 		case searchConstants.SEARCH_REQUEST:
 			return {
 				...state,
@@ -25,22 +25,22 @@ export const searchReducer = (state = SEARCH_INITIAL, action) => {
 				searchResults: null,
 				isGettingSearch: false,
 			};
-        case searchConstants.SHOW_SORT_OPTIONS:
-            return {
-                ...state,
-                showSortOptions: action.show,
-            };
-        case searchConstants.SHOW_FILTER_OPTIONS:
-            return {
-                ...state,
-                showFilterOptions: action.show,
+		case searchConstants.SHOW_SORT_OPTIONS:
+			return {
+				...state,
+				showSortOptions: action.show,
+			};
+		case searchConstants.SHOW_FILTER_OPTIONS:
+			return {
+				...state,
+				showFilterOptions: action.show,
 			};
 		case searchConstants.CLEAR_SEARCH:
 			return {
 				...state,
 				searchResults: null,
 			};
-        default:
-            return state;
-    }
+		default:
+			return state;
+	}
 }
