@@ -9,6 +9,8 @@ import {
 import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
 import styles from './ProfileStyles';
+import { profileActions } from '../../actions';
+import Notes from './Notes';
 
 class Profile extends Component {
   constructor(props) {
@@ -45,6 +47,18 @@ class Profile extends Component {
 				_id: 3,
 			},
 		];
+		notesList = [
+			{
+				_id: '5aee0064ac75fe04e66f734a',
+				term: 'Synapse',
+				notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+			},
+			{
+				_id: '5aecb7cc64424656ca71a811',
+				term: 'Neurotransmitter',
+				notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+			},
+		];
 		return (
 			<View style={{flex:1}}>
 					{
@@ -59,11 +73,27 @@ class Profile extends Component {
 									/>
 									<Text style={styles.name}>{this.props.user.name}</Text>
 									<View style={styles.tabs}>
-										<Text style={[styles.tab, styles.tabLeft, styles.tabSelected]}>Bookmarks</Text>
-										<Text style={[styles.tab, styles.tabRight]}>Notes</Text>
+										<Text 
+											style={[styles.tab, styles.tabLeft, this.props.showBookmarkList ? styles.tabSelected : null]}
+											onPress={() => this.props.showBookmarks()}
+										>
+											Bookmarks
+										</Text>
+										<Text 
+											style={[styles.tab, styles.tabRight, !this.props.showBookmarkList ? styles.tabSelected : null]}
+											onPress={() => this.props.showNotes()}
+										>
+											Notes
+										</Text>
 									</View>
 								</View>
-								<ContentFeed list={bookmarks} />
+								{
+									this.props.showBookmarkList ? (
+										<ContentFeed list={bookmarks} />
+									) : (
+										<Notes list={notesList}/>
+									)
+								}
 							</View>
 						) : (
 							<View style={{alignItems: 'center'}}>
@@ -83,7 +113,13 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.auth.user
+	user: state.auth.user,
+	showBookmarkList: state.profile.showBookmarkList,
 });
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = dispatch => bindActionCreators({
+	showBookmarks: profileActions.showBookmarks,
+	showNotes: profileActions.showNotes,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
