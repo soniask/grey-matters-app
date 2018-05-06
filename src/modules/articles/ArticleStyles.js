@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
   blue: {
     color: '#1ba5b8',
   },
+  sectionTitle: {
+    fontWeight: 'bold',
+  },
   dialog: {
     backgroundColor: 'white',
     padding: 20,
