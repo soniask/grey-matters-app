@@ -7,6 +7,23 @@ const SEARCH_INITIAL = {
 
 export const searchReducer = (state = SEARCH_INITIAL, action) => {
     switch (action.type) {
+		case searchConstants.SEARCH_REQUEST:
+			return {
+				...state,
+				isGettingSearch: true,
+			};
+		case searchConstants.SEARCH_SUCCESS:
+			return {
+				...state,
+				searchResults: action.payload,
+				isGettingSearch: false,
+			};
+		case searchConstants.SEARCH_FAILURE:
+			return {
+				...state,
+				searchResults: null,
+				isGettingSearch: false,
+			};
         case searchConstants.SHOW_SORT_OPTIONS:
             return {
                 ...state,
@@ -16,7 +33,12 @@ export const searchReducer = (state = SEARCH_INITIAL, action) => {
             return {
                 ...state,
                 showFilterOptions: action.show,
-            };
+			};
+		case searchConstants.CLEAR_SEARCH:
+			return {
+				...state,
+				searchResults: null,
+			};
         default:
             return state;
     }

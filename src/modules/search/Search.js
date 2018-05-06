@@ -7,7 +7,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import { contentActions } from '../../actions';
+import { searchActions } from '../../actions';
 import SearchResults from './SearchResults';
 import styles from './SearchStyles';
 
@@ -16,12 +16,8 @@ class Search extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.clearContents();
-  }
-
   render() {
-    if (this.props.contents) {
+    if (this.props.searchResults) {
       return (
         <SearchResults />
       )
@@ -30,27 +26,33 @@ class Search extends Component {
       <View>
         <Text 
           style={styles.suggestion}
-          onPress={() => this.props.getContents()}
+          onPress={() => this.props.getSearch({ q: 'Computers'})}
         >
-          Of Computers and Brains
+          Computers
         </Text>
         <Text 
           style={styles.suggestion}
-          onPress={() => this.props.getContents()}
+          onPress={() => this.props.getSearch({ q: 'Brain' })}
         >
-          Brain Computer Interfaces
+          Brain
         </Text>
         <Text 
           style={styles.suggestion}
-          onPress={() => this.props.getContents()}
+          onPress={() => this.props.getSearch({ q: 'Tapeworms' })}
         >
-          Tapeworms on the Brain
+          Tapeworms
         </Text>
         <Text 
           style={styles.suggestion}
-          onPress={() => this.props.getContents()}
+          onPress={() => this.props.getSearch({ q: 'Memory' })}
         >
-          Of Computers and Brains
+          Memory
+        </Text>
+        <Text 
+          style={styles.suggestion}
+          onPress={() => this.props.getSearch({ q: 'Depression' })}
+        >
+          Depression
         </Text>
       </View>
     );
@@ -58,13 +60,11 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  contents: state.content.contents,
-  isGettingContents: state.content.isGettingContents,
+  searchResults: state.search.searchResults,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getContents: contentActions.getContents,
-  clearContents: contentActions.clearContents,
+  getSearch: searchActions.getSearch,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

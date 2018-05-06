@@ -7,7 +7,6 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import { contentActions } from '../../actions';
 import { searchActions } from '../../actions';
 import ContentFeed from '../shared/ContentFeed';
 import styles from './SearchStyles';
@@ -21,7 +20,7 @@ class SearchResults extends Component {
     return (
 			<View>
 				<View style={styles.resultsContainer}>
-					<ContentFeed list={this.props.contents} />
+					<ContentFeed list={this.props.searchResults} />
 				</View>
 					<View style={styles.tabsContainer}>
 						<View style={styles.tab}>
@@ -89,15 +88,13 @@ class SearchResults extends Component {
 }
 
 const mapStateToProps = state => ({
-  contents: state.content.contents,
-  isGettingContents: state.content.isGettingContents,
+  searchResults: state.search.searchResults,
   showSortOptions: state.search.showSortOptions,
   showFilterOptions: state.search.showFilterOptions,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getContents: contentActions.getContents,
-  clearContents: contentActions.clearContents,
+  getSearch: searchActions.getSearch,
   toggleSortOptions: searchActions.toggleSortOptions,
   toggleFilterOptions: searchActions.toggleFilterOptions,
 }, dispatch);

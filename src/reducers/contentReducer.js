@@ -25,10 +25,10 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 				isGettingContents: false,
 			};
 		case contentConstants.GET_CONTENT_REQUEST:
-		return {
-		  ...state,
-		  isGettingContent: true,
-		};
+			return {
+			...state,
+			isGettingContent: true,
+			};
 		case contentConstants.GET_CONTENT_SUCCESS:
 			return {
 			...state,
