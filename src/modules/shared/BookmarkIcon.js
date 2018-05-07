@@ -14,7 +14,6 @@ class BookmarkIcon extends React.Component {
 	}
 	
 	render() {
-		console.log(this.props.bookmarkIDSet);
 		return (
 			<Icon
 				name={ this.props.bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}

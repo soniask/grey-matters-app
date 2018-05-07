@@ -19,7 +19,9 @@ class Profile extends Component {
 	}
 	
 	componentDidMount() {
-		this.props.getContents();
+		if (this.props.user) {
+			this.props.getContents({ contentIds: this.props.user.bookmarks });
+		}
 	}
 
   render() {
