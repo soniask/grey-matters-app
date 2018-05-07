@@ -9,7 +9,7 @@ import { Button, FormInput } from 'react-native-elements';
 import { Link } from 'react-router-native';
 import { withRouter } from 'react-router';
 import styles from '../../styles.js';
-import { authActions } from '../../actions/authActions.js';
+import { userActions } from '../../actions';
 
 
 class Login extends Component {
@@ -44,11 +44,11 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-	message: state.auth.message,
+	message: state.user.message,
 });
   
 const mapDispatchToProps = dispatch => bindActionCreators({
-	login: authActions.login,
+	login: userActions.login,
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

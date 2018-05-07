@@ -7,7 +7,7 @@ import {
 	StyleSheet,
 } from 'react-native';
 import { Link } from 'react-router-native';
-import { authActions } from '../../actions';
+import { userActions } from '../../actions';
 import styles from './SettingsStyles';
 
 
@@ -47,11 +47,11 @@ class Settings extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  user: state.user.user,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	logout: authActions.logout,
+	logout: userActions.logout,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

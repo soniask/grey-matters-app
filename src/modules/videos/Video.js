@@ -41,7 +41,7 @@ class Video extends Component {
         </Text>
       );
     }
-    console.log(this.props.content.creators);
+    
     return (
       <View>
         <View style={{height: 300}}>

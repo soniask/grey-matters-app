@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import { Link } from 'react-router-native';
-import { authActions } from '../../actions';
+import { userActions } from '../../actions';
 import styles from '../../styles.js';
 
 
@@ -67,12 +67,12 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => ({
-	message: state.auth.message
+	message: state.user.message
 });
   
 const mapDispatchToProps = dispatch => bindActionCreators({
-  signup: authActions.signup,
-  clearMessage: authActions.clearMessage,
+  signup: userActions.signup,
+  clearMessage: userActions.clearMessage,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -27,6 +27,8 @@
     "react-native": "^0.52.3",
     "react-native-elements": "^0.19.0",
     "react-native-htmlview": "^0.12.1",
+    "react-native-keyboard-aware-scroll-view": "^0.5.0",
+    "react-native-keyboard-aware-scrollview": "^2.0.0",
     "react-native-parsed-text": "0.0.20",
     "react-native-ui-lib": "^3.3.72",
     "react-navigation": "^1.5.11",

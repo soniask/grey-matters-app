@@ -8,7 +8,7 @@ import {
 	StyleSheet,
 } from 'react-native';
 import { Link } from 'react-router-native';
-import { usersActions } from '../../actions';
+import { userActions } from '../../actions';
 import styles from './SettingsStyles';
 
 
@@ -40,7 +40,7 @@ class EditProfile extends Component {
 							role: this.props.user.role,
 						},
 						this.props.user._id,
-						this.props.user.token,
+						this.props.token,
 				)}
 				/>
 				{this.props.message ? (
@@ -52,11 +52,12 @@ class EditProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  user: state.user.user,
+  token: state.user.token,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	updateUser: usersActions.updateUser,
+	updateUser: userActions.updateUser,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

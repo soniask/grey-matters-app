@@ -5,19 +5,19 @@ import { menuReducer } from './menuReducer';
 import { contentReducer } from './contentReducer';
 import { termsReducer } from './termsReducer';
 import { eventsReducer } from './eventsReducer';
-import { authReducer } from './authReducer';
 import { searchReducer } from './searchReducer';
-import { usersReducer } from './usersReducer';
+import { userReducer } from './userReducer';
+import { profileReducer } from './profileReducer';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  router: routerReducer,
-  menu: menuReducer,
   content: contentReducer,
-  terms: termsReducer,
   events: eventsReducer,
+  menu: menuReducer,
+  profile: profileReducer,
+  router: routerReducer,
   search: searchReducer,
-  users: usersReducer,
+  terms: termsReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

@@ -9,40 +9,32 @@ import {
 import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
 import styles from './ProfileStyles';
+import { profileActions } from '../../actions';
+import { contentActions } from '../../actions';
+import Notes from './Notes';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-  }
+	}
+	
+	componentDidMount() {
+		if (this.props.user) {
+			this.props.getContents({ contentIds: this.props.user.bookmarks });
+		}
+	}
 
   render() {
-		bookmarks = [
+		notesList = [
 			{
-				imgURI: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg',
-				title: 'Food for Thought: How the Brain Controls What You Eat',
-				creators: ['LEANN NGUYEN'],
-				publishTime: '11/7/14',
-				description: 'One of the most frequent decisions we make is what to eat, but just because',
-				type: 'article',
-				_id: 1,
+				_id: '5aee0064ac75fe04e66f734a',
+				term: 'Synapse',
+				notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 			},
 			{
-				imgURI: 'http://greymattersjournal.com/wp-content/uploads/2014/10/640px-Taenia_solium_scolex.jpg',
-				title: 'Tapeworms on the Brain',
-				creators: ['BENJAMIN CORDY'],
-				publishTime: '15 minutes',
-				description: 'For most people, the mere thought of a parasite setting up residence in their tissues is enough to induce a',
-				type: 'podcast',
-				_id: 2,
-			},
-			{
-				imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
-				title: 'Of Computers and Brains',
-				creators: ['JESSE MILES'],
-				publishTime: '13 minutes',
-				description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
-				type: 'video',
-				_id: 3,
+				_id: '5aecb7cc64424656ca71a811',
+				term: 'Neurotransmitter',
+				notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 			},
 		];
 		return (
@@ -59,11 +51,27 @@ class Profile extends Component {
 									/>
 									<Text style={styles.name}>{this.props.user.name}</Text>
 									<View style={styles.tabs}>
-										<Text style={[styles.tab, styles.tabLeft, styles.tabSelected]}>Bookmarks</Text>
-										<Text style={[styles.tab, styles.tabRight]}>Notes</Text>
+										<Text 
+											style={[styles.tab, styles.tabLeft, this.props.showBookmarkList ? styles.tabSelected : null]}
+											onPress={() => this.props.showBookmarks()}
+										>
+											Bookmarks
+										</Text>
+										<Text 
+											style={[styles.tab, styles.tabRight, !this.props.showBookmarkList ? styles.tabSelected : null]}
+											onPress={() => this.props.showNotes()}
+										>
+											Notes
+										</Text>
 									</View>
 								</View>
-								<ContentFeed list={bookmarks} />
+								{
+									this.props.showBookmarkList ? (
+										<ContentFeed list={this.props.contents} />
+									) : (
+										<Notes list={notesList}/>
+									)
+								}
 							</View>
 						) : (
 							<View style={{alignItems: 'center'}}>
@@ -83,7 +91,15 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.auth.user
+	user: state.user.user,
+	contents: state.content.contents,
+	showBookmarkList: state.profile.showBookmarkList,
 });
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = dispatch => bindActionCreators({
+	showBookmarks: profileActions.showBookmarks,
+	showNotes: profileActions.showNotes,
+	getContents: contentActions.getContents,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
