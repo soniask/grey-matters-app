@@ -112,10 +112,6 @@ function clearMessage() {
 }
 
 function updateUser(fields, id, token) {
-  console.log(`inside updateUser with id ${id} and token ${token}`);
-  for (let field in fields) {
-    console.log(`${field} : ${fields[field]}`)
-  }
   return dispatch => {
     dispatch(request());
 

@@ -23,12 +23,11 @@ class BookmarkIcon extends React.Component {
 					if (this.props.bookmarkIDSet.has(this.props.item._id)) {
 						let index = this.props.user.bookmarks.indexOf(this.props.item._id)
 						if ( index > -1) {
-							this.props.user.bookmarks.splice(index, this.props.item._id)
+							this.props.user.bookmarks.splice(index, 1)
 						}
 					} else {
 						this.props.user.bookmarks.push(this.props.item._id)
 					}
-					console.log(`Bookmark pressed for: ${this.props.item.title}`)
 					this.props.updateUser(this.props.user, this.props.user._id, this.props.token)
 				}}
 			/>
