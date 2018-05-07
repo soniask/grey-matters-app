@@ -87,7 +87,7 @@ class Term extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  user: state.user.user,
   term: state.terms.term,
   isGettingTerm: state.terms.isGettingTerm,
 });

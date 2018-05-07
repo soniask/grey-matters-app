@@ -38,8 +38,8 @@ class BookmarkIcon extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.auth.user,
-	token: state.auth.token,
+	user: state.user.user,
+	token: state.user.token,
 	bookmarkIDSet: state.user.bookmarkIDSet,
 });
 

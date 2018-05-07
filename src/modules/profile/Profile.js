@@ -89,7 +89,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.auth.user,
+	user: state.user.user,
 	contents: state.content.contents,
 	showBookmarkList: state.profile.showBookmarkList,
 });

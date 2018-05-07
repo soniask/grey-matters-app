@@ -1,5 +1,4 @@
 export const baseURL = 'http://10.19.230.177:8080/api/';
-export * from './authActions';
 export * from './contentActions';
 export * from './eventsActions';
 export * from './menuActions';

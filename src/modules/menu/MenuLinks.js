@@ -98,7 +98,7 @@ const MenuLinks = (props) => (
 
 const mapStateToProps = state => ({
   show: state.menu.show,
-  user: state.auth.user,
+  user: state.user.user,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -52,8 +52,8 @@ class EditProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
-  token: state.auth.token,
+  user: state.user.user,
+  token: state.user.token,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

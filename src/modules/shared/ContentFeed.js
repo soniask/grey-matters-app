@@ -52,7 +52,7 @@ const ContentFeed = (props) => (
 )
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  user: state.user.user,
 });
 
 export default connect(mapStateToProps)(ContentFeed);
