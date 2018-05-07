@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Loading from '../shared/Loading';
 import { termsActions } from '../../actions';
+import { userActions } from '../../actions';
 import styles from './TermStyles';
 
 class Term extends Component {
@@ -23,11 +24,34 @@ class Term extends Component {
 
   componentDidMount() {
     this.props.getTerm(this.props.match.params.id);
-    this.notes = "a junction between two nerve cells, consisting of a minute gap across which impulses pass by diffusion of a neurotransmitter."
   }
 
   componentWillUnmount() {
-    console.log(this.notes);
+    if (this.props.user) {
+      console.log(`we know we have a user`);
+      let index = -1;
+      for (let i = 0; i < this.props.user.notes.length; i++) {
+        if (this.props.user.notes[i].term == this.props.term._id) {
+          index = i;
+          break;
+        }
+      }
+      console.log(`this.notes inside componentWillUnmount: ${this.notes}`)
+      if (index > -1) {
+        // the user already had a note for this term
+        
+        this.props.user.notes[index].body = this.notes;
+      } else {
+        // this is the user's first time writing a note for this term
+        console.log(`the index was not greater than -1`)
+        this.props.user.notes.push({body: this.notes, term: this.props.term._id})
+      }
+      console.log(this.props.user.notes.length);
+      if (this.props.user.notes.length > 0) {
+        console.log(this.props.user.notes[0]);
+      }
+      this.props.updateUser(this.props.user, this.props.user._id, this.props.token);
+    }
   }
 
   render() {
@@ -36,12 +60,27 @@ class Term extends Component {
         <Loading />
       )
     }
+
     if (!this.props.term) {
       return (
         <Text>
           Term not found
         </Text>
       )
+    }
+
+    if (this.props.user) {
+      this.notes = 'Write your notes here';
+      console.log(this.props.user.notes.length)
+      for (let i = 0; i < this.props.user.notes.length; i++) {
+        console.log(`this.props.user.notes[i].term: ${this.props.user.notes[i].term}`)
+        console.log(`this.props.term._id: ${this.props.term._id}`)
+        if (this.props.user.notes[i].term == this.props.term._id) {
+          console.log(`setting this.notes to ${this.props.user.notes[i].body}`)
+          this.notes = this.props.user.notes[i].body;
+          break;
+        }
+      }
     }
     return (
       <KeyboardAwareScrollView 
@@ -89,11 +128,13 @@ class Term extends Component {
 const mapStateToProps = state => ({
   user: state.user.user,
   term: state.terms.term,
+  token: state.user.token,
   isGettingTerm: state.terms.isGettingTerm,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getTerm: termsActions.getTerm,
+  updateUser: userActions.updateUser,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Term);
