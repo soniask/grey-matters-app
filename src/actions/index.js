@@ -6,4 +6,4 @@ export * from './menuActions';
 export * from './profileActions';
 export * from './searchActions';
 export * from './termsActions';
-export * from './usersActions';
+export * from './userActions';

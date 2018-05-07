@@ -27,7 +27,6 @@ class SearchInput extends Component {
             clearButtonMode='while-editing'
             onChangeText={(text) => this.searchTerm = text}
             onSubmitEditing={() => {
-              console.log(this.searchTerm);
               this.props.getSearch({ q: this.searchTerm});
             }}
           />

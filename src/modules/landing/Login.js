@@ -9,7 +9,7 @@ import { Button, FormInput } from 'react-native-elements';
 import { Link } from 'react-router-native';
 import { withRouter } from 'react-router';
 import styles from '../../styles.js';
-import { authActions } from '../../actions/authActions.js';
+import { authActions } from '../../actions';
 
 
 class Login extends Component {

@@ -6,6 +6,7 @@ import {
 	Text,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { userActions } from '../../actions';
 
 class BookmarkIcon extends React.Component {
   constructor(props) {
@@ -13,14 +14,23 @@ class BookmarkIcon extends React.Component {
 	}
 	
 	render() {
-		let bookmarkIDSet = new Set(["5ae68a49f64e97d234f9bc33"])
+		console.log(this.props.bookmarkIDSet);
 		return (
 			<Icon
-				name={ bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}
-				color={ bookmarkIDSet.has(this.props.item._id) ? '#ff404e' : '#282828'}
+				name={ this.props.bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}
+				color={ this.props.bookmarkIDSet.has(this.props.item._id) ? '#ff404e' : '#282828'}
 				type='ionicon'
 				onPress={() => {
+					if (this.props.bookmarkIDSet.has(this.props.item._id)) {
+						let index = this.props.user.bookmarks.indexOf(this.props.item._id)
+						if ( index > -1) {
+							this.props.user.bookmarks.splice(index, this.props.item._id)
+						}
+					} else {
+						this.props.user.bookmarks.push(this.props.item._id)
+					}
 					console.log(`Bookmark pressed for: ${this.props.item.title}`)
+					this.props.updateUser(this.props.user, this.props.user._id, this.props.token)
 				}}
 			/>
 		);
@@ -28,11 +38,13 @@ class BookmarkIcon extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	//   show: state.menu.show,
+	user: state.auth.user,
+	token: state.auth.token,
+	bookmarkIDSet: state.user.bookmarkIDSet,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	//   showMenu: menuActions.showMenu,
+	updateUser: userActions.updateUser,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookmarkIcon);

@@ -10,43 +10,19 @@ import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
 import styles from './ProfileStyles';
 import { profileActions } from '../../actions';
+import { contentActions } from '../../actions';
 import Notes from './Notes';
 
 class Profile extends Component {
   constructor(props) {
     super(props);
-  }
+	}
+	
+	componentDidMount() {
+		this.props.getContents();
+	}
 
   render() {
-		bookmarks = [
-			{
-				imgURI: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg',
-				title: 'Food for Thought: How the Brain Controls What You Eat',
-				creators: ['LEANN NGUYEN'],
-				publishTime: '11/7/14',
-				description: 'One of the most frequent decisions we make is what to eat, but just because',
-				type: 'article',
-				_id: 1,
-			},
-			{
-				imgURI: 'http://greymattersjournal.com/wp-content/uploads/2014/10/640px-Taenia_solium_scolex.jpg',
-				title: 'Tapeworms on the Brain',
-				creators: ['BENJAMIN CORDY'],
-				publishTime: '15 minutes',
-				description: 'For most people, the mere thought of a parasite setting up residence in their tissues is enough to induce a',
-				type: 'podcast',
-				_id: 2,
-			},
-			{
-				imgURI: 'https://image.freepik.com/free-vector/technology-background-with-circuit_23-2147592157.jpg',
-				title: 'Of Computers and Brains',
-				creators: ['JESSE MILES'],
-				publishTime: '13 minutes',
-				description: 'Earlier this summer , Gary Marcus – a New York University professor of neural science and psychology –  wrote a',
-				type: 'video',
-				_id: 3,
-			},
-		];
 		notesList = [
 			{
 				_id: '5aee0064ac75fe04e66f734a',
@@ -89,7 +65,7 @@ class Profile extends Component {
 								</View>
 								{
 									this.props.showBookmarkList ? (
-										<ContentFeed list={bookmarks} />
+										<ContentFeed list={this.props.contents} />
 									) : (
 										<Notes list={notesList}/>
 									)
@@ -114,12 +90,14 @@ class Profile extends Component {
 
 const mapStateToProps = state => ({
 	user: state.auth.user,
+	contents: state.content.contents,
 	showBookmarkList: state.profile.showBookmarkList,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	showBookmarks: profileActions.showBookmarks,
 	showNotes: profileActions.showNotes,
+	getContents: contentActions.getContents,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -30,7 +30,6 @@ export const authActions = {
 function login({ email, password }) {
   return dispatch => {
     dispatch(request());
-
     axios({
       method: 'post',
       url: '/authenticate',
@@ -51,6 +50,7 @@ function login({ email, password }) {
       }
     })
     .catch(error => {
+      console.log(error);
       dispatch(failure('Unable to Complete Request'));
     });
   };
@@ -103,5 +103,5 @@ function signup({ name, email, password, role='reader' }) {
 }
 
 function clearMessage() {
-  return {type: authConstants.CLEAR_MESSAGE}
+  return { type: authConstants.CLEAR_MESSAGE }
 }

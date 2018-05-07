@@ -4,6 +4,8 @@ const AUTH_INITIAL = {
   user: null,
   isLoggingIn: false,
   isSigningUp: false,
+  bookmarkIDSet: new Set(),
+  token: null,
 };
 
 export const authReducer = (state = AUTH_INITIAL, action) => {
@@ -20,6 +22,8 @@ export const authReducer = (state = AUTH_INITIAL, action) => {
         user: action.user,
         message: null,
         isLoggingIn: false,
+        token: action.user.token,
+        bookmarkIDSet: new Set(action.user.bookmarks),
       };
     case authConstants.LOGIN_FAILURE:
       return {
