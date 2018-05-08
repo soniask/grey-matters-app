@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { searchActions } from '../../actions';
+import { menuActions } from '../../actions';
 import SearchResults from './SearchResults';
 import styles from './SearchStyles';
 
@@ -18,6 +19,7 @@ class Search extends Component {
 
   componentDidMount() {
     this.props.clearSearch();
+    this.props.showMenu(false);
   }
 
   render() {
@@ -69,6 +71,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getSearch: searchActions.getSearch,
+  showMenu: menuActions.showMenu,
   clearSearch: searchActions.clearSearch,
 }, dispatch);
 

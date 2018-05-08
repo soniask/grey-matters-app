@@ -37,11 +37,16 @@ class Term extends Component {
       }
       if (index > -1) {
         // the user already had a note for this term
-        
-        this.props.user.notes[index].body = this.notes;
+        if (this.notes.length > 0) {
+          this.props.user.notes[index].body = this.notes;
+        } else {
+          this.props.user.notes.splice(index, 1);
+        }
       } else {
         // this is the user's first time writing a note for this term
-        this.props.user.notes.push({body: this.notes, term: this.props.term._id})
+        if (this.notes.length > 0) {
+          this.props.user.notes.push({body: this.notes, term: this.props.term._id});
+        }
       }
       this.props.updateUser(this.props.user, this.props.user._id, this.props.token);
     }
@@ -63,7 +68,6 @@ class Term extends Component {
     }
 
     if (this.props.user) {
-      this.notes = 'Write your notes here';
       for (let i = 0; i < this.props.user.notes.length; i++) {
         if (this.props.user.notes[i].term == this.props.term._id) {
           this.notes = this.props.user.notes[i].body;
@@ -98,12 +102,23 @@ class Term extends Component {
                   <Text style={styles.sectionHeader}>Notes</Text>
                 </View>
                 <View>
-                  <TextInput
-                    multiline = {true}
-                    defaultValue={this.notes}
-                    style={styles.paragraph}
-                    onChangeText={(text) => this.notes = text}
-                  />
+                  {
+                    this.notes && this.notes.length > 0 ? (
+                      <TextInput
+                        multiline = {true}
+                        defaultValue={this.notes}
+                        style={styles.paragraph}
+                        onChangeText={(text) => this.notes = text}
+                      />
+                    ) : (
+                      <TextInput
+                        multiline = {true}
+                        placeholder={'Write your notes here'}
+                        style={styles.paragraph}
+                        onChangeText={(text) => this.notes = text}
+                      />                      
+                    )
+                  }
                 </View>
               </View>
             ) : null

@@ -27,18 +27,6 @@ class Profile extends Component {
 	}
 
   render() {
-		// notesList = [
-		// 	{
-		// 		_id: '5aee0064ac75fe04e66f734a',
-		// 		term: 'Synapse',
-		// 		notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-		// 	},
-		// 	{
-		// 		_id: '5aecb7cc64424656ca71a811',
-		// 		term: 'Neurotransmitter',
-		// 		notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-		// 	},
-		// ];
 		return (
 			<View style={{flex:1}}>
 					{
