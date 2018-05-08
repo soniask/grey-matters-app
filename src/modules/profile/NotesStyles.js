@@ -1,5 +1,6 @@
 import {
   StyleSheet,
+  Dimensions,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   box: {
-    alignSelf: 'stretch',
+    width: Dimensions.get('window').width - 20,
     paddingTop: 20,
     paddingBottom: 20,
     borderBottomColor: '#333',

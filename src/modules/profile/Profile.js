@@ -11,6 +11,7 @@ import ContentFeed from '../shared/ContentFeed';
 import styles from './ProfileStyles';
 import { profileActions } from '../../actions';
 import { contentActions } from '../../actions';
+import { termsActions } from '../../actions';
 import Notes from './Notes';
 
 class Profile extends Component {
@@ -21,22 +22,23 @@ class Profile extends Component {
 	componentDidMount() {
 		if (this.props.user) {
 			this.props.getContents({ contentIds: this.props.user.bookmarks });
+			this.props.getTerms();
 		}
 	}
 
   render() {
-		notesList = [
-			{
-				_id: '5aee0064ac75fe04e66f734a',
-				term: 'Synapse',
-				notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			},
-			{
-				_id: '5aecb7cc64424656ca71a811',
-				term: 'Neurotransmitter',
-				notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-			},
-		];
+		// notesList = [
+		// 	{
+		// 		_id: '5aee0064ac75fe04e66f734a',
+		// 		term: 'Synapse',
+		// 		notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		// 	},
+		// 	{
+		// 		_id: '5aecb7cc64424656ca71a811',
+		// 		term: 'Neurotransmitter',
+		// 		notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		// 	},
+		// ];
 		return (
 			<View style={{flex:1}}>
 					{
@@ -57,7 +59,7 @@ class Profile extends Component {
 										>
 											Bookmarks
 										</Text>
-										<Text 
+										<Text
 											style={[styles.tab, styles.tabRight, !this.props.showBookmarkList ? styles.tabSelected : null]}
 											onPress={() => this.props.showNotes()}
 										>
@@ -69,7 +71,7 @@ class Profile extends Component {
 									this.props.showBookmarkList ? (
 										<ContentFeed list={this.props.contents} />
 									) : (
-										<Notes list={notesList}/>
+										<Notes list={this.props.user.notes}/>
 									)
 								}
 							</View>
@@ -100,6 +102,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	showBookmarks: profileActions.showBookmarks,
 	showNotes: profileActions.showNotes,
 	getContents: contentActions.getContents,
+	getTerms: termsActions.getTerms,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

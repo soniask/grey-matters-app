@@ -27,8 +27,7 @@ class Term extends Component {
   }
 
   componentWillUnmount() {
-    if (this.props.user) {
-      console.log(`we know we have a user`);
+    if (this.props.user && this.props.term) {
       let index = -1;
       for (let i = 0; i < this.props.user.notes.length; i++) {
         if (this.props.user.notes[i].term == this.props.term._id) {
@@ -36,19 +35,13 @@ class Term extends Component {
           break;
         }
       }
-      console.log(`this.notes inside componentWillUnmount: ${this.notes}`)
       if (index > -1) {
         // the user already had a note for this term
         
         this.props.user.notes[index].body = this.notes;
       } else {
         // this is the user's first time writing a note for this term
-        console.log(`the index was not greater than -1`)
         this.props.user.notes.push({body: this.notes, term: this.props.term._id})
-      }
-      console.log(this.props.user.notes.length);
-      if (this.props.user.notes.length > 0) {
-        console.log(this.props.user.notes[0]);
       }
       this.props.updateUser(this.props.user, this.props.user._id, this.props.token);
     }
@@ -71,12 +64,8 @@ class Term extends Component {
 
     if (this.props.user) {
       this.notes = 'Write your notes here';
-      console.log(this.props.user.notes.length)
       for (let i = 0; i < this.props.user.notes.length; i++) {
-        console.log(`this.props.user.notes[i].term: ${this.props.user.notes[i].term}`)
-        console.log(`this.props.term._id: ${this.props.term._id}`)
         if (this.props.user.notes[i].term == this.props.term._id) {
-          console.log(`setting this.notes to ${this.props.user.notes[i].body}`)
           this.notes = this.props.user.notes[i].body;
           break;
         }

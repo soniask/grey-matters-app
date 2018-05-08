@@ -46,7 +46,7 @@ class Terms extends Component {
                   {term.term}
                 </Text>
                 <Text style={styles.definition}>
-                  {term.description}
+                  {term.definition}
                 </Text>
               </View>
             </Link>
