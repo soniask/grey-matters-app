@@ -1,11 +1,16 @@
 import {
-  StyleSheet
+  Dimensions,
+  StyleSheet,
 } from 'react-native';
 
 const styles = StyleSheet.create({
   image: {
     alignSelf: 'stretch',
-    height: 300
+		height: Dimensions.get('window').height/3,
+  },
+  imageHome: {
+    alignSelf: 'stretch',
+		height: Dimensions.get('window').height - 245,
   },
   container: {
     paddingTop: 15,
