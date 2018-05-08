@@ -25,7 +25,12 @@ class SearchInput extends Component {
           <TextInput
             placeholder='Search'
             clearButtonMode='while-editing'
-            onChangeText={(text) => this.searchTerm = text}
+            onChangeText={(text) => {
+              this.searchTerm = text;
+              if (this.searchTerm.length == 0) {
+                this.props.clearSearch();
+              }
+            }}
             onSubmitEditing={() => {
               this.props.getSearch({ q: this.searchTerm});
             }}
@@ -37,6 +42,7 @@ class SearchInput extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getSearch: searchActions.getSearch,
+  clearSearch: searchActions.clearSearch,
 }, dispatch);
 
 export default connect(null, mapDispatchToProps)(SearchInput);
