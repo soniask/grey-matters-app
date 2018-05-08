@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Loading from '../shared/Loading';
 import { termsActions } from '../../actions';
+import { userActions } from '../../actions';
 import styles from './TermStyles';
 
 class Term extends Component {
@@ -23,11 +24,32 @@ class Term extends Component {
 
   componentDidMount() {
     this.props.getTerm(this.props.match.params.id);
-    this.notes = "a junction between two nerve cells, consisting of a minute gap across which impulses pass by diffusion of a neurotransmitter."
   }
 
   componentWillUnmount() {
-    console.log(this.notes);
+    if (this.props.user && this.props.term) {
+      let index = -1;
+      for (let i = 0; i < this.props.user.notes.length; i++) {
+        if (this.props.user.notes[i].term == this.props.term._id) {
+          index = i;
+          break;
+        }
+      }
+      if (index > -1) {
+        // the user already had a note for this term
+        if (this.notes.length > 0) {
+          this.props.user.notes[index].body = this.notes;
+        } else {
+          this.props.user.notes.splice(index, 1);
+        }
+      } else {
+        // this is the user's first time writing a note for this term
+        if (this.notes.length > 0) {
+          this.props.user.notes.push({body: this.notes, term: this.props.term._id});
+        }
+      }
+      this.props.updateUser(this.props.user, this.props.user._id, this.props.token);
+    }
   }
 
   render() {
@@ -36,12 +58,22 @@ class Term extends Component {
         <Loading />
       )
     }
+
     if (!this.props.term) {
       return (
         <Text>
           Term not found
         </Text>
       )
+    }
+
+    if (this.props.user) {
+      for (let i = 0; i < this.props.user.notes.length; i++) {
+        if (this.props.user.notes[i].term == this.props.term._id) {
+          this.notes = this.props.user.notes[i].body;
+          break;
+        }
+      }
     }
     return (
       <KeyboardAwareScrollView 
@@ -70,12 +102,23 @@ class Term extends Component {
                   <Text style={styles.sectionHeader}>Notes</Text>
                 </View>
                 <View>
-                  <TextInput
-                    multiline = {true}
-                    defaultValue={this.notes}
-                    style={styles.paragraph}
-                    onChangeText={(text) => this.notes = text}
-                  />
+                  {
+                    this.notes && this.notes.length > 0 ? (
+                      <TextInput
+                        multiline = {true}
+                        defaultValue={this.notes}
+                        style={styles.paragraph}
+                        onChangeText={(text) => this.notes = text}
+                      />
+                    ) : (
+                      <TextInput
+                        multiline = {true}
+                        placeholder={'Write your notes here'}
+                        style={styles.paragraph}
+                        onChangeText={(text) => this.notes = text}
+                      />                      
+                    )
+                  }
                 </View>
               </View>
             ) : null
@@ -89,11 +132,13 @@ class Term extends Component {
 const mapStateToProps = state => ({
   user: state.user.user,
   term: state.terms.term,
+  token: state.user.token,
   isGettingTerm: state.terms.isGettingTerm,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getTerm: termsActions.getTerm,
+  updateUser: userActions.updateUser,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Term);

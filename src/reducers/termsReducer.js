@@ -33,10 +33,15 @@ export const termsReducer = (state = TERMS_INITIAL, action) => {
         isGettingTerms: true,
       };
     case termsConstants.GET_TERMS_SUCCESS:
+      let termsMap = {};
+      for (let i = 0; i < action.payload.length; i++) {
+        termsMap[action.payload[i]._id] = action.payload[i].term;
+      }
       return {
         ...state,
         terms: action.payload,
         isGettingTerms: false,
+        termsMap,
       };
     case termsConstants.GET_TERMS_FAILURE:
       return {
