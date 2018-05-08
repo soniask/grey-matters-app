@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
 		fontSize: 25, 
 		textAlign: 'center',
 	},
+	message: {
+		textAlign: 'center',
+		paddingTop: 20,
+	},
 });
 
 export default styles;
