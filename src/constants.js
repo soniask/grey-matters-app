@@ -5,7 +5,7 @@ export const routes = [
   { path:"/podcasts", component:"Podcasts", name:"Podcasts" },
   { path:"/videos", component:"Videos", name:"Videos" },
   { path:"/events", component:"Events", name:"Events" },
-  { path:"/basics", component:"Basics", name:"Basics" },
+  { path:"/learningsection", component:"LearningSection", name:"The Basics" },
   { path:"/terms", component:"Terms", name:"Glossary" },
   { path:"/term", component:"Term", name:"Glossary Page" },
   { path:"/store", component:"Store", name:"Store" },
