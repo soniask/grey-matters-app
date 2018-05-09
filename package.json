@@ -30,6 +30,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.5.0",
     "react-native-keyboard-aware-scrollview": "^2.0.0",
     "react-native-parsed-text": "0.0.20",
+    "react-native-track-player": "^0.2.4",
     "react-native-ui-lib": "^3.3.72",
     "react-navigation": "^1.5.11",
     "react-redux": "^5.0.7",
