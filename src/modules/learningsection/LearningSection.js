@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Dimensions,
   Image,
@@ -7,6 +9,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { learningActions } from '../../actions';
 
 const styles = StyleSheet.create({
   page: {
@@ -15,35 +18,70 @@ const styles = StyleSheet.create({
   image: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height / 3,
-  }
+    position: 'absolute',
+    bottom: 50,
+  },
 })
 
+class LearningSection extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-const LearningSection = () => (
-  <ScrollView
-    horizontal={true}
-    pagingEnabled={true}
-  >
-    <View>
-      <Text style={styles.page}>
-        The LearningSection text 1
-      </Text>
-      <Image style={styles.image} source={{uri: 'https://www.therapistaid.com/images/content/worksheet/the-human-brain-diagram/preview.png'}}/>
-    </View>
-    <View>
-      <Text style={styles.page}>
-        The LearningSection text 2
-      </Text>
-      <Image style={styles.image} source={{uri: 'http://www.brainwaves.com/images/brain-basic_and_limbic.gif'}}/>
-    </View>
-    <View>
-      <Text style={styles.page}>
-        The LearningSection text 3
-      </Text>
-      <Image style={styles.image} source={{uri: 'https://sites.google.com/a/wisc.edu/neuroradiology/_/rsrc/1468741100768/anatomy/under-spin/ct/Cerebral%20hemisperes-%20diagram.jpg?height=235&width=400'}}/>
-    </View>
+  onScrollEnd(e) {
+    let contentOffset = e.nativeEvent.contentOffset;
+    let viewSize = e.nativeEvent.layoutMeasurement;
 
-  </ScrollView>
-)
+    // Divide the horizontal offset by the width of the view to see which page is visible
+    let pageNum = Math.floor(contentOffset.x / viewSize.width);
+    console.log('scrolled to page ', pageNum);
+    this.props.changeImage(pageNum);
+    // this.imageIndex = pageNum;
+  }
 
-export default LearningSection;
+  render() {
+    let imageList = [
+      require('../../images/placeholder_diagram_1.png'),
+      require('../../images/placeholder_diagram_2.gif'),
+      require('../../images/placeholder_diagram_3.jpg'),
+    ];
+    console.log(`this.props.imageIndex: ${this.props.imageIndex}`);
+    // console.log(`this.imageIndex: ${this.imageIndex}`);
+    return (
+      <View style={{height: Dimensions.get('window').height}}>
+        <ScrollView
+          horizontal={true}
+          pagingEnabled={true}
+          onMomentumScrollEnd={(e) => this.onScrollEnd(e)}
+        >
+          <View>
+            <Text style={styles.page}>
+              LearningSection text 1
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.page}>
+              LearningSection text 2
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.page}>
+              LearningSection text 3
+            </Text>
+          </View>
+        </ScrollView>
+        <Image key={this.props.imageIndex} style={styles.image} source={imageList[this.props.imageIndex]}/>
+      </View>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  imageIndex: state.learning.imageIndex,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  changeImage: learningActions.changeImage,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LearningSection);
