@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 50,
   },
+  invisible: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
 })
 
 class LearningSection extends Component {
@@ -70,7 +76,23 @@ class LearningSection extends Component {
             </Text>
           </View>
         </ScrollView>
-        <Image key={this.props.imageIndex} style={styles.image} source={imageList[this.props.imageIndex]}/>
+        <Image 
+          key={this.loaded} 
+          style={styles.image} 
+          source={imageList[this.imageIndex]}
+          onLoadStart={() => {console.log('load start');}}
+          onLoadEnd={() => {this.loaded = false;}}
+          onLoad={() => {console.log('load');}}
+        />
+        <Image 
+          key={this.props.imageIndex} 
+          style={[styles.image, this.loaded ? styles.visible : styles.invisible]} 
+          source={imageList[this.props.imageIndex]}
+          onLoadEnd={() => {
+            this.loaded = true;
+            this.imageIndex = this.props.imageIndex;
+          }}
+        />
       </View>
     );
   }
