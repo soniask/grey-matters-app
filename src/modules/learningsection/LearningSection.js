@@ -41,6 +41,8 @@ class LearningSection extends Component {
   componentDidMount() {
     if (this.props.topImageIndex == null) {
       this.props.updateTopImage(0);
+    } else {
+      this.refs._scrollView.scrollTo(this.props.topImageIndex * Dimensions.get('window').width);
     }
   }
 
@@ -68,6 +70,7 @@ class LearningSection extends Component {
           horizontal={true}
           pagingEnabled={true}
           onMomentumScrollEnd={(e) => this.onScrollEnd(e)}
+          ref='_scrollView'
         >
           <Text style={styles.page}>
           The brain is made of three main parts: the forebrain, midbrain, and hindbrain. 
