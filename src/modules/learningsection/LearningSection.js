@@ -42,7 +42,7 @@ class LearningSection extends Component {
     if (this.props.topImageIndex == null) {
       this.props.updateTopImage(0);
     } else {
-      this.refs._scrollView.scrollTo(this.props.topImageIndex * Dimensions.get('window').width);
+      this.refs._scrollView.scrollTo({x: this.props.topImageIndex * Dimensions.get('window').width});
     }
   }
 
