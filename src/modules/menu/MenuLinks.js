@@ -73,7 +73,7 @@ const MenuLinks = (props) => (
       <Text style={styles.navItemText}>Events</Text>
     </Link>
     <Link
-      to="/basics"
+      to="/learningsection"
       underlayColor='#f0f4f7'
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >

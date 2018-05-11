@@ -18,7 +18,7 @@ import Videos from '../videos/Videos';
 import Video from '../videos/Video';
 import Events from '../events/Events';
 import ClubEvent from '../events/ClubEvent';
-import Basics from '../basics/Basics';
+import LearningSection from '../learningsection/LearningSection';
 import Terms from '../terms/Terms';
 import Term from '../terms/Term';
 import Store from '../store/Store';
@@ -54,7 +54,7 @@ class AppView extends React.Component {
             <Route exact path="/videos/:id" component={Video} />
             <Route exact path="/events" component={Events} />
             <Route exact path="/events/:id" component={ClubEvent} />
-            <Route exact path="/basics" component={Basics} />
+            <Route exact path="/learningsection" component={LearningSection} />
             <Route exact path="/terms" component={Terms} />
             <Route exact path="/terms/:id" component={Term} />
             <Route exact path="/profile" component={Profile} />
