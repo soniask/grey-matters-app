@@ -19,9 +19,6 @@ const styles = StyleSheet.create({
   image: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height / 2,
-    // width: undefined,
-    // height: undefined,
-    // flex: 1,
     position: 'absolute',
     bottom: 100,
   },
@@ -57,12 +54,27 @@ class LearningSection extends Component {
 
   render() {
     let imageList = [
+      require('../../images/whole_brain.png'),
       require('../../images/forebrain.png'),
       require('../../images/midbrain.png'),
-      require('../../images/amygdala.png'),
+      require('../../images/hind_brain.png'),
       require('../../images/cerebrum.png'),
+      require('../../images/frontal_lobe.png'),
+      require('../../images/parietal_lobe.png'),
+      require('../../images/occipital_lobe.png'),
+      require('../../images/temporal_lobe.png'),
+      require('../../images/cerebrum.png'),
+      require('../../images/corpus_callosum.png'),
       require('../../images/cerebellum.png'),
+      require('../../images/limbic_system.png'),
+      require('../../images/thalamus.png'),
+      require('../../images/hypothalamus.png'),
+      require('../../images/amygdala.png'),
+      require('../../images/hippocampus.png'),
       require('../../images/brainstem.png'),
+      require('../../images/midbrain.png'),
+      require('../../images/pons.png'),
+      require('../../images/medulla.png'),
     ];
     return (
       <View style={{height: Dimensions.get('window').height}}>
