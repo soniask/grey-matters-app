@@ -50,9 +50,7 @@ class LearningSection extends Component {
 
     // Divide the horizontal offset by the width of the view to see which page is visible
     let pageNum = Math.floor(contentOffset.x / viewSize.width);
-    console.log('scrolled to page ', pageNum);
     this.props.updateTopImage(pageNum);
-    // this.imageIndex = pageNum;
   }
 
   render() {
@@ -64,9 +62,6 @@ class LearningSection extends Component {
       require('../../images/cerebellum.png'),
       require('../../images/brainstem.png'),
     ];
-    console.log(`this.props.baseImageIndex: ${this.props.baseImageIndex}`);
-    console.log(`this.props.topImageIndex: ${this.props.topImageIndex}`);
-    // console.log(`this.imageIndex: ${this.imageIndex}`);
     return (
       <View style={{height: Dimensions.get('window').height}}>
         <ScrollView
@@ -74,31 +69,15 @@ class LearningSection extends Component {
           pagingEnabled={true}
           onMomentumScrollEnd={(e) => this.onScrollEnd(e)}
         >
-          <View>
-            <Text style={styles.page}>
-            The brain is made of three main parts: the forebrain, midbrain, and hindbrain. 
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.page}>
-            The forebrain consists of the cerebrum, thalamus, and hypothalamus. 
-            </Text>
-            {/* <Image 
-              style={styles.image}
-              source={require('../../images/forebrain.png')}
-              resizeMode='center'
-            /> */}
-          </View>
-          <View>
-            <Text style={styles.page}>
-            The midbrain consists of the tectum and tegmentum. 
-            </Text>
-            {/* <Image 
-              style={styles.image}
-              source={require('../../images/midbrain.png')}
-              resizeMode='center'
-            /> */}
-          </View>
+          <Text style={styles.page}>
+          The brain is made of three main parts: the forebrain, midbrain, and hindbrain. 
+          </Text>
+          <Text style={styles.page}>
+          The forebrain consists of the cerebrum, thalamus, and hypothalamus. 
+          </Text>
+          <Text style={styles.page}>
+          The midbrain consists of the tectum and tegmentum. 
+          </Text>
           <Text style={styles.page}>
           The hindbrain is made of the cerebellum, pons, and medulla. Often the midbrain, pons, and medulla are referred together as the brainstem.
           </Text>
@@ -154,22 +133,14 @@ class LearningSection extends Component {
           The medulla is responsible for maintaining vital body functions such as breathing and a steady heartbeat.
           </Text>
         </ScrollView>
-        <Image 
-          key={this.props.baseImageIndex} 
+        <Image
           style={styles.image} 
           source={imageList[this.props.baseImageIndex % imageList.length]}
-          onLoadStart={() => {console.log('base image load start');}}
-          onLoad={() => {console.log('base image load');}}
-          onLoadEnd={() => {console.log('base image load end');}}
         />
         <Image 
-          key={this.props.topImageIndex} 
           style={[styles.image]} 
           source={imageList[this.props.topImageIndex % imageList.length]}
-          onLoadStart={() => {console.log('top image load start');}}
-          onLoad={() => {console.log('top image load');}}
           onLoadEnd={() => {
-            console.log('top image load end');
             this.props.updateBaseImage(this.props.topImageIndex)
           }}
         />
