@@ -18,7 +18,10 @@ const styles = StyleSheet.create({
   },
   image: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height / 3,
+    height: Dimensions.get('window').height / 2,
+    // width: undefined,
+    // height: undefined,
+    // flex: 1,
     position: 'absolute',
     bottom: 100,
   },
@@ -35,6 +38,12 @@ class LearningSection extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    if (this.props.topImageIndex == null) {
+      this.props.updateTopImage(0);
+    }
+  }
+
   onScrollEnd(e) {
     let contentOffset = e.nativeEvent.contentOffset;
     let viewSize = e.nativeEvent.layoutMeasurement;
@@ -42,17 +51,21 @@ class LearningSection extends Component {
     // Divide the horizontal offset by the width of the view to see which page is visible
     let pageNum = Math.floor(contentOffset.x / viewSize.width);
     console.log('scrolled to page ', pageNum);
-    this.props.changeImage(pageNum);
+    this.props.updateTopImage(pageNum);
     // this.imageIndex = pageNum;
   }
 
   render() {
     let imageList = [
-      require('../../images/placeholder_diagram_1.png'),
-      require('../../images/placeholder_diagram_2.gif'),
-      require('../../images/placeholder_diagram_3.jpg'),
+      require('../../images/forebrain.png'),
+      require('../../images/midbrain.png'),
+      require('../../images/amygdala.png'),
+      require('../../images/cerebrum.png'),
+      require('../../images/cerebellum.png'),
+      require('../../images/brainstem.png'),
     ];
-    console.log(`this.props.imageIndex: ${this.props.imageIndex}`);
+    console.log(`this.props.baseImageIndex: ${this.props.baseImageIndex}`);
+    console.log(`this.props.topImageIndex: ${this.props.topImageIndex}`);
     // console.log(`this.imageIndex: ${this.imageIndex}`);
     return (
       <View style={{height: Dimensions.get('window').height}}>
@@ -61,15 +74,31 @@ class LearningSection extends Component {
           pagingEnabled={true}
           onMomentumScrollEnd={(e) => this.onScrollEnd(e)}
         >
-          <Text style={styles.page}>
+          <View>
+            <Text style={styles.page}>
             The brain is made of three main parts: the forebrain, midbrain, and hindbrain. 
-          </Text>
-          <Text style={styles.page}>
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.page}>
             The forebrain consists of the cerebrum, thalamus, and hypothalamus. 
-          </Text>
-          <Text style={styles.page}>
+            </Text>
+            {/* <Image 
+              style={styles.image}
+              source={require('../../images/forebrain.png')}
+              resizeMode='center'
+            /> */}
+          </View>
+          <View>
+            <Text style={styles.page}>
             The midbrain consists of the tectum and tegmentum. 
-          </Text>
+            </Text>
+            {/* <Image 
+              style={styles.image}
+              source={require('../../images/midbrain.png')}
+              resizeMode='center'
+            /> */}
+          </View>
           <Text style={styles.page}>
           The hindbrain is made of the cerebellum, pons, and medulla. Often the midbrain, pons, and medulla are referred together as the brainstem.
           </Text>
@@ -126,20 +155,22 @@ class LearningSection extends Component {
           </Text>
         </ScrollView>
         <Image 
-          key={this.loaded} 
+          key={this.props.baseImageIndex} 
           style={styles.image} 
-          source={imageList[this.imageIndex % imageList.length]}
-          onLoadStart={() => {console.log('load start');}}
-          onLoadEnd={() => {this.loaded = false;}}
-          onLoad={() => {console.log('load');}}
+          source={imageList[this.props.baseImageIndex % imageList.length]}
+          onLoadStart={() => {console.log('base image load start');}}
+          onLoad={() => {console.log('base image load');}}
+          onLoadEnd={() => {console.log('base image load end');}}
         />
         <Image 
-          key={this.props.imageIndex} 
-          style={[styles.image, this.loaded ? styles.visible : styles.invisible]} 
-          source={imageList[this.props.imageIndex % imageList.length]}
+          key={this.props.topImageIndex} 
+          style={[styles.image]} 
+          source={imageList[this.props.topImageIndex % imageList.length]}
+          onLoadStart={() => {console.log('top image load start');}}
+          onLoad={() => {console.log('top image load');}}
           onLoadEnd={() => {
-            this.loaded = true;
-            this.imageIndex = this.props.imageIndex;
+            console.log('top image load end');
+            this.props.updateBaseImage(this.props.topImageIndex)
           }}
         />
       </View>
@@ -148,11 +179,13 @@ class LearningSection extends Component {
 }
 
 const mapStateToProps = state => ({
-  imageIndex: state.learning.imageIndex,
+  baseImageIndex: state.learning.baseImageIndex,
+  topImageIndex: state.learning.topImageIndex,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changeImage: learningActions.changeImage,
+  updateBaseImage: learningActions.updateBaseImage,
+  updateTopImage: learningActions.updateTopImage,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LearningSection);

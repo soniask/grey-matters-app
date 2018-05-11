@@ -1,11 +1,17 @@
 export const learningConstants = {
-    CHANGE_IMAGE: 'CHANGE_IMAGE',
+    CHANGE_TOP_IMAGE: 'CHANGE_TOP_IMAGE',
+    CHANGE_BASE_IMAGE: 'CHANGE_BASE_IMAGE',
 }
 
 export const learningActions = {
-    changeImage,
+    updateTopImage,
+    updateBaseImage,
 }
 
-function changeImage(imageIndex) {
-    return {type: learningConstants.CHANGE_IMAGE, imageIndex}
+function updateTopImage(imageIndex) {
+    return {type: learningConstants.CHANGE_TOP_IMAGE, imageIndex}
+}
+
+function updateBaseImage(imageIndex) {
+    return {type: learningConstants.CHANGE_BASE_IMAGE, imageIndex}
 }

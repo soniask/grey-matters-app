@@ -6,9 +6,13 @@ const LEARNING_INITIAL = {
 
 export const learningReducer = (state = LEARNING_INITIAL, action) => {
 	switch (action.type) {
-		case learningConstants.CHANGE_IMAGE:
+		case learningConstants.CHANGE_TOP_IMAGE:
 			return {
-				imageIndex: action.imageIndex
+				topImageIndex: action.imageIndex
+			}
+		case learningConstants.CHANGE_BASE_IMAGE:
+			return {
+				baseImageIndex: action.imageIndex
 			}
 		default:
 			return state;
