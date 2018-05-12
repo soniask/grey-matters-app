@@ -1,4 +1,4 @@
-export const baseURL = 'http://10.1.10.107:8080/api/';
+export const baseURL = 'http://10.19.22.199:8080/api/';
 export * from './contentActions';
 export * from './eventsActions';
 export * from './learningActions';
