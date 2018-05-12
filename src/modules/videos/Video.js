@@ -25,9 +25,6 @@ class Video extends Component {
   }
 
   render() {
-    let youtubeLink = 'https://www.youtube.com/watch?v=NYIdmpp69MY'
-    let embedLink = youtubeLink.replace('watch?v=', 'embed/');
-
     if (this.props.isGettingContent) {
       return (
         <Loading />
@@ -41,14 +38,14 @@ class Video extends Component {
         </Text>
       );
     }
-    
+
     return (
       <View>
         <View style={{height: 300}}>
           <WebView
             javaScriptEnabled={true}
             domStorageEnabled={true}
-            source={{uri: embedLink }}
+            source={{uri: this.props.content.url.replace('watch?v=', 'embed/') }}
           />
         </View>
         <View style={styles.container}>

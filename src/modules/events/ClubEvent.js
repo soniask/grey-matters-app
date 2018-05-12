@@ -21,10 +21,6 @@ class ClubEvent extends Component {
     this.props.getEvent(this.props.match.params.id);
   }
 
-  handleUrlPress() {
-    // LinkingIOS.openURL('https://www.youtube.com/watch?v=NYIdmpp69MY');
-  }
-
   render() {
     if(this.props.isGettingEvent) {
       return (
@@ -61,19 +57,7 @@ class ClubEvent extends Component {
             </View>
           </View>
           <Text style={styles.description}>{this.props.event.description}</Text>
-          <Text style={styles.bold}>Watch it here!</Text>
-          <Text 
-            style={styles.blue}
-            onPress={() => this.handleUrlPress()}
-          >
-            {'Live stream link'}
-          </Text>
         </View>
-        <Button
-          title='RSVP'
-          titleStyle={styles.buttonTitle}
-          buttonStyle={styles.button}
-        />
       </View>
     );
   }

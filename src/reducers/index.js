@@ -1,17 +1,20 @@
 import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 
-import { menuReducer } from './menuReducer';
 import { contentReducer } from './contentReducer';
-import { termsReducer } from './termsReducer';
 import { eventsReducer } from './eventsReducer';
-import { searchReducer } from './searchReducer';
-import { userReducer } from './userReducer';
+import { learningReducer } from './learningReducer';
+import { menuReducer } from './menuReducer';
 import { profileReducer } from './profileReducer';
+import { searchReducer } from './searchReducer';
+import { termsReducer } from './termsReducer';
+import { userReducer } from './userReducer';
+
 
 const rootReducer = combineReducers({
   content: contentReducer,
   events: eventsReducer,
+  learning: learningReducer,
   menu: menuReducer,
   profile: profileReducer,
   router: routerReducer,
