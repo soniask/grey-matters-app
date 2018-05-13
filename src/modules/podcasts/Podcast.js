@@ -6,7 +6,8 @@ import {
   Text,
   ScrollView,
   View,
-  Image
+  Image,
+  WebView,
 } from 'react-native';
 import styles from '../articles/ArticleStyles';
 import { contentActions } from '../../actions';
@@ -42,8 +43,13 @@ class Podcast extends Component {
 
     return (
       <ScrollView>
-        <Image style={styles.image} source={{ uri: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg' }} />
-        {/* <MyPlayerBar /> */}
+        <View style={{height: 300}}>
+          <WebView
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            source={{uri: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/290752136&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" }}
+          />
+        </View>
         <View style={styles.container}>
           <Text style={styles.titleText}>
             {this.props.content.title}
