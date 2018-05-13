@@ -8,11 +8,12 @@ import {
   View,
   Image
 } from 'react-native';
-import styles from './ArticleStyles';
+import styles from '../articles/ArticleStyles';
 import { contentActions } from '../../actions';
 import Loading from '../shared/Loading';
 import References from '../shared/References';
 import MyPlayerBar from '../podcasts/PodcastPlayer';
+import { creatorTitles } from '../../constants';
 
 
 class Podcast extends Component {
@@ -38,6 +39,7 @@ class Podcast extends Component {
         </Text>
       );
     }
+
     return (
       <ScrollView>
         <Image style={styles.image} source={{ uri: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg' }} />
@@ -69,14 +71,10 @@ class Podcast extends Component {
 
 const mapStateToProps = state => ({
   content: state.content.content,
-  isGettingContent: state.content.isGettingContent,
-  terms: state.terms.terms,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   getContent: contentActions.getContent,
-  getTerms: termsActions.getTerms,
-  clearTerms: termsActions.clearTerms,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Podcast);
