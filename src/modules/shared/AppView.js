@@ -23,7 +23,7 @@ import LearningSection from '../learningsection/LearningSection';
 import Terms from '../terms/Terms';
 import Term from '../terms/Term';
 import Store from '../store/Store';
-import Profile from '../profile/Profile.js';
+import UserProfile from '../profile/UserProfile.js';
 import AppHeader from './AppHeader.js';
 import Search from '../search/Search.js';
 import Settings from '../profile/Settings';
@@ -59,7 +59,7 @@ class AppView extends React.Component {
             <Route exact path="/learningsection" component={LearningSection} />
             <Route exact path="/terms" component={Terms} />
             <Route exact path="/terms/:id" component={Term} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/userProfile" component={UserProfile} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/editProfile" component={EditProfile} />
             <Menu />

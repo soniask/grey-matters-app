@@ -9,7 +9,7 @@ export const routes = [
   { path:"/terms", component:"Terms", name:"Glossary" },
   { path:"/term", component:"Term", name:"Glossary Page" },
   { path:"/store", component:"Store", name:"Store" },
-  { path:"/profile", component:"Profile", name:"Profile" },
+  { path:"/userProfile", component:"UserProfile", name:"Profile" },
   { path:"/settings", component:"Settings", name:"Settings" },
 ];
 

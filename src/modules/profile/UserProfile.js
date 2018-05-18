@@ -14,7 +14,7 @@ import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Notes from './Notes';
 
-class Profile extends Component {
+class UserProfile extends Component {
   constructor(props) {
     super(props);
 	}
@@ -22,7 +22,7 @@ class Profile extends Component {
 	componentDidMount() {
 		if (this.props.user) {
 			this.props.getContents({ contentIds: this.props.user.bookmarks });
-			this.props.getTerms();
+			this.props.getTerms(); //used in Notes
 		}
 	}
 
@@ -93,4 +93,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	getTerms: termsActions.getTerms,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

@@ -14,7 +14,7 @@ import styles from '../../styles.js';
 const MenuLinks = (props) => (
   <View style={styles.nav}>
     <Link 
-      to="/profile"
+      to="/userProfile"
       underlayColor='#f0f4f7'
       onPress={() => props.showMenu(!props.show)}
       style={styles.profileNavItem}>

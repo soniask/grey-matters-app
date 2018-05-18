@@ -14,7 +14,7 @@ class AppHeader extends Component {
 
   getRightComponent() {
     const location = this.props.location.pathname;
-    if (location === '/profile') {
+    if (location === '/userProfile') {
       return <SettingsIcon />;
     } else if (['/signup', '/login', '/search', '/settings'].includes(location)) {
       return null;
