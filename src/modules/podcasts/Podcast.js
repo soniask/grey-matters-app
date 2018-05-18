@@ -13,7 +13,6 @@ import styles from '../articles/ArticleStyles';
 import { contentActions } from '../../actions';
 import Loading from '../shared/Loading';
 import References from '../shared/References';
-import MyPlayerBar from '../podcasts/PodcastPlayer';
 import { creatorTitles } from '../../constants';
 
 

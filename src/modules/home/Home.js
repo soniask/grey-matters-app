@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ParsedText from 'react-native-parsed-text';
 import {
 	View,
 	Image,
@@ -9,8 +10,10 @@ import {
 } from 'react-native';
 import styles from './HomeStyles';
 import { contentActions } from '../../actions';
+import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
 import References from '../shared/References';
+import TermDialog from '../articles/TermDialog';
 
 class Home extends Component {
   constructor(props) {
@@ -18,7 +21,18 @@ class Home extends Component {
   }
 
   componentDidMount() {
+		this.props.clearTerms();
     this.props.getContents({ type: 'article', state: 'published' });
+	}
+
+  handleTermPress(term) {
+    let pattern = /<span>([\w\s]+)<\/span>/;
+    let match = term.match(pattern);
+    this.props.getTerms({ term: match[1] });
+  }
+
+  renderText(matchingString, matches) {
+    return `${matches[1]}`;
   }
 
   render() {
@@ -26,14 +40,16 @@ class Home extends Component {
       return (
         <Loading />
       );
-    }
+		}
+		
     if (!this.props.contents) {
       return (
         <Text>
           No Content Available
         </Text>
       );
-    }
+		}
+		
     return (
 			<View>
 				<ScrollView>
@@ -54,11 +70,21 @@ class Home extends Component {
 									<Text>{ new Date(this.props.contents[0].publishTime).toLocaleDateString()}</Text>
 								</View>
 							</View>
-							<Text style={styles.body}>{this.props.contents[0].body}</Text>
+							<ParsedText
+								parse={
+									[
+										{pattern: /<h2>([\S\s]+)<\/h2>/, style: styles.sectionTitle, renderText: this.renderText},
+										{pattern: /<span>([\w\s]+)<\/span>/, style: styles.blue, onPress: (term) => this.handleTermPress(term), renderText: this.renderText},
+									]
+								}
+							>
+								{this.props.contents[0].body}
+							</ParsedText>
 							{this.props.contents[0].references && <References references={this.props.contents[0].references}/>}
 						</View>
 					</View>
 				</ScrollView>
+				{this.props.terms && <TermDialog terms={this.props.terms} />}
 			</View>
     );
   }
@@ -66,11 +92,14 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   contents: state.content.contents,
-  isGettingContents: state.content.isGettingContents,
+	isGettingContents: state.content.isGettingContents,
+	terms: state.terms.terms,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getContents: contentActions.getContents,
+	getContents: contentActions.getContents,
+	getTerms: termsActions.getTerms,
+  clearTerms: termsActions.clearTerms,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
