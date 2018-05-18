@@ -14,6 +14,7 @@ import Home from '../home/Home';
 import Articles from '../articles/Articles';
 import Article from '../articles/Article';
 import Podcasts from '../podcasts/Podcasts';
+import Podcast from '../podcasts/Podcast';
 import Videos from '../videos/Videos';
 import Video from '../videos/Video';
 import Events from '../events/Events';
@@ -50,6 +51,7 @@ class AppView extends React.Component {
             <Route exact path="/articles" component={Articles} />
             <Route exact path="/articles/:id" component={Article} />
             <Route exact path="/podcasts" component={Podcasts} />
+            <Route exact path="/podcasts/:id" component={Podcast} />
             <Route exact path="/videos" component={Videos} />
             <Route exact path="/videos/:id" component={Video} />
             <Route exact path="/events" component={Events} />
