@@ -20,11 +20,11 @@ export const userReducer = (state = USER_INITIAL, action) => {
     case userConstants.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.user,
+        user: action.data.payload,
         message: null,
         isLoggingIn: false,
-        token: action.user.token,
-        bookmarkIDSet: new Set(action.user.bookmarks),
+        token: action.data.token,
+        bookmarkIDSet: new Set(action.data.payload.bookmarks),
       };
     case userConstants.LOGIN_FAILURE:
       return {

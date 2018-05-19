@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ParsedText from 'react-native-parsed-text';
+import HTMLView from 'react-native-htmlview';
 import {
 	View,
 	Image,
@@ -42,13 +43,15 @@ class Home extends Component {
       );
 		}
 		
-    if (!this.props.contents) {
+    if (!this.props.contents || this.props.contents.length == 0) {
       return (
         <Text>
           No Content Available
         </Text>
       );
 		}
+
+		console.log(this.props.contents[0].bodySlate);
 		
     return (
 			<View>
@@ -70,6 +73,10 @@ class Home extends Component {
 									<Text>{ new Date(this.props.contents[0].publishTime).toLocaleDateString()}</Text>
 								</View>
 							</View>
+							{/* <HTMLView
+								value={this.props.contents[0].bodySlate}
+								stylesheet={styles}
+							/> */}
 							<ParsedText
 								parse={
 									[

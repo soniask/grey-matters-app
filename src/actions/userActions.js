@@ -61,7 +61,7 @@ function login({ email, password }) {
   };
 
   function request() { return { type: userConstants.LOGIN_REQUEST } }
-  function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+  function success(data) { return { type: userConstants.LOGIN_SUCCESS, data } }
   function failure(message) { return { type: userConstants.LOGIN_FAILURE, message } }
 }
 

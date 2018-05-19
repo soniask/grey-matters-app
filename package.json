@@ -21,9 +21,9 @@
   "dependencies": {
     "expo": "^25.0.0",
     "history": "^4.7.2",
+    "immutable": "^3.8.2",
     "query-string": "^6.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.3.2",
+    "react": "^16.3.2",
     "react-native": "^0.52.3",
     "react-native-elements": "^0.19.0",
     "react-native-htmlview": "^0.12.1",
@@ -37,9 +37,11 @@
     "react-router-dom": "^4.2.2",
     "react-router-native": "^4.2.0",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-soundcloud": "^0.1.1",
     "redux": "^3.7.2",
     "redux-persist": "^5.9.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "slate": "^0.33.6",
+    "slate-html-serializer": "^0.6.3",
+    "slate-react": "^0.12.6"
   }
 }
