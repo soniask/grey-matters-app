@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
 import {
 	View,
 	Text,
@@ -48,7 +49,7 @@ class Settings extends Component {
 				</Link>
 				<Text 
 					style={styles.option}
-					onPress={() => this.props.logout()}
+					onPress={() => this.props.logout({ history: this.props.history })}
 				>
 					Logout
 				</Text>
@@ -65,5 +66,5 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	logout: userActions.logout,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Settings));
 

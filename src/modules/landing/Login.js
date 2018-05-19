@@ -33,7 +33,7 @@ class Login extends Component {
 			/>
 			<Button
 				title='Log In'
-				onPress={() => this.props.login({email: this.email, password: this.password})}
+				onPress={() => this.props.login({ email: this.email, password: this.password, history: this.props.history })}
 			/>
 			{this.props.message ? (
 				<Text style={{color: 'red', textAlign: 'center'}}>{this.props.message}</Text>

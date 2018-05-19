@@ -32,7 +32,7 @@ export const userActions = {
 };
 
 // Implementations
-function login({ email, password }) {
+function login({ email, password, history }) {
   return dispatch => {
     dispatch(request());
     axios({
@@ -48,7 +48,7 @@ function login({ email, password }) {
     .then(res => {
       if (res.data.success) {
         dispatch(success(res.data));
-        // dispatch(push('/'));
+        history.push('/');
         // cookies.set('token', res.data.token, { path: '/' }); //TODO: find app equivalent of this
       } else {
         dispatch(failure(res.data.message));
@@ -65,10 +65,10 @@ function login({ email, password }) {
   function failure(message) { return { type: userConstants.LOGIN_FAILURE, message } }
 }
 
-function logout() {
+function logout({ history }) {
   return dispatch => {
     dispatch(success());
-    dispatch(push('/'));
+    history.push('/');
   };
 
   function success() { return { type: userConstants.LOGOUT } }
