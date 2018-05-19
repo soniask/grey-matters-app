@@ -30,6 +30,7 @@ import Settings from '../profile/Settings';
 import Signup from '../landing/Signup.js';
 import Login from '../landing/Login.js';
 import EditProfile from '../profile/EditProfile';
+import ChangePassword from '../profile/ChangePassword';
 
 
 class AppView extends React.Component {
@@ -62,6 +63,7 @@ class AppView extends React.Component {
             <Route exact path="/userProfile" component={UserProfile} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/editProfile" component={EditProfile} />
+            <Route exact path="/changePassword" component={ChangePassword} />
             <Menu />
           </View>
         </View>

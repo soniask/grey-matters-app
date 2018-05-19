@@ -7,7 +7,6 @@ import {
 	Text,
 	StyleSheet,
 } from 'react-native';
-import { Link } from 'react-router-native';
 import { userActions } from '../../actions';
 import styles from './SettingsStyles';
 

@@ -17,30 +17,41 @@ class Settings extends Component {
 	}
   
 	render() {
+		if (!this.props.user) {
+			return (
+				<View style={styles.container}>
+					<Text style={[styles.option, styles.grey]}>
+						Edit Profile
+					</Text>
+					<Text style={[styles.option, styles.grey]}>
+						Change Password
+					</Text>
+					<Link to="/signup" >
+						<Text style={styles.option}>
+							Sign Up
+						</Text>
+					</Link>
+				</View>
+			);
+		}
 	  return (
-		<View style={styles.container}>
-			<Link to="/editProfile">
-				<Text style={this.props.user ? styles.option : [styles.option, styles.grey]}>
-					Edit Profile
-				</Text>
-			</Link>
-			<Text style={this.props.user ? styles.option : [styles.option, styles.grey]}>
-				Change Password
-			</Text>
-			{this.props.user ? (
+			<View style={styles.container}>
+				<Link to="/editProfile">
+					<Text style={styles.option}>
+						Edit Profile
+					</Text>
+				</Link>
+				<Link to="/changePassword">
+					<Text style={styles.option}>
+						Change Password
+					</Text>
+				</Link>
 				<Text 
 					style={styles.option}
 					onPress={() => this.props.logout()}
 				>
 					Logout
 				</Text>
-			) : (		
-				<Link to="/signup" >
-					<Text style={styles.option}>
-						Sign Up
-					</Text>
-				</Link>
-			)}
 			</View>
 	  );
 	}
