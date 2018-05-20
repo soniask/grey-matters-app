@@ -21,12 +21,14 @@ class UserProfile extends Component {
 	
 	componentDidMount() {
 		if (this.props.user) {
+			console.log(`this.props.user.bookmarks: ${this.props.user.bookmarks}`);
 			this.props.getContents({ contentIds: this.props.user.bookmarks });
 			this.props.getTerms(); //used in Notes
 		}
 	}
 
   render() {
+		console.log(`this.props.contents: ${this.props.contents}`);
 		return (
 			<View style={{flex:1}}>
 					{

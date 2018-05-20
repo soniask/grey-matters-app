@@ -5,7 +5,7 @@ const USER_INITIAL = {
   isUpdatingUser: false,
   isLoggingIn: false,
   isSigningUp: false,
-  bookmarkIDSet: new Set(),
+  bookmarkIDSet: null,
   token: null,
 };
 
@@ -24,7 +24,6 @@ export const userReducer = (state = USER_INITIAL, action) => {
         message: null,
         isLoggingIn: false,
         token: action.data.token,
-        bookmarkIDSet: new Set(action.data.payload.bookmarks),
       };
     case userConstants.LOGIN_FAILURE:
       return {

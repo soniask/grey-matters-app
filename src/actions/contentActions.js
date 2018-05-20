@@ -27,6 +27,7 @@ export const contentActions = {
 // Implementations
 function getContents(filters = {}) {
   const query = queryString.stringify(filters);
+  console.log(`query string: ${query}`);
   return dispatch => {
     dispatch(request());
 
@@ -40,11 +41,13 @@ function getContents(filters = {}) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
+        console.log(res.data.message);
         // dispatch(alertActions.error(res.data.message));
       }
     })
     .catch(error => {
       dispatch(failure(error));
+      console.log(error);
       // dispatch(alertActions.error('Unable to Get Contents'));
     });
   };

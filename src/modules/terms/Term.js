@@ -35,20 +35,22 @@ class Term extends Component {
           break;
         }
       }
-      if (index > -1) {
-        // the user already had a note for this term
-        if (this.notes.length > 0) {
-          this.props.user.notes[index].body = this.notes;
+      if (this.notes) { // the user edited the notes text
+        if (index > -1) {
+          // the user already had a note for this term
+          if (this.notes.length > 0) {
+            this.props.user.notes[index].body = this.notes;
+          } else {
+            this.props.user.notes.splice(index, 1);
+          }
         } else {
-          this.props.user.notes.splice(index, 1);
+          // this is the user's first time writing a note for this term
+          if (this.notes.length > 0) {
+            this.props.user.notes.push({body: this.notes, term: this.props.term._id});
+          }
         }
-      } else {
-        // this is the user's first time writing a note for this term
-        if (this.notes.length > 0) {
-          this.props.user.notes.push({body: this.notes, term: this.props.term._id});
-        }
+        this.props.updateUser(this.props.user, this.props.user._id, this.props.token);
       }
-      this.props.updateUser(this.props.user, this.props.user._id, this.props.token);
     }
   }
 

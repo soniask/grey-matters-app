@@ -22,7 +22,6 @@ import ClubEvent from '../events/ClubEvent';
 import LearningSection from '../learningsection/LearningSection';
 import Terms from '../terms/Terms';
 import Term from '../terms/Term';
-import Store from '../store/Store';
 import UserProfile from '../profile/UserProfile.js';
 import AppHeader from './AppHeader.js';
 import Search from '../search/Search.js';

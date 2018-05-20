@@ -14,13 +14,14 @@ class BookmarkIcon extends React.Component {
 	}
 	
 	render() {
+		let bookmarkIDSet = new Set(this.props.user.bookmarks);
 		return (
 			<Icon
-				name={ this.props.bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}
-				color={ this.props.bookmarkIDSet.has(this.props.item._id) ? '#ff404e' : '#282828'}
+				name={ bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}
+				color={ bookmarkIDSet.has(this.props.item._id) ? '#ff404e' : '#282828'}
 				type='ionicon'
 				onPress={() => {
-					if (this.props.bookmarkIDSet.has(this.props.item._id)) {
+					if (bookmarkIDSet.has(this.props.item._id)) {
 						let index = this.props.user.bookmarks.indexOf(this.props.item._id)
 						if ( index > -1) {
 							this.props.user.bookmarks.splice(index, 1)
@@ -38,7 +39,6 @@ class BookmarkIcon extends React.Component {
 const mapStateToProps = state => ({
 	user: state.user.user,
 	token: state.user.token,
-	bookmarkIDSet: state.user.bookmarkIDSet,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -51,8 +51,6 @@ class Home extends Component {
       );
 		}
 
-		console.log(this.props.contents[0].bodySlate);
-
     return (
 			<View>
 				<ScrollView>
