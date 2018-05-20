@@ -20,6 +20,7 @@ class BookmarkIcon extends React.Component {
 				name={ bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}
 				color={ bookmarkIDSet.has(this.props.item._id) ? '#ff404e' : '#282828'}
 				type='ionicon'
+				containerStyle={{position: 'absolute', right: 0}}
 				onPress={() => {
 					if (bookmarkIDSet.has(this.props.item._id)) {
 						let index = this.props.user.bookmarks.indexOf(this.props.item._id)
