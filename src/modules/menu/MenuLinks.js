@@ -25,6 +25,7 @@ const MenuLinks = (props) => (
             rounded
             activeOpacity={0.7}
             title={props.user.name.substring(0, 1)}
+            containerStyle={{marginBottom: 20}}
           />
         ) : (
           <Avatar
