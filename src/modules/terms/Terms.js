@@ -12,6 +12,7 @@ import { Link } from 'react-router-native';
 import { termsActions } from '../../actions';
 import styles from './TermsStyles';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 
 class Terms extends Component {
   constructor(props) {
@@ -28,11 +29,9 @@ class Terms extends Component {
         <Loading />
       )
     }
-    if (!this.props.terms) {
+    if (!this.props.terms || this.props.terms.length == 0) {
       return (
-        <Text>
-          No Terms Available
-        </Text>
+        <Unavailable message='No terms available' />
       )
     }
     return (

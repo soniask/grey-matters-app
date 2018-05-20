@@ -8,6 +8,7 @@ import {
 	View,
 } from 'react-native';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 import styles from './NotesStyles';
 
 
@@ -23,14 +24,12 @@ class Notes extends Component {
       );
     }
 
-    if (!this.props.termsMap) {
+    if (!this.props.list || this.props.list.length == 0 ) {
       return (
-        <Text>
-          No Notes Available
-        </Text>
+				<Unavailable message='No bookmarks yet'/>
       );
 		}
-		
+
     return (
 			<ScrollView>
 				<View style={styles.content}>

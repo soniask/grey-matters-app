@@ -10,6 +10,7 @@ import EventsItem from './EventsItem';
 import styles from './EventsStyles'
 import { eventsActions } from '../../actions';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 
 class Events extends Component {
   constructor(props) {
@@ -27,11 +28,9 @@ class Events extends Component {
       );
     }
 
-    if (!this.props.events) {
+    if (!this.props.events || this.props.events.length == 0) {
       return (
-        <Text>
-          No Content Available
-        </Text>
+        <Unavailable message='No events available' />
       );
     }
     return (

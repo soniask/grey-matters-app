@@ -5,6 +5,7 @@ import { Text, Button } from 'react-native';
 import ContentFeed from '../shared/ContentFeed';
 import { contentActions } from '../../actions/contentActions';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 
 class Articles extends Component {
   constructor(props) {
@@ -22,13 +23,12 @@ class Articles extends Component {
       );
     }
 
-    if (!this.props.contents) {
+    if (!this.props.contents || this.props.contents.length == 0) {
       return (
-        <Text>
-          No Content Available
-        </Text>
+        <Unavailable message='No articles available'/>
       );
     }
+
     return (
       <ContentFeed 
         list={this.props.contents}

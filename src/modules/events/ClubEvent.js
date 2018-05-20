@@ -11,6 +11,7 @@ import styles from './ClubEventStyles';
 import { Button } from 'react-native-elements';
 import { eventsActions } from '../../actions';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 
 class ClubEvent extends Component {
   constructor(props) {
@@ -29,9 +30,7 @@ class ClubEvent extends Component {
     }
     if (!this.props.event) {
       return (
-        <Text>
-          Event Unvailable
-        </Text>
+        <Unavailable message='Event unvailable' />
       )
     }
     return (

@@ -12,6 +12,7 @@ import {
 import styles from '../articles/ArticleStyles';
 import { contentActions } from '../../actions';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 import References from '../shared/References';
 import { creatorTitles } from '../../constants';
 
@@ -34,9 +35,7 @@ class Podcast extends Component {
 
     if (!this.props.content) {
       return (
-        <Text>
-          Video Unavailable
-        </Text>
+        <Unavailable message='Podcast unavailable' />
       );
     }
 

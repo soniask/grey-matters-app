@@ -5,6 +5,7 @@ import { Text } from 'react-native';
 import ContentFeed from '../shared/ContentFeed';
 import { contentActions } from '../../actions/contentActions';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 
 class Podcasts extends Component {
   constructor(props) {
@@ -22,11 +23,9 @@ class Podcasts extends Component {
       );
     }
 
-    if (!this.props.contents) {
+    if (!this.props.contents || this.props.contents.length == 0) {
       return (
-        <Text>
-          No Content Available
-        </Text>
+        <Unavailable message='No videos available' />
       );
     }
     return (

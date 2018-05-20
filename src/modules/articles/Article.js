@@ -13,6 +13,7 @@ import styles from './ArticleStyles';
 import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 import References from '../shared/References';
 import TermDialog from './TermDialog';
 
@@ -45,9 +46,7 @@ class Article extends Component {
 
     if (!this.props.content) {
       return (
-        <Text>
-          No Content Available
-        </Text>
+        <Unavailable message='Article unavailable'/>
       );
     }
     return (

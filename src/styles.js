@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
   },
+  unavailable: {
+    padding: 20,
+    color: '#282828',
+  }
 })
 
 export default styles;

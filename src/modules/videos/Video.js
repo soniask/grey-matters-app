@@ -11,6 +11,7 @@ import {
   Platform
 } from 'react-native';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 import { contentActions } from '../../actions';
 import styles from '../articles/ArticleStyles';
 import References from '../shared/References';
@@ -33,9 +34,7 @@ class Video extends Component {
 
     if (!this.props.content) {
       return (
-        <Text>
-          No Content Available
-        </Text>
+        <Unavailable message='Video unavailable' />
       );
     }
 

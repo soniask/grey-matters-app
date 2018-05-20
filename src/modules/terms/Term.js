@@ -13,6 +13,7 @@ import {
   StyleSheet
 } from 'react-native';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 import { termsActions } from '../../actions';
 import { userActions } from '../../actions';
 import styles from './TermStyles';
@@ -63,9 +64,7 @@ class Term extends Component {
 
     if (!this.props.term) {
       return (
-        <Text>
-          Term not found
-        </Text>
+        <Unavailable message='Term unavailable' />
       )
     }
 

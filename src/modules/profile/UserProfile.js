@@ -13,6 +13,7 @@ import { profileActions } from '../../actions';
 import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Notes from './Notes';
+import Unavailable from '../shared/Unavailable';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -57,13 +58,10 @@ class UserProfile extends Component {
 										</Text>
 									</View>
 								</View>
-								{
-									this.props.showBookmarkList ? (
-										<ContentFeed list={this.props.contents} />
-									) : (
-										<Notes list={this.props.user.notes}/>
-									)
-								}
+								{ this.props.showBookmarkList && 
+									(( this.props.contents && this.props.contents.length > 0 && <ContentFeed list={this.props.contents} />) ||
+									<Unavailable message='No bookmarks yet' />) }
+								{ !this.props.showBookmarkList && <Notes list={this.props.user.notes}/> }
 							</View>
 						) : (
 							<View style={{alignItems: 'center'}}>

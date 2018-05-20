@@ -13,6 +13,7 @@ import styles from './HomeStyles';
 import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
+import Unavailable from '../shared/Unavailable';
 import References from '../shared/References';
 import TermDialog from '../articles/TermDialog';
 
@@ -45,9 +46,7 @@ class Home extends Component {
 		
     if (!this.props.contents || this.props.contents.length == 0) {
       return (
-        <Text>
-          No Content Available
-        </Text>
+				<Unavailable message='Content unavailable' />
       );
 		}
 
