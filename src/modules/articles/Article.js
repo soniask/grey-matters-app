@@ -46,9 +46,10 @@ class Article extends Component {
 
     if (!this.props.content) {
       return (
-        <Unavailable message='Article unavailable'/>
+        <Unavailable message='Article unavailable' />
       );
     }
+    
     return (
       <View>
         <ScrollView>
