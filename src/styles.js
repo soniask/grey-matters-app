@@ -48,7 +48,12 @@ const styles = StyleSheet.create({
   unavailable: {
     padding: 20,
     color: '#282828',
-  }
+  },
+  formError: {
+    color: 'red', 
+    textAlign: 'center', 
+    paddingTop: 20,
+  },
 })
 
 export default styles;

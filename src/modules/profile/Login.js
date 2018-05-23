@@ -35,9 +35,7 @@ class Login extends Component {
 				title='Log In'
 				onPress={() => this.props.login({ email: this.email, password: this.password, history: this.props.history })}
 			/>
-			{this.props.message ? (
-				<Text style={{color: 'red', textAlign: 'center'}}>{this.props.message}</Text>
-			) : null}
+			{this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
 		</View>
     );
   }

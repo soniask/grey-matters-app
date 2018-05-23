@@ -42,9 +42,7 @@ class EditProfile extends Component {
 						this.props.token,
 				)}
 				/>
-				{this.props.message ? (
-					<Text style={{color: 'red', textAlign: 'center'}}>{this.props.message}</Text>
-				) : null}
+				{this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
 			</View>
     );
 	}
