@@ -32,7 +32,7 @@ class TermDialog extends Component {
 								<View>
 									<Text style={styles.term}>{this.props.terms[0].term}</Text>
 									<Link to={`/terms/${this.props.terms[0]._id}`}>
-										<Text>{this.props.terms[0].description}</Text>
+										<Text>{this.props.terms[0].definition}</Text>
 									</Link>
 								</View>
 							) : (

@@ -45,7 +45,7 @@ class Podcast extends Component {
           <WebView
             javaScriptEnabled={true}
             domStorageEnabled={true}
-            source={{uri: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/290752136&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" }}
+            source={{uri: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/69174648&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" }}
           />
         </View>
         <View style={styles.container}>
