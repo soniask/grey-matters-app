@@ -21,14 +21,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    overflow: 'hidden',
   },
   image: {
     flex: 3
   },
   informationBox: {
+    height: 160,
     flex: 4, 
-    paddingLeft: 10
+    paddingLeft: 10,
+    overflow: 'hidden',
   },
   titleContainer: {
     flexDirection: 'row', 
@@ -63,6 +64,12 @@ const styles = StyleSheet.create({
   },
   description: {
     paddingTop: 5,
+  },
+  readMore: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    bottom: 0,
+    right: 0,
   },
   blue: {
     color: '#1ba5b8'

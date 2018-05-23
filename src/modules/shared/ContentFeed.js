@@ -40,8 +40,8 @@ const ContentFeed = (props) => (
                   </View>
                 </View>
                 <Text style={styles.description}>
-                  {item.description}...
-                  <Text style={styles.blue}>READ MORE</Text>
+                  {item.description}
+                  <Text style={[styles.blue]}>... READ MORE</Text>
                 </Text>
               </View>
             </View>
