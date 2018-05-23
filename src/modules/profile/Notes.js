@@ -26,7 +26,7 @@ class Notes extends Component {
 
     if (!this.props.list || this.props.list.length == 0 ) {
       return (
-				<Unavailable message='No bookmarks yet'/>
+				<Unavailable message='No notes yet'/>
       );
 		}
 

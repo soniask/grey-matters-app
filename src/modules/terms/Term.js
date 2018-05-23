@@ -69,6 +69,7 @@ class Term extends Component {
     }
 
     if (this.props.user) {
+      this.notes = null;
       for (let i = 0; i < this.props.user.notes.length; i++) {
         if (this.props.user.notes[i].term == this.props.term._id) {
           this.notes = this.props.user.notes[i].body;
@@ -89,12 +90,6 @@ class Term extends Component {
               <Text style={styles.sectionHeader}>Definition</Text>
             </View>
             <Text style={styles.paragraph}>{this.props.term.definition}</Text>
-          </View>
-          <View>
-            <View style={styles.sectionHeaderBox}>
-              <Text style={styles.sectionHeader}>Description</Text>
-            </View>
-            <Text style={styles.paragraph}>{this.props.term.description}</Text>
           </View>
           {
             this.props.user ? (
