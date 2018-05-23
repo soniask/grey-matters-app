@@ -15,12 +15,13 @@ const styles = StyleSheet.create({
   page: {
     width: Dimensions.get('window').width,
     padding: 20,
+    fontSize: 17,
   },
   image: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height / 2,
     position: 'absolute',
-    bottom: 100,
+    top: 0,
   },
   invisible: {
     opacity: 0,
@@ -28,6 +29,9 @@ const styles = StyleSheet.create({
   visible: {
     opacity: 1,
   },
+  story: {
+    marginTop: Dimensions.get('window').height / 2,
+  }
 })
 
 class LearningSection extends Component {
@@ -78,7 +82,19 @@ class LearningSection extends Component {
     ];
     return (
       <View style={{height: Dimensions.get('window').height}}>
+        <Image
+          style={styles.image} 
+          source={imageList[this.props.baseImageIndex % imageList.length]}
+        />
+        <Image 
+          style={[styles.image]} 
+          source={imageList[this.props.topImageIndex % imageList.length]}
+          onLoadEnd={() => {
+            this.props.updateBaseImage(this.props.topImageIndex)
+          }}
+        />
         <ScrollView
+          style={styles.story}
           horizontal={true}
           pagingEnabled={true}
           onMomentumScrollEnd={(e) => this.onScrollEnd(e)}
@@ -148,17 +164,6 @@ class LearningSection extends Component {
           The medulla is responsible for maintaining vital body functions such as breathing and a steady heartbeat.
           </Text>
         </ScrollView>
-        <Image
-          style={styles.image} 
-          source={imageList[this.props.baseImageIndex % imageList.length]}
-        />
-        <Image 
-          style={[styles.image]} 
-          source={imageList[this.props.topImageIndex % imageList.length]}
-          onLoadEnd={() => {
-            this.props.updateBaseImage(this.props.topImageIndex)
-          }}
-        />
       </View>
     );
   }
