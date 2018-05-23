@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
   },
+  contentListItem: {
+    flexDirection: 'row', 
+    flex: 1
+  },
   box: {
     height: 200,
     alignSelf: 'stretch',
@@ -16,7 +20,8 @@ const styles = StyleSheet.create({
     borderBottomColor: '#333',
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    overflow: 'hidden',
   },
   image: {
     flex: 3
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   description: {
-    paddingTop: 5
+    paddingTop: 5,
   },
   blue: {
     color: '#1ba5b8'
