@@ -33,7 +33,7 @@ const ContentFeed = (props) => (
                 <View style={styles.metaData}>
                   <View style={styles.author}>
                     <Text>{creatorTitles[item.type].toUpperCase()}</Text>
-                    <Text style={styles.blue}>{item.creators[0].name}</Text>
+                    {/* <Text style={styles.blue}>{item.creators[0].name}</Text> */}
                   </View>
                   <View style={styles.date}>
                     <Text>{new Date(item.publishTime).toLocaleDateString()}</Text>

@@ -41,11 +41,11 @@ class Podcast extends Component {
 
     return (
       <ScrollView>
-        <View style={{height: 300}}>
+        <View style={styles.image}>
           <WebView
             javaScriptEnabled={true}
             domStorageEnabled={true}
-            source={{uri: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/69174648&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" }}
+            source={{uri: this.props.content.url}}
           />
         </View>
         <View style={styles.container}>
@@ -55,11 +55,11 @@ class Podcast extends Component {
           <View style={styles.metaData}>
             <View style={[styles.rightBorder, styles.metaDataBox]}>
               <Text>{creatorTitles[this.props.content.type].toUpperCase()}</Text>
-              <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
+              {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
             </View>
             <View style={[styles.rightBorder, styles.metaDataBox]}>
               <Text>ARTIST</Text>
-              <Text style={styles.blue}>{this.props.content.creators[0]}</Text>
+              {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
             </View>
             <View style={[styles.metaDataBox]}>
               <Text>{new Date(this.props.content.publishTime).toLocaleDateString()}</Text>

@@ -9,13 +9,14 @@ import {
 	Text,
 	ScrollView,
 } from 'react-native';
-import styles from './HomeStyles';
+// import styles from './HomeStyles';
 import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
 import Unavailable from '../shared/Unavailable';
 import References from '../shared/References';
 import TermDialog from '../articles/TermDialog';
+import ArticleView from '../articles/ArticleView';
 
 class Home extends Component {
   constructor(props) {
@@ -51,45 +52,7 @@ class Home extends Component {
 		}
 
     return (
-			<View>
-				<ScrollView>
-					<View>
-						<Image style={styles.image} source={{uri: 'http://greymattersjournal.com/wp-content/uploads/2018/01/HM-700x757.png'}}/>
-						<View style={styles.container}>
-							<Text style={styles.title}>{this.props.contents[0].title}</Text>
-							<View style={styles.metaData}>
-								<View style={[styles.rightBorder, styles.metaDataBox]}>
-									<Text>AUTHOR</Text>
-									<Text style={styles.blue}>{this.props.contents[0].creators[0].name}</Text>
-								</View>
-								<View style={[styles.rightBorder, styles.metaDataBox]}>
-									<Text>ARTIST</Text>
-									<Text style={styles.blue}>{this.props.contents[0].creators[0].name}</Text>
-								</View>
-								<View style={[styles.metaDataBox]}>
-									<Text>{ new Date(this.props.contents[0].publishTime).toLocaleDateString()}</Text>
-								</View>
-							</View>
-							{/* <HTMLView
-								value={this.props.contents[0].bodySlate}
-								stylesheet={styles}
-							/> */}
-							<ParsedText
-								parse={
-									[
-										{pattern: /<h2>([\S\s]+)<\/h2>/, style: styles.sectionTitle, renderText: this.renderText},
-										{pattern: /<span>([\w\s]+)<\/span>/, style: styles.blue, onPress: (term) => this.handleTermPress(term), renderText: this.renderText},
-									]
-								}
-							>
-								{this.props.contents[0].body}
-							</ParsedText>
-							{this.props.contents[0].references && <References references={this.props.contents[0].references}/>}
-						</View>
-					</View>
-				</ScrollView>
-				{this.props.terms && <TermDialog terms={this.props.terms} />}
-			</View>
+			<ArticleView content={this.props.contents[0]} /> 
     );
   }
 }
