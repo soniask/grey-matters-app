@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Text } from 'react-native';
+import { Link } from 'react-router-native';
 import { Header } from 'react-native-elements';
 import MenuIcon from './MenuIcon';
 import SearchIcon from './SearchIcon';
@@ -32,9 +34,13 @@ class AppHeader extends Component {
       )
     }
     if (route) {
-      return { text: route.name, style: { color: '#282828' } };
+      return { text: route.name, style: { color: '#282828', fontSize: 17 } };
     } else {
-      return { text: 'GREY MATTERS', style: { color: '#282828' } };
+      return (
+        <Link to="/" >
+          <Text style={{ color: '#282828', fontSize: 17 }}>Grey Matters</Text>
+        </Link>
+      )
     }
   }
 

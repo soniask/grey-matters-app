@@ -40,18 +40,26 @@ class Events extends Component {
             Upcoming
           </Text>
           {
-            this.props.events.map((event) => (
-              <EventsItem key={event._id}  event={event} />
-            ))
+            this.props.events.map((event) => {
+              if (new Date(event.dateStart) > Date.now()) {
+                return (
+                  <EventsItem key={event._id}  event={event} />
+                )
+              }
+            })
           }
-          {/* <Text style={styles.sectionHeader}>
+          <Text style={styles.sectionHeader}>
             Past
           </Text>
           {
-            past.map((event) => (
-              <EventsItem key={event.id}  event={event} />
-            ))
-          } */}
+            this.props.events.map((event) => {
+              if (new Date(event.dateStart) <= Date.now()) {
+                return (
+                  <EventsItem key={event._id}  event={event} />
+                )
+              }
+            })
+          }
         </View>
       </ScrollView>
     );

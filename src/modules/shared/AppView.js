@@ -26,8 +26,8 @@ import UserProfile from '../profile/UserProfile.js';
 import AppHeader from './AppHeader.js';
 import Search from '../search/Search.js';
 import Settings from '../profile/Settings';
-import Signup from '../landing/Signup.js';
-import Login from '../landing/Login.js';
+import Signup from '../profile/Signup.js';
+import Login from '../profile/Login.js';
 import EditProfile from '../profile/EditProfile';
 import ChangePassword from '../profile/ChangePassword';
 

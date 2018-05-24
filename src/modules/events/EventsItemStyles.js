@@ -6,14 +6,17 @@ const styles = StyleSheet.create({
   event: {
     backgroundColor: '#E6E6E8',
     alignSelf: 'stretch',
-    height: 100,
     marginBottom: 30,
   },
   eventHeader: {
     flexDirection: "row",
-    height: 35,
+    height: 40,
   },
-  eventSubHeader: {
+  dateBox: {
+    justifyContent: 'center', 
+    backgroundColor: "#1ba5b8"
+  },
+  timeBox: {
     flex: 1, 
     flexDirection: 'row', 
     justifyContent: 'space-between', 
@@ -24,20 +27,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#EBEBED',
   },
   eventDate: {
-    width: 80,
-    paddingLeft: 5,
+    width: 100,
+    paddingLeft: 15,
     fontSize: 17,
     fontWeight: 'bold',
   },
-  eventIcon: {
-    position: "absolute",
-    right: 15,
-    top: 5,
+  eventTime: {
+    flex: 1, 
+    justifyContent: 'center'
   },
   mainInfo: {
     paddingLeft: 20,
-    paddingTop: 5
-  }
+    paddingTop: 10
+  },
+  eventName: {
+    fontSize: 20,
+    paddingBottom: 5
+  },
+  eventLocation: {
+    fontSize: 17,
+    paddingBottom: 15,
+  },
 })
 
 export default styles;

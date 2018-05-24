@@ -8,19 +8,15 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
 		height: Dimensions.get('window').height/3,
   },
-  imageHome: {
-    alignSelf: 'stretch',
-		height: Dimensions.get('window').height - 245,
-  },
   container: {
     paddingTop: 15,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   titleText: {
     fontSize: 28, 
     fontWeight: 'bold',
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   metaData: {
     flexDirection: 'row', 
@@ -28,7 +24,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomColor: '#ff404e',
     borderBottomWidth: 1,
-    marginBottom: 10
+    marginBottom: 10,
   },
   metaDataBox: {
     flex: 1,
@@ -70,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   description: {
-    paddingTop: 5
+    paddingTop: 5,
   },
 })
 
