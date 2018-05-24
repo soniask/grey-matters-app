@@ -40,19 +40,19 @@ class ClubEvent extends Component {
           <View style={styles.metaData}>
             <View style={[styles.small, styles.metaDataBox]}>
               <Text>{"DATE"}</Text>
-              <Text>
+              <Text style={styles.blue}>
               {new Date(this.props.event.dateStart).toLocaleDateString("en-US",{month: 'long', day: 'numeric'})}
               </Text>
             </View>
             <View style={[styles.small, styles.metaDataBox]}>
               <Text>{"TIME"}</Text>
-              <Text>
+              <Text style={styles.blue}>
                 {new Date(this.props.event.dateStart).toLocaleTimeString("en-US",{hour: 'numeric', minute: 'numeric'})}
               </Text>
             </View>
             <View style={[styles.large, styles.metaDataBox]}>
               <Text>{"LOCATION"}</Text>
-              <Text>{this.props.event.location}</Text>
+              <Text style={styles.blue}>{this.props.event.location}</Text>
             </View>
           </View>
           <Text style={styles.description}>{this.props.event.description}</Text>
