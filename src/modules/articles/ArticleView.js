@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-native';
+import AutoHeightImage from 'react-native-auto-height-image';
 import ParsedText from 'react-native-parsed-text';
 import {
+	Dimensions,
   Text,
   ScrollView,
   View,
@@ -33,7 +35,7 @@ class ArticleView extends Component {
     return (
       <View>
         <ScrollView>
-          <Image style={styles.image} source={{uri: 'http://greymattersjournal.com/wp-content/uploads/2018/01/HM-700x757.png'}}/>
+          <AutoHeightImage width={Dimensions.get('window').width} source={{uri: 'http://greymattersjournal.com/wp-content/uploads/2018/01/HM-700x757.png'}}/>
           <View style={styles.container}>
             <Text style={styles.titleText}>
               {this.props.content.title}
