@@ -32,6 +32,11 @@ class Settings extends Component {
 							Sign Up
 						</Text>
 					</Link>
+					<Link to="/privacyPolicy" >
+						<Text style={styles.option}>
+							Privacy Policy
+						</Text>
+					</Link>
 				</View>
 			);
 		}
@@ -53,6 +58,11 @@ class Settings extends Component {
 				>
 					Logout
 				</Text>
+				<Link to="/privacyPolicy" >
+					<Text style={styles.option}>
+						Privacy Policy
+					</Text>
+				</Link>
 			</View>
 	  );
 	}
