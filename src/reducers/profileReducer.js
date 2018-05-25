@@ -17,6 +17,7 @@ export const profileReducer = (state = PROFILE_INITIAL, action) => {
 				showBookmarkList: false,
 			};
 		case profileConstants.SHOW_PRIVACY_POLICY:
+			console.log('privacy policy reducer')
 			return {
 				...state,
 				privacyPolicyVisible: true,

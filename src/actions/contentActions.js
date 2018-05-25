@@ -27,7 +27,6 @@ export const contentActions = {
 // Implementations
 function getContents(filters = {}) {
   const query = queryString.stringify(filters);
-  console.log(`query string: ${query}`);
   return dispatch => {
     dispatch(request());
 

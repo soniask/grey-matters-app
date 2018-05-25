@@ -13,7 +13,6 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 				isGettingContents: true,
 			};
 		case contentConstants.GET_CONTENTS_SUCCESS:
-			console.log(`action.payload inside reducer: ${action.payload}`);
 			return {
 				...state,
 				contents: action.payload,

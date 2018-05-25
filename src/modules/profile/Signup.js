@@ -11,6 +11,7 @@ import { Link } from 'react-router-native';
 import { userActions } from '../../actions';
 import { profileActions } from '../../actions';
 import styles from '../../styles.js';
+import PolicyDialog from './PolicyDialog';
 
 
 class Signup extends Component {
@@ -64,7 +65,10 @@ class Signup extends Component {
           By signing up you agree to our
           <Text
             style={styles.blue}
-            onPress={() => this.props.showPrivacyPolicy()}
+            onPress={() => {
+              console.log('privacy policy link pressed');
+              this.props.showPrivacyPolicy();
+            }}
           >
             {' Privacy Policy'}.
           </Text>
@@ -84,6 +88,7 @@ class Signup extends Component {
           </Text>
         </Link>
         {this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
+        {this.props.privacyPolicyVisible && <PolicyDialog/>}
       </View>
     );
   }
@@ -91,14 +96,13 @@ class Signup extends Component {
 
 const mapStateToProps = state => ({
   message: state.user.message,
-  privacyPolicyVisible: state.user.privacyPolicyVisible,
+  privacyPolicyVisible: state.profile.privacyPolicyVisible,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   signup: userActions.signup,
   clearMessage: userActions.clearMessage,
   showPrivacyPolicy: profileActions.showPrivacyPolicy,
-  hidePrivacyPolicy: profileActions.hidePrivacyPolicy,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

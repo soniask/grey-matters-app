@@ -21,6 +21,7 @@ function showNotes() {
 }
 
 function showPrivacyPolicy() {
+  console.log('show privacy policy action');
   return { type: profileConstants.SHOW_PRIVACY_POLICY }
 }
 
