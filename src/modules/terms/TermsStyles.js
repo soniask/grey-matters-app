@@ -3,8 +3,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   box: {
     width: Dimensions.get('window').width - 20,

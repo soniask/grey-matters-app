@@ -20,3 +20,10 @@ export const creatorTitles = {
   podcast: "host",
   video: "producer",
 };
+
+export const colors = {
+  blue: '#1ba5b8',
+  red: '#ff404e',
+  darkGrey: '#282828',
+  lightGrey: '#BCBEC1',
+}

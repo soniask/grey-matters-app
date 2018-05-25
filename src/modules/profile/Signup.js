@@ -81,7 +81,7 @@ class Signup extends Component {
             password: this.password,
           })}
         />
-        <Link to="/login" >
+        <Link to="/login"  underlayColor={'white'}>
           <Text style={{ textAlign: 'center' }}>
             Already a Member? <Text style={{ textDecorationLine: 'underline' }}>login</Text>
           </Text>

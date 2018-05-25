@@ -37,7 +37,7 @@ class AppHeader extends Component {
       return { text: route.name, style: { color: '#282828', fontSize: 17 } };
     } else {
       return (
-        <Link to="/" >
+        <Link to="/" underlayColor={'white'}>
           <Text style={{ color: '#282828', fontSize: 17 }}>Grey Matters</Text>
         </Link>
       )

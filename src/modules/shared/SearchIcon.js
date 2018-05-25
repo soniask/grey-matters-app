@@ -19,6 +19,7 @@ class SearchIcon extends React.Component {
       <Link 
         to='/search'
         onPress={() => this.props.showMenu(false)}
+        underlayColor={'white'}
       >
         <Icon 
           name='search' 

@@ -10,6 +10,7 @@ import { Link } from 'react-router-native';
 import { Avatar } from 'react-native-elements';
 import { menuActions } from '../../actions';
 import styles from '../../styles.js';
+import { colors } from '../../constants';
 
 const MenuLinks = (props) => (
   <View style={styles.nav}>
@@ -18,7 +19,7 @@ const MenuLinks = (props) => (
         <View style={styles.profileNavItemView}>
           <Link 
             to="/userProfile"
-            underlayColor='#f0f4f7'
+            underlayColor={colors.lightGrey}
             onPress={() => props.showMenu(!props.show)}
           >
             <Avatar
@@ -35,7 +36,7 @@ const MenuLinks = (props) => (
         <View style={styles.profileNavItemView}>
           <Link 
             to="/userProfile"
-            underlayColor='#f0f4f7'
+            underlayColor={colors.lightGrey}
             onPress={() => props.showMenu(!props.show)}
           >
             <Avatar
@@ -48,7 +49,7 @@ const MenuLinks = (props) => (
           </Link>
           <Link 
             to="/login"
-            underlayColor='#f0f4f7'
+            underlayColor={colors.lightGrey}
             onPress={() => props.showMenu(!props.show)}
           >
             <Text style={styles.navItemText}>Log In</Text>
@@ -58,49 +59,49 @@ const MenuLinks = (props) => (
     </View>
     <Link
       to="/"
-      underlayColor='#f0f4f7'
+      underlayColor={colors.lightGrey}
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem}>
       <Text style={styles.navItemText}>Home</Text>
     </Link>
     <Link
       to="/articles"
-      underlayColor='#f0f4f7'
+      underlayColor={colors.lightGrey}
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem}>
       <Text style={styles.navItemText}>Articles</Text>
     </Link>
     <Link
       to="/podcasts"
-      underlayColor='#f0f4f7'
+      underlayColor={colors.lightGrey}
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem}>
       <Text style={styles.navItemText}>Podcasts</Text>
     </Link>
     <Link
       to="/videos"
-      underlayColor='#f0f4f7'
+      underlayColor={colors.lightGrey}
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>Videos</Text>
     </Link>
     <Link
       to="/events"
-      underlayColor='#f0f4f7'
+      underlayColor={colors.lightGrey}
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>Events</Text>
     </Link>
     <Link
       to="/learningsection"
-      underlayColor='#f0f4f7'
+      underlayColor={colors.lightGrey}
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>The Basics</Text>
     </Link>
     <Link
       to="/terms"
-      underlayColor='#f0f4f7'
+      underlayColor={colors.lightGrey}
       onPress={() => props.showMenu(!props.show)}
       style={styles.navItem} >
       <Text style={styles.navItemText}>Glossary</Text>

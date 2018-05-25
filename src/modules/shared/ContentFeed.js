@@ -9,7 +9,7 @@ import {
 import { Link } from 'react-router-native';
 import { Icon } from 'react-native-elements';
 import styles from './contentFeedStyles';
-import { creatorTitles } from '../../constants';
+import { colors, creatorTitles } from '../../constants';
 import BookmarkIcon from './BookmarkIcon';
 
 const ContentFeed = (props) => (
@@ -17,7 +17,12 @@ const ContentFeed = (props) => (
     <View style={[styles.content]}>
     {
       props.list ? props.list.map((item) => (
-        <Link to={`/${item.type}s/${item._id}`} key={item._id} style={[styles.box]}>
+        <Link 
+          to={`/${item.type}s/${item._id}`} 
+          key={item._id} 
+          style={[styles.box]}
+          underlayColor={colors.lightGrey}
+        >
           <View style={styles.contentListItem}>
             <Image style={styles.image} 
                   source={{uri: 'https://is2-ssl.mzstatic.com/image/thumb/Purple60/v4/98/53/cc/9853cc2f-4b7a-8fd0-a7f8-5c6902e94ae8/source/256x256bb.jpg'}}

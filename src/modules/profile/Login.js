@@ -6,7 +6,6 @@ import {
   View
 } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
-import { Link } from 'react-router-native';
 import { withRouter } from 'react-router';
 import styles from '../../styles.js';
 import { userActions } from '../../actions';

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Link } from 'react-router-native';
 import { termsActions } from '../../actions';
+import { colors } from '../../constants';
 import styles from './TermsStyles';
 import Loading from '../shared/Loading';
 import Unavailable from '../shared/Unavailable';
@@ -39,7 +40,7 @@ class Terms extends Component {
         <View style={[styles.content]}>
         {
           this.props.terms.map((term) => (
-            <Link key={term._id} to={`/terms/${term._id}`}>
+            <Link key={term._id} to={`/terms/${term._id}`} underlayColor={colors.lightGrey}>
               <View style={styles.box}>
                 <Text style={styles.word}>
                   {term.term}

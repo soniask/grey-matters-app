@@ -19,6 +19,7 @@ class SettingsIcon extends React.Component {
       <Link 
         to='/settings'
         onPress={() => this.props.showMenu(false)}
+        underlayColor={'white'}
       >
         <Icon 
           name='settings'

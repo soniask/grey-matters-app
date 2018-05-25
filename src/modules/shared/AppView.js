@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { NativeRouter, Route, Link, BackButton as RouterBackButton } from 'react-router-native';
+import { NativeRouter, Route, BackButton as RouterBackButton } from 'react-router-native';
 import { Header } from 'react-native-elements';
 import styles from '../../styles.js';
 import { history } from '../../store';

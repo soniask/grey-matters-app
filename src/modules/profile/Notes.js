@@ -10,6 +10,7 @@ import {
 import Loading from '../shared/Loading';
 import Unavailable from '../shared/Unavailable';
 import styles from './NotesStyles';
+import { colors } from '../../constants';
 
 
 class Notes extends Component {
@@ -34,7 +35,11 @@ class Notes extends Component {
 			<ScrollView>
 				<View style={styles.content}>
 					{this.props.list.map(item => (
-						<Link to={`/terms/${item.term}`} key={item.term}>
+						<Link 
+							to={`/terms/${item.term}`} 
+							key={item.term} 
+							underlayColor={colors.lightGrey}
+						>
 							<View style={styles.box}>
 								<View>
 									<Text style={styles.titleText}>{this.props.termsMap[item.term]}</Text>

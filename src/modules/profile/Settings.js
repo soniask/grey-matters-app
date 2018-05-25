@@ -10,6 +10,7 @@ import {
 import { Link } from 'react-router-native';
 import { userActions } from '../../actions';
 import styles from './SettingsStyles';
+import { colors } from '../../constants';
 
 
 class Settings extends Component {
@@ -27,17 +28,17 @@ class Settings extends Component {
 					<Text style={[styles.option, styles.grey]}>
 						Change Password
 					</Text>
-					<Link to="/signup" >
+					<Link to="/signup" underlayColor={colors.lightGrey}>
 						<Text style={styles.option}>
 							Sign Up
 						</Text>
 					</Link>
-					<Link to="/privacyPolicy" >
+					<Link to="/privacyPolicy" underlayColor={colors.lightGrey}>
 						<Text style={styles.option}>
 							Privacy Policy
 						</Text>
 					</Link>
-					<Link to="/support" >
+					<Link to="/support" underlayColor={colors.lightGrey}>
 						<Text style={styles.option}>
 							Support
 						</Text>
@@ -47,12 +48,12 @@ class Settings extends Component {
 		}
 	  return (
 			<View style={styles.container}>
-				<Link to="/editProfile">
+				<Link to="/editProfile" underlayColor={colors.lightGrey}>
 					<Text style={styles.option}>
 						Edit Profile
 					</Text>
 				</Link>
-				<Link to="/changePassword">
+				<Link to="/changePassword" underlayColor={colors.lightGrey}>
 					<Text style={styles.option}>
 						Change Password
 					</Text>
@@ -63,12 +64,12 @@ class Settings extends Component {
 				>
 					Logout
 				</Text>
-				<Link to="/privacyPolicy" >
+				<Link to="/privacyPolicy" underlayColor={colors.lightGrey}>
 					<Text style={styles.option}>
 						Privacy Policy
 					</Text>
 				</Link>
-				<Link to="/support" >
+				<Link to="/support" underlayColor={colors.lightGrey}>
 					<Text style={styles.option}>
 						Support
 					</Text>

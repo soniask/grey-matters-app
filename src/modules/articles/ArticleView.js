@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import ParsedText from 'react-native-parsed-text';
 import {
