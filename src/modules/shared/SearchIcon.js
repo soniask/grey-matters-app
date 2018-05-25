@@ -10,9 +10,16 @@ import { Icon } from 'react-native-elements';
 import { menuActions } from '../../actions';
 
 class SearchIcon extends React.Component {
+  constructor(props) {
+	  super(props);
+  }
+  
   render () {
     return (
-      <Link to='/search'>
+      <Link 
+        to='/search'
+        onPress={() => this.props.showMenu(false)}
+      >
         <Icon 
           name='search' 
           color= '#282828'
@@ -22,4 +29,8 @@ class SearchIcon extends React.Component {
   }
 } 
 
-export default SearchIcon;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  showMenu: menuActions.showMenu,
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(SearchIcon);
