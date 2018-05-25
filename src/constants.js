@@ -11,6 +11,8 @@ export const routes = [
   { path:"/store", component:"Store", name:"Store" },
   { path:"/userProfile", component:"UserProfile", name:"Profile" },
   { path:"/settings", component:"Settings", name:"Settings" },
+  { path:"/privacyPolicy", component:"PrivacyPolicy", name:"Privacy Policy" },
+  { path:"/support", component:"Support", name:"Support" },
 ];
 
 export const creatorTitles = {

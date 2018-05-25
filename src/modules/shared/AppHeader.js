@@ -46,8 +46,9 @@ class AppHeader extends Component {
 
   getLeftComponent() {
     const location = this.props.location.pathname;
-    if (['/signup', '/login', '/search', '/settings', '/editProfile', '/changePassword', '/privacyPolicy'].includes(location) ||
-        /\/\w+\/\w+/.test(location)) {
+    const backButtonList = ['/signup', '/login', '/search', '/settings',
+      '/editProfile', '/changePassword', '/privacyPolicy', '/support'];
+    if (backButtonList.includes(location) || /\/\w+\/\w+/.test(location)) {
       return <BackButton />;
     } else {
       return <MenuIcon />;

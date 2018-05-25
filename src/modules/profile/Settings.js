@@ -37,6 +37,11 @@ class Settings extends Component {
 							Privacy Policy
 						</Text>
 					</Link>
+					<Link to="/support" >
+						<Text style={styles.option}>
+							Support
+						</Text>
+					</Link>
 				</View>
 			);
 		}
@@ -61,6 +66,11 @@ class Settings extends Component {
 				<Link to="/privacyPolicy" >
 					<Text style={styles.option}>
 						Privacy Policy
+					</Text>
+				</Link>
+				<Link to="/support" >
+					<Text style={styles.option}>
+						Support
 					</Text>
 				</Link>
 			</View>

@@ -66,7 +66,6 @@ class Signup extends Component {
           <Text
             style={styles.blue}
             onPress={() => {
-              console.log('privacy policy link pressed');
               this.props.showPrivacyPolicy();
             }}
           >

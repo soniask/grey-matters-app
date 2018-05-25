@@ -7,7 +7,6 @@ class PrivacyPolicy extends Component {
   }
 
   render() {
-    console.log('privacy policy render')
     return (
       <ScrollView>
         <Text style={{padding: 20}}>

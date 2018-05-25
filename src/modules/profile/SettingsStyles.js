@@ -14,7 +14,16 @@ const styles = StyleSheet.create({
 	},
 	grey: {
 		color: '#C4C4C4',
-	}
+	},
+	blue: {
+    color: '#1ba5b8',
+	},
+	support: {
+		fontSize: 17,
+		textAlign: 'center',
+		padding: 20,
+		lineHeight: 30,
+	},
 })
 
 export default styles;

@@ -18,7 +18,6 @@ class PolicyDialog extends Component {
   }
 
   render() {
-		console.log('policy dialog render')
     return (
       <View>
 				<Dialog

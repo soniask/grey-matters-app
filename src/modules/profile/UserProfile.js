@@ -28,7 +28,6 @@ class UserProfile extends Component {
 	}
 
   render() {
-		console.log(`this.props.contents: ${this.props.contents}`);
 		return (
 			<View style={{flex:1}}>
 					{
