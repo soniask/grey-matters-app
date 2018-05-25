@@ -19,18 +19,22 @@ class Login extends Component {
 
   render() {
     return (
-			<View>
-			<FormInput
-				placeholder='Email Address'
-				autoCapitalize='none'
-				autoCorrect={false}
-				onChangeText={(text) => this.email = text}
-			/>
-			<FormInput
-				placeholder='Password'
-				secureTextEntry={true}
-				onChangeText={(text) => this.password = text}
-			/>
+			<View style={styles.formContainer}>
+				<View style={styles.formInput}>
+					<FormInput
+						placeholder='Email Address'
+						autoCapitalize='none'
+						autoCorrect={false}
+						onChangeText={(text) => this.email = text}
+					/>
+				</View>
+				<View style={styles.formInput}>
+					<FormInput
+						placeholder='Password'
+						secureTextEntry={true}
+						onChangeText={(text) => this.password = text}
+					/>
+				</View>
 			<Button
 				title='Log In'
 				onPress={() => this.props.login({ email: this.email, password: this.password, history: this.props.history })}

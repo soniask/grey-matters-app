@@ -54,6 +54,19 @@ const styles = StyleSheet.create({
     textAlign: 'center', 
     paddingTop: 20,
   },
+  blue: {
+    color: '#1ba5b8',
+  },
+  formContainer: {
+    marginTop: 10,
+  },
+  formInput: {
+    marginBottom: 10,
+  },
+  userConsent: {
+    textAlign: 'center',
+    marginTop: 10,
+  },
 })
 
 export default styles;

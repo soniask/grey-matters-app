@@ -18,18 +18,22 @@ class EditProfile extends Component {
 
 	render() {
     return (
-			<View>
-				<FormInput
-					placeholder='New Name'
-					autoCapitalize='words'
-					autoCorrect={false}
-					onChangeText={(text) => this.newName = text}
-				/>
-				<FormInput
-					placeholder='Password'
-					secureTextEntry={true}
-					onChangeText={(text) => this.password = text}
-				/>
+			<View style={styles.formContainer}>
+				<View style={styles.formInput}>
+					<FormInput
+						placeholder='New Name'
+						autoCapitalize='words'
+						autoCorrect={false}
+						onChangeText={(text) => this.newName = text}
+					/>
+				</View>
+				<View style={styles.formInput}>
+					<FormInput
+						placeholder='Password'
+						secureTextEntry={true}
+						onChangeText={(text) => this.password = text}
+					/>
+				</View>
 				<Button
 					title='Submit'
 					onPress={() => this.props.updateUser(

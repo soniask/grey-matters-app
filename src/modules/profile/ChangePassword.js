@@ -18,22 +18,28 @@ class ChangePassword extends Component {
 
 	render() {
     return (
-			<View>
-				<FormInput
-					placeholder='Current Password'
-					secureTextEntry={true}
-					onChangeText={(text) => this.currentPassword = text}
-				/>
-				<FormInput
-					placeholder='New Password'
-					secureTextEntry={true}
-					onChangeText={(text) => this.newPassword = text}
-				/>
-				<FormInput
-					placeholder='Confirm New Password'
-					secureTextEntry={true}
-					onChangeText={(text) => this.confirmNewPassword = text}
-				/>
+			<View style={styles.formContainer}>
+				<View style={styles.formInput}>
+					<FormInput
+						placeholder='Current Password'
+						secureTextEntry={true}
+						onChangeText={(text) => this.currentPassword = text}
+					/>
+				</View>
+				<View style={styles.formInput}>
+					<FormInput
+						placeholder='New Password'
+						secureTextEntry={true}
+						onChangeText={(text) => this.newPassword = text}
+					/>
+				</View>
+				<View style={styles.formInput}>
+					<FormInput
+						placeholder='Confirm New Password'
+						secureTextEntry={true}
+						onChangeText={(text) => this.confirmNewPassword = text}
+					/>
+				</View>
 				<Button
 					title='Submit'
 					onPress={() => this.props.updateUser(
