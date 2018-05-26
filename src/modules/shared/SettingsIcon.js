@@ -8,6 +8,8 @@ import {
 import { Icon } from 'react-native-elements';
 import { Link } from 'react-router-native';
 import { menuActions } from '../../actions';
+import styles from '../../styles';
+// import { colors } from '../../constants';
 
 class SettingsIcon extends React.Component {
   constructor(props) {
@@ -20,6 +22,7 @@ class SettingsIcon extends React.Component {
         to='/settings'
         onPress={() => this.props.showMenu(false)}
         underlayColor={'white'}
+        style={styles.insideHeader}
       >
         <Icon 
           name='settings'

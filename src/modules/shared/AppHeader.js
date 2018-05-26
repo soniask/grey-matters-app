@@ -7,7 +7,8 @@ import SearchIcon from './SearchIcon';
 import SearchInput from '../search/SearchInput';
 import BackButton from './BackButton';
 import SettingsIcon from './SettingsIcon';
-import { routes } from '../../constants';
+import { colors, routes } from '../../constants';
+import styles from '../../styles';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -34,11 +35,11 @@ class AppHeader extends Component {
       )
     }
     if (route) {
-      return { text: route.name, style: { color: '#282828', fontSize: 17 } };
+      return { text: route.name, style: [styles.headerText, styles.insideHeader] };
     } else {
       return (
-        <Link to="/" underlayColor={'white'}>
-          <Text style={{ color: '#282828', fontSize: 17 }}>Grey Matters</Text>
+        <Link to="/" underlayColor={'white'} >
+          <Text style={[styles.headerText, styles.insideHeader]}>Grey Matters</Text>
         </Link>
       )
     }
@@ -61,7 +62,7 @@ class AppHeader extends Component {
         leftComponent={this.getLeftComponent()}
         centerComponent={this.getCenterComponent()}
         rightComponent={this.getRightComponent()}
-        outerContainerStyles={{ backgroundColor: '#fff', alignSelf: 'stretch' }}
+        outerContainerStyles={{ backgroundColor: '#fff', alignSelf: 'stretch', padding: 0 }}
       />
     );
   }

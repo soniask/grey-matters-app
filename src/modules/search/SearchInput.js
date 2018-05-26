@@ -12,7 +12,7 @@ import {
 import { contentActions } from '../../actions';
 import { searchActions } from '../../actions';
 import SearchResults from './SearchResults';
-import styles from './SearchStyles';
+import styles from '../../styles';
 
 class SearchInput extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class SearchInput extends Component {
     return (
         <View style={{width: Dimensions.get('window').width - 50}}>
           <TextInput
+            style={styles.insideHeader}
             placeholder='Search'
             clearButtonMode='while-editing'
             onChangeText={(text) => {

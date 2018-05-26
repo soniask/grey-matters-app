@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+  insideHeader: {
+    padding: 15,
+  },
+  headerText: {
+    color: '#282828', 
+    fontSize: 17,
+  }
 })
 
 export default styles;

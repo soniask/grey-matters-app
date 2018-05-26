@@ -2,21 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+  TouchableOpacity,
   View,
-  Text,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { menuActions } from '../../actions';
+import styles from '../../styles';
+import { colors } from '../../constants';
 
 class MenuIcon extends React.Component {
-  render () {
+  render() {
     return (
-      <Icon 
-        name={ this.props.show ? 'close' : 'menu' }
-        onPress={ () => this.props.showMenu(!this.props.show) }/>
+      <TouchableOpacity
+        onPress={() => this.props.showMenu(!this.props.show)}
+        style={[styles.insideHeader]}
+      >
+        <Icon
+          name={this.props.show ? 'close' : 'menu'}
+        />
+      </TouchableOpacity>
     );
   }
-} 
+}
 
 const mapStateToProps = state => ({
   show: state.menu.show,

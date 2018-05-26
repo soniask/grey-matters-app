@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { Icon } from 'react-native-elements';
+import styles from '../../styles';
 
 class BackButton extends Component {
   constructor(props) {
@@ -14,7 +15,10 @@ class BackButton extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={() => this.onPress()}>
+      <TouchableOpacity 
+        onPress={() => this.onPress()} 
+        style={[styles.insideHeader]}
+      >
         <Icon name='chevron-left' color='#282828' />
       </TouchableOpacity>
     );

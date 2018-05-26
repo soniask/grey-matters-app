@@ -8,6 +8,9 @@ import {
 import { Link } from 'react-router-native';
 import { Icon } from 'react-native-elements';
 import { menuActions } from '../../actions';
+import styles from '../../styles';
+import { colors } from '../../constants';
+
 
 class SearchIcon extends React.Component {
   constructor(props) {
@@ -19,7 +22,8 @@ class SearchIcon extends React.Component {
       <Link 
         to='/search'
         onPress={() => this.props.showMenu(false)}
-        underlayColor={'white'}
+        underlayColor={colors.lightGrey}
+        style={styles.insideHeader}
       >
         <Icon 
           name='search' 
