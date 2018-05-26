@@ -10,29 +10,7 @@ import {
   View,
 } from 'react-native';
 import { learningActions } from '../../actions';
-
-const styles = StyleSheet.create({
-  page: {
-    width: Dimensions.get('window').width,
-    padding: 20,
-    fontSize: 17,
-  },
-  image: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height / 2,
-    position: 'absolute',
-    top: 0,
-  },
-  invisible: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-  },
-  story: {
-    marginTop: Dimensions.get('window').height / 2,
-  }
-})
+import styles from './LearningSectionStyles';
 
 class LearningSection extends Component {
   constructor(props) {
@@ -81,7 +59,7 @@ class LearningSection extends Component {
       require('../../images/medulla.png'),
     ];
     return (
-      <View style={{height: Dimensions.get('window').height}}>
+      <View style={styles.container}>
         <Image
           style={styles.image} 
           source={imageList[this.props.baseImageIndex % imageList.length]}

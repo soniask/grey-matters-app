@@ -24,7 +24,7 @@ class SearchResults extends Component {
 		}
 
 		return (
-			<View style={styles.resultsContainer}>
+			<View>
 				<ContentFeed list={this.props.searchResults} />
 			</View>
 		)

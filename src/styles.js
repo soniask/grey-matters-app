@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Dimensions,
   StyleSheet,
 } from 'react-native';
 
@@ -73,7 +74,10 @@ const styles = StyleSheet.create({
   headerText: {
     color: '#282828', 
     fontSize: 17,
-  }
+  },
+  searchInputContainer: {
+		width: Dimensions.get('window').width - 40,
+	},
 })
 
 export default styles;

@@ -77,6 +77,7 @@ class Term extends Component {
         }
       }
     }
+    
     return (
       <KeyboardAwareScrollView 
         enableResetScrollToCoords={false} 

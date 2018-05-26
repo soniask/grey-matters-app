@@ -21,22 +21,22 @@ class SearchInput extends Component {
 
   render() {
     return (
-        <View style={{width: Dimensions.get('window').width - 50}}>
-          <TextInput
-            style={styles.insideHeader}
-            placeholder='Search'
-            clearButtonMode='while-editing'
-            onChangeText={(text) => {
-              this.searchTerm = text;
-              if (this.searchTerm.length == 0) {
-                this.props.clearSearch();
-              }
-            }}
-            onSubmitEditing={() => {
-              this.props.getSearch({ q: this.searchTerm});
-            }}
-          />
-        </View>
+      <View style={styles.searchInputContainer}>
+        <TextInput
+          style={styles.insideHeader}
+          placeholder='Search'
+          clearButtonMode='while-editing'
+          onChangeText={(text) => {
+            this.searchTerm = text;
+            if (this.searchTerm.length == 0) {
+              this.props.clearSearch();
+            }
+          }}
+          onSubmitEditing={() => {
+            this.props.getSearch({ q: this.searchTerm});
+          }}
+        />
+      </View>
     );
   }
 }
