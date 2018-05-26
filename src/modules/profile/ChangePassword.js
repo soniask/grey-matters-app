@@ -16,6 +16,24 @@ class ChangePassword extends Component {
 	  super(props);
 	}
 
+	onPress() {
+    let password = !this.password ? this.password : this.password.trim();
+    let newPassword = !this.newPassword ? this.newPassword : this.newPassword.trim();
+    let confirmNewPassword = !this.confirmNewPassword ? this.confirmNewPassword : this.confirmNewPassword.trim();
+    let errors = validate({ newPassword }, validation);
+    if (errors) {
+      for (let key in errors) {
+        this.props.errorMessage(errors[key][0]);
+        break;
+      }
+    } else if (newPassword != confirmNewPassword) {
+      this.props.errorMessage('Your password and password confirmation do not match');
+    } else {
+      this.props.clearMessage();
+			//TODO: put change password action call here
+    }
+  }
+
 	render() {
     return (
 			<View style={styles.formContainer}>
@@ -42,15 +60,7 @@ class ChangePassword extends Component {
 				</View>
 				<Button
 					title='Submit'
-					onPress={() => this.props.updateUser(
-						{
-							name: this.props.user.name, 
-							email: this.props.user.email,
-							role: this.props.user.role,
-						},
-						this.props.user._id,
-						this.props.token,
-				)}
+					onPress={() => this.onPress()}
 				/>
 				{this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
 			</View>
