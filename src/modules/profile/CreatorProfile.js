@@ -23,7 +23,18 @@ class UserProfile extends Component {
 	componentDidMount() {
     // get creator by id
     this.props.getContents();
-	}
+  }
+  
+  componentWillUnmount() {
+    let creator = {
+      id: 1,
+      name: 'Benjamin Cordy',
+      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus eros nec lacus maximus blandit. Aenean eget augue non leo viverra ornare. Nam dictum tempus suscipit. Duis non dolor vehicula ante condimentum consectetur. '
+    }
+    if (this.props.user && this.props.user.id == creator.id && this.bio) {
+      //Call action to call API to update creator bio
+    }
+  }
 
   render() {
     let creator = {
@@ -37,11 +48,16 @@ class UserProfile extends Component {
           <View style={{flex:1}}>
             <View style={{alignItems: 'center'}}>
               <Text style={styles.name}>{creator.name}</Text>
-              {/* { this.props.user && this.props.user.id == creator.id ? (
-
-              ) : ( */}
+              { this.props.user && this.props.user.id == creator.id ? (
+                <TextInput
+                  multiline = {true}
+                  defaultValue={creator.bio}
+                  style={styles.bio}
+                  onChangeText={(text) => this.bio = text}
+                />
+              ) : (
                 <Text style={styles.bio}>{creator.bio}</Text>
-              {/* )} */}
+              )}
             </View>
             <View style={styles.tabs}>
               <Text 
