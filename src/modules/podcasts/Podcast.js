@@ -38,6 +38,7 @@ class Podcast extends Component {
       );
     }
 
+    console.log(this.props.content.url)
     return (
       <ScrollView>
         <View style={styles.image}>

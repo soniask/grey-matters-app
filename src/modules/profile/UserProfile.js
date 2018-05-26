@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+	ScrollView,
 	Text,
 	View,
-	StyleSheet,
 } from 'react-native';
 import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
@@ -29,10 +29,10 @@ class UserProfile extends Component {
 
   render() {
 		return (
-			<ScrollView>
-				<View style={styles.container}>
-						{
-							this.props.user ? (
+			<View style={styles.container}>
+					{
+						this.props.user ? (
+							<ScrollView>
 								<View style={{flex:1}}>
 									<View style={{alignItems: 'center'}}>
 										<Avatar
@@ -62,20 +62,20 @@ class UserProfile extends Component {
 										<Unavailable message='No bookmarks yet' />) }
 									{ !this.props.showBookmarkList && <Notes list={this.props.user.notes}/> }
 								</View>
-							) : (
-								<View style={{alignItems: 'center'}}>
-									<Avatar
-										xlarge
-										rounded
-										icon={{name: 'person'}}
-										containerStyle={{ marginBottom: 15}}
-									/>
-									<Text>Sign up under settings to unlock bookmarks</Text>
-								</View>
-							)
-						}
-				</View>
-			</ScrollView>
+							</ScrollView>
+						) : (
+							<View style={{alignItems: 'center'}}>
+								<Avatar
+									xlarge
+									rounded
+									icon={{name: 'person'}}
+									containerStyle={{ marginBottom: 15}}
+								/>
+								<Text>Sign up under settings to unlock bookmarks</Text>
+							</View>
+						)
+					}
+			</View>
 		)
 	}
 }
