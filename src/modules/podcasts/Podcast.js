@@ -32,13 +32,12 @@ class Podcast extends Component {
       );
     }
 
-    if (!this.props.content) {
+    if (!this.props.content || !this.props.content.url) {
       return (
-        <Unavailable message='Podcast unavailable' />
+        <Unavailable message='Podcast currently unavailable' />
       );
     }
 
-    console.log(this.props.content.url)
     return (
       <ScrollView>
         <View style={styles.image}>
