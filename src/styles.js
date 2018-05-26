@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   searchInputContainer: {
-		width: Dimensions.get('window').width - 40,
+		width: Dimensions.get('window').width - 65,
 	},
 })
 
