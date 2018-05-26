@@ -26,18 +26,21 @@ class Signup extends Component {
   }
 
   onPress() {
-    let errors = validate({email: this.email, password: this.password}, validation);
-    if ( errors ) {
+    let name = !this.name ? null : this.name.trim();
+    let email = !this.email ? this.email : this.email.trim();
+    let password = !this.password ? this.password : this.password.trim();
+    let confirmPassword = !this.confirmPassword ? this.confirmPassword : this.confirmPassword.trim();
+    let errors = validate({ email, password }, validation);
+    if (errors) {
       for (let key in errors) {
         this.props.errorMessage(errors[key][0]);
         break;
       }
+    } else if (password != confirmPassword) {
+      this.props.errorMessage('Your password and password confirmation do not match');
     } else {
-      this.props.signup({
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      });
+      this.props.clearMessage();
+      this.props.signup({ name, email, password });
     }
   }
 
@@ -95,13 +98,13 @@ class Signup extends Component {
           buttonStyle={{ marginTop: 20, marginBottom: 20 }}
           onPress={() => this.onPress()}
         />
-        <Link to="/login"  underlayColor={'white'}>
+        <Link to="/login" underlayColor={'white'}>
           <Text style={{ textAlign: 'center' }}>
             Already a Member? <Text style={{ textDecorationLine: 'underline' }}>login</Text>
           </Text>
         </Link>
         {this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
-        {this.props.privacyPolicyVisible && <PolicyDialog/>}
+        {this.props.privacyPolicyVisible && <PolicyDialog />}
       </View>
     );
   }
