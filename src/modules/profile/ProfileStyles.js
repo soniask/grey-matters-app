@@ -3,6 +3,10 @@ import {
 } from 'react-native';
 
 const styles = StyleSheet.create({
+	container: {
+		paddingTop: 20,
+		flex: 1,
+	},
 	name: {
 		fontSize: 25,
 		fontWeight: 'bold',
@@ -13,7 +17,7 @@ const styles = StyleSheet.create({
 	},
 	tab: {
 		flex: 1,
-		fontSize: 18,
+		fontSize: 20,
 		color: '#BABABA',
 	},
 	tabLeft: {
@@ -22,10 +26,15 @@ const styles = StyleSheet.create({
 	},
 	tabRight: {
 		textAlign: 'left',
-		paddingLeft: 10,
+		paddingLeft: 20,
 	},
 	tabSelected: {
 		color: 'black',
+	},
+	bio: {
+		paddingLeft: 30,
+		paddingRight: 30,
+		paddingBottom: 30,
 	}
 })
 

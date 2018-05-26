@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AutoHeightImage from 'react-native-auto-height-image';
 import ParsedText from 'react-native-parsed-text';
+import { Link } from 'react-router-native';
 import {
 	Dimensions,
   Text,
@@ -40,14 +41,26 @@ class ArticleView extends Component {
               {this.props.content.title}
             </Text>
             <View style={styles.metaData}>
-              <View style={[styles.rightBorder, styles.metaDataBox]}>
-                <Text>AUTHOR</Text>
-                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
-              </View>
-              <View style={[styles.rightBorder, styles.metaDataBox]}>
-                <Text>ARTIST</Text>
-                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
-              </View>
+              <Link
+                to="/creatorProfile"
+                underlayColor='white'
+                style={{flex: 1}}
+              >
+                <View style={[styles.rightBorder, styles.metaDataBox]}>
+                  <Text>AUTHOR</Text>
+                  {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
+                </View>
+              </Link>
+              <Link
+                to="/creatorProfile"
+                underlayColor='white'
+                style={{flex: 1}}
+              >
+                <View style={[styles.rightBorder, styles.metaDataBox]}>
+                  <Text>ARTIST</Text>
+                  {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
+                </View>
+              </Link>
               <View style={[styles.metaDataBox]}>
                 <Text>{ new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
               </View>

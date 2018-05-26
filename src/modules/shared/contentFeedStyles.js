@@ -5,8 +5,8 @@ import {
 const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   contentListItem: {
     flexDirection: 'row', 

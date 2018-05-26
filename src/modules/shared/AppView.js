@@ -22,7 +22,8 @@ import ClubEvent from '../events/ClubEvent';
 import LearningSection from '../learningsection/LearningSection';
 import Terms from '../terms/Terms';
 import Term from '../terms/Term';
-import UserProfile from '../profile/UserProfile.js';
+import UserProfile from '../profile/UserProfile';
+import CreatorProfile from '../profile/CreatorProfile';
 import AppHeader from './AppHeader.js';
 import Search from '../search/Search.js';
 import Settings from '../profile/Settings';
@@ -62,6 +63,7 @@ class AppView extends React.Component {
             <Route exact path="/terms" component={Terms} />
             <Route exact path="/terms/:id" component={Term} />
             <Route exact path="/userProfile" component={UserProfile} />
+            <Route exact path="/creatorProfile" component={CreatorProfile} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/editProfile" component={EditProfile} />
             <Route exact path="/changePassword" component={ChangePassword} />

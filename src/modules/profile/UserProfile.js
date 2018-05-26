@@ -29,51 +29,53 @@ class UserProfile extends Component {
 
   render() {
 		return (
-			<View style={{flex:1}}>
-					{
-						this.props.user ? (
-							<View style={{flex:1}}>
+			<ScrollView>
+				<View style={styles.container}>
+						{
+							this.props.user ? (
+								<View style={{flex:1}}>
+									<View style={{alignItems: 'center'}}>
+										<Avatar
+											xlarge
+											rounded
+											title={this.props.user.name.substring(0, 1)}
+											containerStyle={{marginBottom: 15}}
+										/>
+										<Text style={styles.name}>{this.props.user.name}</Text>
+										<View style={styles.tabs}>
+											<Text 
+												style={[styles.tab, styles.tabLeft, this.props.showBookmarkList ? styles.tabSelected : null]}
+												onPress={() => this.props.showBookmarks()}
+											>
+												Bookmarks
+											</Text>
+											<Text
+												style={[styles.tab, styles.tabRight, !this.props.showBookmarkList ? styles.tabSelected : null]}
+												onPress={() => this.props.showNotes()}
+											>
+												Notes
+											</Text>
+										</View>
+									</View>
+									{ this.props.showBookmarkList && 
+										(( this.props.contents && this.props.contents.length > 0 && <ContentFeed list={this.props.contents} />) ||
+										<Unavailable message='No bookmarks yet' />) }
+									{ !this.props.showBookmarkList && <Notes list={this.props.user.notes}/> }
+								</View>
+							) : (
 								<View style={{alignItems: 'center'}}>
 									<Avatar
 										xlarge
 										rounded
-										title={this.props.user.name.substring(0, 1)}
-										containerStyle={{marginTop: 20, marginBottom: 15}}
+										icon={{name: 'person'}}
+										containerStyle={{ marginBottom: 15}}
 									/>
-									<Text style={styles.name}>{this.props.user.name}</Text>
-									<View style={styles.tabs}>
-										<Text 
-											style={[styles.tab, styles.tabLeft, this.props.showBookmarkList ? styles.tabSelected : null]}
-											onPress={() => this.props.showBookmarks()}
-										>
-											Bookmarks
-										</Text>
-										<Text
-											style={[styles.tab, styles.tabRight, !this.props.showBookmarkList ? styles.tabSelected : null]}
-											onPress={() => this.props.showNotes()}
-										>
-											Notes
-										</Text>
-									</View>
+									<Text>Sign up under settings to unlock bookmarks</Text>
 								</View>
-								{ this.props.showBookmarkList && 
-									(( this.props.contents && this.props.contents.length > 0 && <ContentFeed list={this.props.contents} />) ||
-									<Unavailable message='No bookmarks yet' />) }
-								{ !this.props.showBookmarkList && <Notes list={this.props.user.notes}/> }
-							</View>
-						) : (
-							<View style={{alignItems: 'center'}}>
-								<Avatar
-									xlarge
-									rounded
-									icon={{name: 'person'}}
-									containerStyle={{marginTop: 20, marginBottom: 15}}
-								/>
-								<Text>Sign up under settings to unlock bookmarks</Text>
-							</View>
-						)
-					}
-			</View>
+							)
+						}
+				</View>
+			</ScrollView>
 		)
 	}
 }

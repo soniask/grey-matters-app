@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import ContentFeed from '../shared/ContentFeed';
 import { contentActions } from '../../actions/contentActions';
 import Loading from '../shared/Loading';
@@ -29,10 +29,12 @@ class Podcasts extends Component {
       );
     }
     return (
-      <ContentFeed 
-        list={this.props.contents}
-        page='videos'
-      />
+      <ScrollView>
+        <ContentFeed 
+          list={this.props.contents}
+          page='videos'
+        />
+      </ScrollView>
     );
   }
 }

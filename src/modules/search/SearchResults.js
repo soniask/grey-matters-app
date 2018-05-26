@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionSheet } from 'react-native-ui-lib';
 import {
-	View,
+	ScrollView,
 	Text,
-	StyleSheet,
 } from 'react-native';
 import { searchActions } from '../../actions';
 import ContentFeed from '../shared/ContentFeed';
@@ -24,9 +23,9 @@ class SearchResults extends Component {
 		}
 
 		return (
-			<View>
+			<ScrollView>
 				<ContentFeed list={this.props.searchResults} />
-			</View>
+			</ScrollView>
 		)
 	}
 }
