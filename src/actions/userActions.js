@@ -18,7 +18,8 @@ export const userConstants = {
   SIGNUP_FAILURE: 'AUTH_SIGNUP_FAILURE',
 
   LOGOUT: 'AUTH_LOGOUT',
-  CLEAR_MESSAGE: 'AUTH_CLEAR_MESSAGE',
+  CLEAR_MESSAGE: 'USER_CLEAR_MESSAGE',
+  ERROR_MESSAGE: 'USER_ERROR_MESSAGE',
   
 };
 
@@ -27,6 +28,7 @@ export const userActions = {
   login,
   logout,
   signup,
+  errorMessage,
   clearMessage,
   updateUser,
 };
@@ -105,6 +107,10 @@ function signup({ name, email, password, role='reader' }) {
   function request() { return { type: userConstants.SIGNUP_REQUEST } }
   function success(data) { return { type: userConstants.SIGNUP_SUCCESS, data } }
   function failure(message) { return { type: userConstants.SIGNUP_FAILURE, message } }
+}
+
+function errorMessage(message) {
+  return { type: userConstants.ERROR_MESSAGE, message: message }
 }
 
 function clearMessage() {

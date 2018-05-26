@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { validate } from 'validate.js';
 import {
   Text,
   TextInput,
@@ -10,7 +11,8 @@ import { Button, FormInput } from 'react-native-elements';
 import { Link } from 'react-router-native';
 import { userActions } from '../../actions';
 import { profileActions } from '../../actions';
-import styles from '../../styles.js';
+import styles from '../../styles';
+import validation from './validation';
 import PolicyDialog from './PolicyDialog';
 
 
@@ -21,6 +23,22 @@ class Signup extends Component {
 
   componentDidMount() {
     this.props.clearMessage();
+  }
+
+  onPress() {
+    let errors = validate({email: this.email, password: this.password}, validation);
+    if ( errors ) {
+      for (let key in errors) {
+        this.props.errorMessage(errors[key][0]);
+        break;
+      }
+    } else {
+      this.props.signup({
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      });
+    }
   }
 
   render() {
@@ -75,11 +93,7 @@ class Signup extends Component {
         <Button
           title='Sign Up'
           buttonStyle={{ marginTop: 20, marginBottom: 20 }}
-          onPress={() => this.props.signup({
-            name: this.name,
-            email: this.email,
-            password: this.password,
-          })}
+          onPress={() => this.onPress()}
         />
         <Link to="/login"  underlayColor={'white'}>
           <Text style={{ textAlign: 'center' }}>
@@ -101,6 +115,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   signup: userActions.signup,
   clearMessage: userActions.clearMessage,
+  errorMessage: userActions.errorMessage,
   showPrivacyPolicy: profileActions.showPrivacyPolicy,
 }, dispatch);
 

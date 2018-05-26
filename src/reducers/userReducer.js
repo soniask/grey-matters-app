@@ -55,6 +55,11 @@ export const userReducer = (state = USER_INITIAL, action) => {
         ...state,
         user: null,
       };
+    case userConstants.ERROR_MESSAGE:
+      return {
+        ...state,
+        message: action.message,
+      };
     case userConstants.CLEAR_MESSAGE:
       return {
         ...state,
