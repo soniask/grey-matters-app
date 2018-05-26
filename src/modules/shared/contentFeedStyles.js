@@ -1,6 +1,7 @@
 import {
   StyleSheet,
 } from 'react-native';
+import { colors } from '../../constants';
 
 const styles = StyleSheet.create({
   content: {
@@ -48,19 +49,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   author: {
-    flex: 2,
     marginTop: 5,
     marginBottom: 5,
-    borderRightColor: '#ff404e',
-    borderRightWidth: 1,
     alignItems: 'flex-start',
   },
   date: {
-    flex: 1,
+    position: 'absolute',
+    right: 0,
     marginTop: 5,
     marginBottom: 5,
+    paddingLeft: 5,
     alignItems: 'flex-end',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderLeftColor: '#ff404e',
+    borderLeftWidth: 1,
   },
   description: {
     paddingTop: 5,
