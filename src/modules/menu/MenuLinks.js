@@ -15,7 +15,7 @@ import { colors } from '../../constants';
 const MenuLinks = (props) => (
   <View style={styles.nav}>
     <View style={styles.profileNavItem}>
-      { props.user ? (
+      { props.user._id ? (
         <View style={styles.profileNavItemView}>
           <Link 
             to="/userProfile"

@@ -41,26 +41,36 @@ class ArticleView extends Component {
               {this.props.content.title}
             </Text>
             <View style={styles.metaData}>
-              <Link
-                to="/creatorProfile"
-                underlayColor='white'
-                style={{flex: 1}}
-              >
-                <View style={[styles.rightBorder, styles.metaDataBox]}>
-                  <Text>AUTHOR</Text>
-                  {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
-                </View>
-              </Link>
-              <Link
-                to="/creatorProfile"
-                underlayColor='white'
-                style={{flex: 1}}
-              >
-                <View style={[styles.rightBorder, styles.metaDataBox]}>
-                  <Text>ARTIST</Text>
-                  {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
-                </View>
-              </Link>
+              <View style={[styles.rightBorder, styles.metaDataBox]}>
+                <Text>AUTHOR</Text>
+                {
+                  this.props.content.creators.map((creator) => (
+                    <Link
+                      to={`/creatorProfile/${creator._id}`}
+                      underlayColor='white'
+                      key={creator._id}
+                    >
+                      <Text style={styles.blue}>{creator.name}</Text>
+                    </Link>
+                  ))
+                }
+                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
+              </View>
+              <View style={[styles.rightBorder, styles.metaDataBox]}>
+                <Text>ARTIST</Text>
+                {
+                  this.props.content.artists.map((artist) => (
+                    <Link
+                      to={`/creatorProfile/${artist._id}`}
+                      underlayColor='white'
+                      key={artist._id}
+                    >
+                      <Text style={styles.blue}>{artist.name}</Text>
+                    </Link>
+                  ))
+                }
+                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
+              </View>
               <View style={[styles.metaDataBox]}>
                 <Text>{ new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
               </View>

@@ -67,8 +67,6 @@ class AppView extends React.Component {
           <RouterBackButton />
           <Route path="/" component={AppHeader} />
           <View style={styles.mainContainer}>
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/articles" component={Articles} />
@@ -82,8 +80,10 @@ class AppView extends React.Component {
             <Route exact path="/learningsection" component={LearningSection} />
             <Route exact path="/terms" component={Terms} />
             <Route exact path="/terms/:id" component={Term} />
-            <Route exact path="/userProfile" component={UserProfile} />
             <Route exact path="/creatorProfile" component={CreatorProfile} />
+            <Route exact path="/userProfile" component={UserProfile} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/editProfile" component={EditProfile} />
             <Route exact path="/changePassword" component={ChangePassword} />
