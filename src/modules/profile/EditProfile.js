@@ -46,7 +46,7 @@ class EditProfile extends Component {
 						this.props.token,
 				)}
 				/>
-				{this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
+				{this.props.message && <Text style={[styles.formMessage, styles.red]}>{this.props.message}</Text>}
 			</View>
     );
 	}

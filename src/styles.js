@@ -3,6 +3,7 @@ import {
   Dimensions,
   StyleSheet,
 } from 'react-native';
+import { colors } from './constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     width: 300,
     flexDirection: 'column',
     justifyContent: 'space-around',
-    backgroundColor: '#282828',
+    backgroundColor: colors.darkGrey,
   },
   navItem: {
     flex: 1,
@@ -48,15 +49,20 @@ const styles = StyleSheet.create({
   },
   unavailable: {
     padding: 20,
-    color: '#282828',
+    color: colors.darkGrey,
   },
-  formError: {
-    color: 'red', 
+  formMessage: {
     textAlign: 'center', 
     paddingTop: 20,
   },
   blue: {
-    color: '#1ba5b8',
+    color: colors.blue,
+  },
+  red: {
+    color: colors.red,
+  },
+  green: {
+    color: '#5cb85c',
   },
   formContainer: {
     marginTop: 10,
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   headerText: {
-    color: '#282828', 
+    color: colors.darkGrey, 
     fontSize: 17,
   },
   searchInputContainer: {

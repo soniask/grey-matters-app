@@ -55,6 +55,16 @@ export const userReducer = (state = USER_INITIAL, action) => {
         ...state,
         user: null,
       };
+    case userConstants.RESET_LINK_SUCCESS:
+      return {
+        ...state,
+        confirmation: 'Reset link sent',
+      };
+    case userConstants.RESET_LINK_FAILURE:
+      return {
+        ...state,
+        message: action.message,
+      };
     case userConstants.ERROR_MESSAGE:
       return {
         ...state,
@@ -64,6 +74,11 @@ export const userReducer = (state = USER_INITIAL, action) => {
       return {
         ...state,
         message: null,
+      };
+    case userConstants.CLEAR_CONFIRMATION:
+      return {
+        ...state,
+        confirmation: null,
       };
     case userConstants.UPDATE_USER_REQUEST:
       return {

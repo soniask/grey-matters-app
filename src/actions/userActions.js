@@ -18,7 +18,11 @@ export const userConstants = {
   SIGNUP_FAILURE: 'AUTH_SIGNUP_FAILURE',
 
   LOGOUT: 'AUTH_LOGOUT',
+  RESET_LINK_SUCCESS: 'RESET_LINK_SUCCESS',
+  RESET_LINK_FAILURE: 'RESET_LINK_FAILURE',
+
   CLEAR_MESSAGE: 'USER_CLEAR_MESSAGE',
+  CLEAR_CONFIRMATION: 'USER_CLEAR_CONFIRMATION',
   ERROR_MESSAGE: 'USER_ERROR_MESSAGE',
   
 };
@@ -28,9 +32,11 @@ export const userActions = {
   login,
   logout,
   signup,
+  updateUser,
+  sendResetLink,
   errorMessage,
   clearMessage,
-  updateUser,
+  clearConfirmation,
 };
 
 // Implementations
@@ -76,6 +82,36 @@ function logout({ history }) {
   function success() { return { type: userConstants.LOGOUT } }
 }
 
+function sendResetLink() {
+  return dispatch => {
+    // axios({
+    //   method: 'post',
+    //   url: '/authenticate',
+    //   baseURL,
+    //   data: {
+    //     email,
+    //     password,
+    //     entry: 'app',
+    //   }
+    // })
+    // .then(res => {
+    //   if (res.data.success) {
+    //     dispatch(success());
+    //     history.push('/');
+    //   } else {
+    //     dispatch(failure(res.data.message));
+    //   }
+    // })
+    // .catch(error => {
+    //   console.log(error);
+    //   dispatch(failure('Unable to Complete Request'));
+    // });
+  };
+
+  function success() { return { type: userConstants.RESET_LINK_SUCCESS } }
+  function failure(message) { return { type: userConstants.RESET_LINK_FAILURE, message } }
+}
+
 function signup({ name, email, password, role='reader' }) {
   return dispatch => {
     dispatch(request());
@@ -107,14 +143,6 @@ function signup({ name, email, password, role='reader' }) {
   function request() { return { type: userConstants.SIGNUP_REQUEST } }
   function success(data) { return { type: userConstants.SIGNUP_SUCCESS, data } }
   function failure(message) { return { type: userConstants.SIGNUP_FAILURE, message } }
-}
-
-function errorMessage(message) {
-  return { type: userConstants.ERROR_MESSAGE, message: message }
-}
-
-function clearMessage() {
-  return { type: userConstants.CLEAR_MESSAGE }
 }
 
 function updateUser(fields, id, token) {
@@ -151,4 +179,16 @@ function updateUser(fields, id, token) {
   function request() { return { type: userConstants.UPDATE_USER_REQUEST } }
   function success(payload) { return { type: userConstants.UPDATE_USER_SUCCESS, payload } }
   function failure() { return { type: userConstants.UPDATE_USER_FAILURE } }
+}
+
+function errorMessage(message) {
+  return { type: userConstants.ERROR_MESSAGE, message: message }
+}
+
+function clearMessage() {
+  return { type: userConstants.CLEAR_MESSAGE }
+}
+
+function clearConfirmation() {
+  return { type: userConstants.CLEAR_CONFIRMATION }
 }

@@ -62,7 +62,8 @@ class ChangePassword extends Component {
 					title='Submit'
 					onPress={() => this.onPress()}
 				/>
-				{this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
+				{this.props.message 
+				&& <Text style={[styles.formMessage, styles.red]}>{this.props.message}</Text>}
 			</View>
     );
 	}

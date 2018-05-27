@@ -103,7 +103,7 @@ class Signup extends Component {
             Already a Member? <Text style={{ textDecorationLine: 'underline' }}>login</Text>
           </Text>
         </Link>
-        {this.props.message && <Text style={styles.formError}>{this.props.message}</Text>}
+        {this.props.message && <Text style={[styles.formMessage, styles.red]}>{this.props.message}</Text>}
         {this.props.privacyPolicyVisible && <PolicyDialog />}
       </View>
     );
