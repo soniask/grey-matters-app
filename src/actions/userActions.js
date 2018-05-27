@@ -1,9 +1,21 @@
 import { push } from 'react-router-redux';
 import axios from 'axios';
-import { baseURL } from './index';
+import { baseURL } from '../constants';
+import { AsyncStorage } from 'react-native';
+
+// AsyncStorage.setItem('@GreyMattersApp:token', token);
+// AsyncStorage.getItem('@GreyMattersApp:token');
 
 // Types
 export const userConstants = {
+
+  TOKEN_LOGIN_REQUEST: 'TOKEN_LOGIN_REQUEST',
+  TOKEN_LOGIN_SUCCESS: 'TOKEN_LOGIN_SUCCESS',
+  TOKEN_LOGIN_FAILURE: 'TOKEN_LOGIN_FAILURE',
+
+  BASIC_LOGIN_REQUEST: 'BASIC_LOGIN_REQUEST',
+  BASIC_LOGIN_SUCCESS: 'BASIC_LOGIN_SUCCESS',
+  BASIC_LOGIN_FAILURE: 'BASIC_LOGIN_FAILURE',
 
   LOGIN_REQUEST: 'AUTH_LOGIN_REQUEST',
   LOGIN_SUCCESS: 'AUTH_LOGIN_SUCCESS',
@@ -29,6 +41,8 @@ export const userConstants = {
 
 // Creators
 export const userActions = {
+  tokenLogin,
+  basicLogin,
   login,
   logout,
   signup,
@@ -39,13 +53,105 @@ export const userActions = {
   clearConfirmation,
 };
 
-// Implementations
+function tokenLogin() {
+  return dispatch => {
+    dispatch(request());
+    AsyncStorage.getItem('@GreyMattersApp:token', function(err, token) {
+      if (err) {
+        console.log('There was an error in getting the token from storage.');
+        dispatch(failure());
+      } else {
+        console.log('Token exists. Now verifying token...');
+        axios({
+          method: 'get',
+          url: '/decode',
+          baseURL,
+          headers: {'x-access-token': token},
+        })
+        .then(res => {
+          if (res.data.success) {
+            console.log('Token has been verified! Token payload has been stored in User Store.');
+            dispatch(success(res.data.payload));
+          } else {
+            console.log(res.data.message);
+            console.log('Token is invalid. Removing token from storage, clearing out current user in the store, and dispatching basicLogin()');
+            dispatch(failure()); // Remove current user in User Store
+            dispatch(basicLogin()); // Remove current user in User Store
+            AsyncStorage.removeItem('@GreyMattersApp:token', function (err) {
+              if (err) {
+                console.log('There was an error in removing the token from storage.');
+              } else {
+                console.log('Token successfully removed from storage.');
+              }
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error.response.data.message);
+          console.log('Token is invalid. Removing token from storage, clearing out current user in the store, and dispatching basicLogin()');
+          dispatch(failure());
+          dispatch(basicLogin());
+          AsyncStorage.removeItem('@GreyMattersApp:token', function (err) {
+            if (err) {
+              console.log('There was an error in removing the token from storage.');
+            } else {
+              console.log('Token successfully removed from storage.');
+            }
+          });
+        })
+      }
+    })
+  };
+
+  function request() { return { type: userConstants.TOKEN_LOGIN_REQUEST } }
+  function success(payload) { return { type: userConstants.TOKEN_LOGIN_SUCCESS, payload } }
+  function failure() { return { type: userConstants.TOKEN_LOGIN_FAILURE } }
+}
+
+function basicLogin() {
+  return dispatch => {
+    dispatch(request());
+    axios({
+      method: 'post',
+      url: '/login',
+      baseURL,
+      data: {
+        entry: 'app',
+      }
+    })
+    .then(res => {
+      if (res.data.success) {
+        AsyncStorage.setItem('@GreyMattersApp:token', res.data.token, function(err) {
+          if (err) {
+            dispatch(failure('Could not set token after successful basic login query.'));
+            console.log('Could not set token after successful login query.');
+          } else {
+            console.log(res.data.payload);
+            dispatch(success(res.data.payload));
+          }
+        });
+      } else {
+        dispatch(failure(res.data.message));
+        console.log(res.data.message);
+      }
+    })
+    .catch(error => {
+      dispatch(failure());
+      console.log(error.response.data.message);
+    });
+  };
+
+  function request() { return { type: userConstants.BASIC_LOGIN_REQUEST } }
+  function success(payload) { return { type: userConstants.BASIC_LOGIN_SUCCESS, payload } }
+  function failure() { return { type: userConstants.BASIC_LOGIN_FAILURE } }
+}
+
 function login({ email, password, history }) {
   return dispatch => {
     dispatch(request());
     axios({
       method: 'post',
-      url: '/authenticate',
+      url: '/login',
       baseURL,
       data: {
         email,
@@ -55,28 +161,42 @@ function login({ email, password, history }) {
     })
     .then(res => {
       if (res.data.success) {
-        dispatch(success(res.data));
-        history.push('/');
-        // cookies.set('token', res.data.token, { path: '/' }); //TODO: find app equivalent of this
+        AsyncStorage.setItem('@GreyMattersApp:token', res.data.token, function(err) {
+          if (err) {
+            dispatch(failure('Could not set token after successful login query.'));
+            console.log('Could not set token after successful login query.');
+          } else {
+            dispatch(success(res.data.payload));
+            history.push('/');
+          }
+        });
       } else {
         dispatch(failure(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
-      console.log(error);
-      dispatch(failure('Unable to Complete Request'));
+      dispatch(failure(error.response.data.message));
+      console.log(error.response.data.message);
     });
   };
 
   function request() { return { type: userConstants.LOGIN_REQUEST } }
-  function success(data) { return { type: userConstants.LOGIN_SUCCESS, data } }
+  function success(payload) { return { type: userConstants.LOGIN_SUCCESS, payload } }
   function failure(message) { return { type: userConstants.LOGIN_FAILURE, message } }
 }
 
 function logout({ history }) {
   return dispatch => {
-    dispatch(success());
-    history.push('/');
+    AsyncStorage.removeItem('@GreyMattersApp:token', function(err) {
+      if (err) {
+        dispatch(failure('Could not remove token.'));
+        console.log('Could not remove token.');
+      } else {
+        dispatch(success());
+        history.push('/');
+      }
+    });
   };
 
   function success() { return { type: userConstants.LOGOUT } }
@@ -129,14 +249,15 @@ function signup({ name, email, password, role='reader' }) {
     })
     .then(res => {
       if (res.data.success) {
-        dispatch(success(res.data));
-        // dispatch(push('/profile'));
+        dispatch(success(res.data.payload));
       } else {
         dispatch(failure(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
       dispatch(failure('Unable to Complete Request'));
+      console.log(error.response.data.message);
     });
   };
 
@@ -161,18 +282,14 @@ function updateUser(fields, id, token) {
     .then(res => {
       if (res.data.success) {
         dispatch(success(res.data.payload));
-        // dispatch(push('/users'));
-        // dispatch(alertActions.success('Successfully updated!'));
       } else {
         dispatch(failure());
         console.log(res.data.message);
-        // dispatch(alertActions.error(res.data.message));
       }
     })
     .catch(error => {
-      dispatch(failure(error));
-      console.log(error);
-      // dispatch(alertActions.error('Unable to update user'));
+      dispatch(failure());
+      console.log(error.response.data.message);
     });
   };
 

@@ -1,8 +1,7 @@
 import { push } from 'react-router-redux';
 import axios from 'axios';
 import queryString from 'query-string';
-
-import { baseURL } from './index';
+import { baseURL } from '../constants';
 
 // Types
 export const contentConstants = {
@@ -41,13 +40,11 @@ function getContents(filters = {}) {
       } else {
         dispatch(failure());
         console.log(res.data.message);
-        // dispatch(alertActions.error(res.data.message));
       }
     })
     .catch(error => {
-      dispatch(failure(error));
-      console.log(error);
-      // dispatch(alertActions.error('Unable to Get Contents'));
+      dispatch(failure());
+      console.log(error.response.data.message);
     });
   };
 
@@ -70,12 +67,12 @@ function getContent(id) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
-        // dispatch(alertActions.error(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
-      dispatch(failure(error));
-      // dispatch(alertActions.error('Unable to Get Content'));
+      dispatch(failure());
+      console.log(error.response.data.message);
     });
   };
 
@@ -85,5 +82,5 @@ function getContent(id) {
 }
 
 function clearContents() {
-  return {type: contentConstants.CLEAR_CONTENTS}
+  return { type: contentConstants.CLEAR_CONTENTS }
 }

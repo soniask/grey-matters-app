@@ -4,11 +4,14 @@ import {
   Text,
   View,
 } from 'react-native';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NativeRouter, Route, BackButton as RouterBackButton } from 'react-router-native';
+import { history } from '../../store';
+
 import { Header } from 'react-native-elements';
 import styles from '../../styles.js';
-import { history } from '../../store';
+
 import Menu from '../menu/Menu';
 import Home from '../home/Home';
 import Articles from '../articles/Articles';
@@ -34,14 +37,30 @@ import ChangePassword from '../profile/ChangePassword';
 import ForgotPassword from '../profile/ForgotPassword';
 import PrivacyPolicy from '../profile/PrivacyPolicy';
 import Support from '../profile/Support';
+import Loading from './Loading';
 
+import { userActions } from '../../actions';
 
 class AppView extends React.Component {
-  constructor (props) {
-    super(props);
+  componentDidMount() {
+    console.log('AppView component did mount');
+    this.props.tokenLogin();
   }
 
   render () {
+    // If there is no current user, we are not authenticated by the API yet
+    if (!this.props.currentUser) {
+      console.log('You are not authorized by the API. You need to login as basic or with user account.');
+      return <Loading text={'Logging in...'} />
+    }
+
+    // If current user has no _id, then we are not logged in as a user
+    if (!this.props.currentUser._id) {
+      console.log('You are logged in for basic reader access (no user account).');
+    } else {
+      console.log(`You are logged in as user: ${this.props.currentUser.name}`);
+    }
+
     return (
       <NativeRouter history={history} >
         <View style={styles.container}>
@@ -80,7 +99,11 @@ class AppView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  settings: state.settings,
+  currentUser: state.user.user,
 });
 
-export default connect(mapStateToProps)(AppView);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  tokenLogin: userActions.tokenLogin,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppView);

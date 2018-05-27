@@ -1,8 +1,7 @@
 import { push } from 'react-router-redux';
 import axios from 'axios';
 import queryString from 'query-string';
-
-import { baseURL } from './index';
+import { baseURL } from '../constants';
 
 
 export const searchConstants = {
@@ -38,14 +37,12 @@ function getSearch(filters = {}) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
-        console.log(error);
-        // dispatch(alertActions.error(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
       dispatch(failure());
-      console.log(error);
-      // dispatch(alertActions.error('Unable to Get Contents'));
+      console.log(error.response.data.message);
     });
   };
 

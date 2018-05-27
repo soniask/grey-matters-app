@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
+import { composeWithDevTools } from 'remote-redux-devtools';
 import storage from 'redux-persist/lib/storage';
 import thunk from "redux-thunk";
 import { createMemoryHistory } from 'history';
@@ -19,5 +20,9 @@ const history = createMemoryHistory();
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = [thunk, routerMiddleware(history)];
 
-export const store = createStore(persistedReducer, applyMiddleware(...middleware));
+// Commpose middleware and enhancers
+const composedEnhancers = composeWithDevTools(applyMiddleware(...middleware));
+
+// Create store
+export const store = createStore(persistedReducer, composedEnhancers);
 export const persistor = persistStore(store);

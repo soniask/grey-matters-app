@@ -1,9 +1,7 @@
 import { push } from 'react-router-redux';
-// import { alertActions } from './';
 import axios from 'axios';
 import queryString from 'query-string';
-
-import { baseURL } from './index';
+import { baseURL } from '../constants';
 
 // Types
 export const termsConstants = {
@@ -41,12 +39,12 @@ function getTerms(filters = {}) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
-        // dispatch(alertActions.error(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
-      dispatch(failure(error));
-      // dispatch(alertActions.error('Unable to Get Terms'));
+      dispatch(failure());
+      console.log(error.response.data.message);
     });
   };
 
@@ -69,12 +67,12 @@ function getTerm(id) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
-        // dispatch(alertActions.error(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
-      dispatch(failure(error));
-      // dispatch(alertActions.error('Unable to Get Term'));
+      dispatch(failure());
+      console.log(error.response.data.message);
     });
   };
 

@@ -1,8 +1,7 @@
 import { push } from 'react-router-redux';
 import axios from 'axios';
 import queryString from 'query-string';
-
-import { baseURL } from './index';
+import { baseURL } from '../constants';
 
 // Types
 export const eventsConstants = {
@@ -37,12 +36,12 @@ function getEvents(filters = {}) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
-        // dispatch(alertActions.error(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
-      dispatch(failure(error));
-      // dispatch(alertActions.error('Unable to Get Events'));
+      dispatch(failure());
+      console.log(error.response.data.message);
     });
   };
 
@@ -65,12 +64,12 @@ function getEvent(id) {
         dispatch(success(res.data.payload));
       } else {
         dispatch(failure());
-        // dispatch(alertActions.error(res.data.message));
+        console.log(res.data.message);
       }
     })
     .catch(error => {
-      dispatch(failure(error));
-      // dispatch(alertActions.error('Unable to Get Event'));
+      dispatch(failure());
+      console.log(error.response.data.message);
     });
   };
 

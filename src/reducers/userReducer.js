@@ -2,15 +2,52 @@ import { userConstants } from '../actions';
 
 const USER_INITIAL = {
   user: null,
-  isUpdatingUser: false,
+  isBasicLoggingIn: false,
+  isTokenLoggingIn: false,
   isLoggingIn: false,
   isSigningUp: false,
+  isUpdatingUser: false,
   bookmarkIDSet: null,
   token: null,
+  message: null,
 };
 
 export const userReducer = (state = USER_INITIAL, action) => {
   switch (action.type) {
+    case userConstants.TOKEN_LOGIN_REQUEST:
+      return {
+        ...state,
+        isTokenLoggingIn: true,
+      };
+    case userConstants.TOKEN_LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        isTokenLoggingIn: false,
+      };
+    case userConstants.TOKEN_LOGIN_FAILURE:
+      return {
+        ...state,
+        user: null,
+        isTokenLoggingIn: false,
+      };
+    case userConstants.BASIC_LOGIN_REQUEST:
+      return {
+        ...state,
+        isBasicLoggingIn: true,
+      };
+    case userConstants.BASIC_LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        isBasicLoggingIn: false,
+      };
+    case userConstants.BASIC_LOGIN_FAILURE:
+      return {
+        ...state,
+        user: null,
+        isBasicLoggingIn: false,
+      };
     case userConstants.LOGIN_REQUEST:
       return {
         ...state,
@@ -20,10 +57,9 @@ export const userReducer = (state = USER_INITIAL, action) => {
     case userConstants.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.data.payload,
+        user: action.payload,
         message: null,
         isLoggingIn: false,
-        token: action.data.token,
       };
     case userConstants.LOGIN_FAILURE:
       return {

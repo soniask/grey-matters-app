@@ -5,9 +5,9 @@ import {
 
 import styles from './LoadingStyles';
 
-const Loading = () => (
+const Loading = (props) => (
   <Text style={styles.title}>
-    Loading...
+    {props.text ? props.text : 'Loading...'}
   </Text>
 )
 

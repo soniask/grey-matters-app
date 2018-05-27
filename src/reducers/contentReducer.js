@@ -1,7 +1,8 @@
 import { contentConstants } from '../actions/contentActions';
 
 const CONTENT_INITIAL = {
-  contents: null,
+	contents: null,
+	content: null,
   isGettingContents: false,
 };
 
@@ -26,20 +27,20 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 			};
 		case contentConstants.GET_CONTENT_REQUEST:
 			return {
-			...state,
-			isGettingContent: true,
+				...state,
+				isGettingContent: true,
 			};
 		case contentConstants.GET_CONTENT_SUCCESS:
 			return {
-			...state,
-			content: action.payload,
-			isGettingContent: false,
+				...state,
+				content: action.payload,
+				isGettingContent: false,
 			};
 		case contentConstants.GET_CONTENT_FAILURE:
 			return {
-			...state,
-			content: null,
-			isGettingContent: false,
+				...state,
+				content: null,
+				isGettingContent: false,
 			};
 		case contentConstants.CLEAR_CONTENTS:
 			return {
@@ -49,4 +50,4 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 		default:
 			return state;
 	}
-}  
+}
