@@ -33,6 +33,9 @@ class Events extends Component {
         <Unavailable message='No events available' />
       );
     }
+    this.props.events.sort((event1, event2) => {
+      return event1.dateStart - event2.dateStart;
+    });
     return (
       <ScrollView>
         <View style={[styles.content]}>

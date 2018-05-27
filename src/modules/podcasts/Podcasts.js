@@ -28,6 +28,9 @@ class Podcasts extends Component {
         <Unavailable message='No podcasts available' />
       );
     }
+    this.props.contents.sort((content1, content2) => {
+      return content1.publishTime - content2.publishTime;
+    });
     return (
       <ScrollView>
         <ContentFeed 

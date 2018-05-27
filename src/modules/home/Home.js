@@ -28,16 +28,6 @@ class Home extends Component {
     this.props.getContents({ type: 'article', state: 'published' });
 	}
 
-  handleTermPress(term) {
-    let pattern = /<span>([\w\s]+)<\/span>/;
-    let match = term.match(pattern);
-    this.props.getTerms({ term: match[1] });
-  }
-
-  renderText(matchingString, matches) {
-    return `${matches[1]}`;
-  }
-
   render() {
     if (this.props.isGettingContents) {
       return (
@@ -50,7 +40,9 @@ class Home extends Component {
 				<Unavailable message='Content unavailable' />
       );
 		}
-
+    this.props.contents.sort((content1, content2) => {
+      return content1.publishTime - content2.publishTime;
+    });
     return (
 			<ArticleView content={this.props.contents[0]} /> 
     );
@@ -60,12 +52,10 @@ class Home extends Component {
 const mapStateToProps = state => ({
   contents: state.content.contents,
 	isGettingContents: state.content.isGettingContents,
-	terms: state.terms.terms,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	getContents: contentActions.getContents,
-	getTerms: termsActions.getTerms,
   clearTerms: termsActions.clearTerms,
 }, dispatch);
 
