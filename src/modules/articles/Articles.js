@@ -29,6 +29,10 @@ class Articles extends Component {
       );
     }
 
+    this.props.contents.sort((content1, content2) => {
+      return content1.publishTime - content2.publishTime;
+    });
+
     return (
       <ScrollView>
         <ContentFeed 
