@@ -27,26 +27,34 @@ export const contentActions = {
 function getContents(filters = {}) {
   const query = queryString.stringify(filters);
   return dispatch => {
-    dispatch(request());
-
-    axios({
-      method: 'get',
-      url: `/contents?${query}`,
-      baseURL,
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      console.log('Getting contents...');
+      dispatch(request());
+      axios({
+        method: 'get',
+        url: `/contents?${query}`,
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          console.log('Successfully got contents from server.');
+          dispatch(success(res.data.payload));
+        } else {
+          console.log(res.data.message);
+          dispatch(failure());
+        }
+      })
+      .catch(error => {
+        console.log('Server error: Could not get contents with token.');
         dispatch(failure());
-        console.log(res.data.message);
-      }
+      });
     })
     .catch(error => {
-      dispatch(failure());
-      console.log(error.response.data.message);
+      console.log('Could not get token from storage.');
     });
-  };
+  }
 
   function request() { return { type: contentConstants.GET_CONTENTS_REQUEST } }
   function success(payload) { return { type: contentConstants.GET_CONTENTS_SUCCESS, payload } }
