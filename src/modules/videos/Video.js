@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-native';
 import {
   Text,
   ScrollView,
@@ -32,7 +33,7 @@ class Video extends Component {
       );
     }
 
-    if (!this.props.content) {
+    if (!this.props.content || !this.props.content.url) {
       return (
         <Unavailable message='Video unavailable' />
       );
@@ -52,7 +53,17 @@ class Video extends Component {
           <View style={styles.metaData}>
             <View style={styles.author}>
               <Text>AUTHOR</Text>
-              {/* <Text style={styles.blue}>{this.props.content.creators[0].name}</Text> */}
+              {
+                this.props.content.creators && this.props.content.creators.map((creator) => (
+                  <Link
+                    to={`/creatorProfile/${creator._id}`}
+                    underlayColor='white'
+                    key={creator._id}
+                  >
+                    <Text style={styles.blue}>{creator.name}</Text>
+                  </Link>
+                ))
+              }
             </View>
             <View style={styles.date}>
               <Text>{new Date(this.props.content.publishTime).toLocaleDateString()}</Text>

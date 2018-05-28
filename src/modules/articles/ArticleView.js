@@ -41,10 +41,10 @@ class ArticleView extends Component {
               {this.props.content.title}
             </Text>
             <View style={styles.metaData}>
-              <View style={[styles.rightBorder, styles.metaDataBox]}>
+              <View style={[styles.author]}>
                 <Text>AUTHOR</Text>
                 {
-                  this.props.content.creators.map((creator) => (
+                  this.props.content.creators && this.props.content.creators.map((creator) => (
                     <Link
                       to={`/creatorProfile/${creator._id}`}
                       underlayColor='white'
@@ -54,12 +54,11 @@ class ArticleView extends Component {
                     </Link>
                   ))
                 }
-                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
               </View>
-              <View style={[styles.rightBorder, styles.metaDataBox]}>
+              <View style={[styles.artist]}>
                 <Text>ARTIST</Text>
                 {
-                  this.props.content.artists.map((artist) => (
+                  this.props.content.artists && this.props.content.artists.map((artist) => (
                     <Link
                       to={`/creatorProfile/${artist._id}`}
                       underlayColor='white'
@@ -69,9 +68,8 @@ class ArticleView extends Component {
                     </Link>
                   ))
                 }
-                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
               </View>
-              <View style={[styles.metaDataBox]}>
+              <View style={[styles.date]}>
                 <Text>{ new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
               </View>
             </View>

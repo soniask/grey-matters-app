@@ -22,21 +22,29 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 20,
   },
-  metaDataBox: {
-    marginTop: 5,
-    marginBottom: 5,
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 13,
-    alignItems: 'flex-start',
-  },
-  small: {
-    flex: 1,
+  date: {
+    flex: 3,
+    marginTop: 10,
+    marginBottom: 10,
     borderRightColor: '#ff404e',
     borderRightWidth: 1,
+    alignItems: 'flex-start',
   },
-  large: {
+  time: {
+    flex: 3,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRightColor: '#ff404e',
+    borderRightWidth: 1,
+    alignItems: 'flex-start',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  location: {
     flex: 2,
+    marginTop: 10,
+    marginBottom: 10,
+    alignItems: 'flex-end',
   },
   button: { 
     backgroundColor: '#1ba5b8',

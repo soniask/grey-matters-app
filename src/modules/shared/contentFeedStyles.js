@@ -43,17 +43,21 @@ const styles = StyleSheet.create({
   },
   metaData: {
     flexDirection: 'row', 
-    borderTopColor: '#ff404e',
+    borderTopColor: colors.red,
     borderTopWidth: 1,
-    borderBottomColor: '#ff404e',
+    borderBottomColor: colors.red,
     borderBottomWidth: 1,
   },
   author: {
     marginTop: 5,
     marginBottom: 5,
     alignItems: 'flex-start',
+    borderRightColor: colors.red,
+    borderRightWidth: 1,
+    paddingRight: 10,
   },
   date: {
+    flex: 1,
     position: 'absolute',
     right: 0,
     marginTop: 5,
@@ -61,8 +65,6 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     alignItems: 'flex-end',
     justifyContent: 'center',
-    borderLeftColor: '#ff404e',
-    borderLeftWidth: 1,
   },
   description: {
     paddingTop: 5,
