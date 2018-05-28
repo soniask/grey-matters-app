@@ -215,6 +215,7 @@ function login({ email, password, history }) {
             history.push('/');
           }
         });
+        dispatch(getCurrentUser());
       } else {
         dispatch(failure(res.data.message));
         console.log(res.data.message);
@@ -239,6 +240,7 @@ function logout({ history }) {
         console.log('Could not remove token.');
       } else {
         dispatch(success());
+        dispatch(basicLogin());
         history.push('/');
       }
     });
