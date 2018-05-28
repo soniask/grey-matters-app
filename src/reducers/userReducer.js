@@ -2,6 +2,7 @@ import { userConstants } from '../actions';
 
 const USER_INITIAL = {
   user: null,
+  isGettingCurrentUser: false,
   isBasicLoggingIn: false,
   isTokenLoggingIn: false,
   isLoggingIn: false,
@@ -14,6 +15,22 @@ const USER_INITIAL = {
 
 export const userReducer = (state = USER_INITIAL, action) => {
   switch (action.type) {
+    case userConstants.GET_CURRENT_USER_REQUEST:
+      return {
+        ...state,
+        isGettingCurrentUser: true,
+      };
+    case userConstants.GET_CURRENT_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        isGettingCurrentUser: false,
+      };
+    case userConstants.GET_CURRENT_USER_FAILURE:
+      return {
+        ...state,
+        isGettingCurrentUser: false,
+      };
     case userConstants.TOKEN_LOGIN_REQUEST:
       return {
         ...state,

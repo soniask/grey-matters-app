@@ -9,6 +9,10 @@ import { AsyncStorage } from 'react-native';
 // Types
 export const userConstants = {
 
+  GET_CURRENT_USER_REQUEST: 'GET_CURRENT_USER_REQUEST',
+  GET_CURRENT_USER_SUCCESS: 'GET_CURRENT_USER_SUCCESS',
+  GET_CURRENT_USER_FAILURE: 'GET_CURRENT_USER_FAILURE',
+
   TOKEN_LOGIN_REQUEST: 'TOKEN_LOGIN_REQUEST',
   TOKEN_LOGIN_SUCCESS: 'TOKEN_LOGIN_SUCCESS',
   TOKEN_LOGIN_FAILURE: 'TOKEN_LOGIN_FAILURE',
@@ -41,6 +45,7 @@ export const userConstants = {
 
 // Creators
 export const userActions = {
+  getCurrentUser,
   tokenLogin,
   basicLogin,
   login,
@@ -53,44 +58,67 @@ export const userActions = {
   clearConfirmation,
 };
 
+function getCurrentUser() {
+  return dispatch => {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      console.log('GET /me');
+      dispatch(request());
+      axios({
+        method: 'get',
+        url: '/me',
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          console.log('Successfully got current user from server.');
+          dispatch(success(res.data.payload));
+        } else {
+          console.log(res.data.message);
+          dispatch(failure());
+        }
+      })
+      .catch(error => {
+        console.log('Server error: Could not get current user with token.');
+        dispatch(failure());
+      });
+    })
+    .catch(error => {
+      console.log('Could not get token from storage.');
+    });
+  }
+
+  function request() { return { type: userConstants.GET_CURRENT_USER_REQUEST } }
+  function success(payload) { return { type: userConstants.GET_CURRENT_USER_SUCCESS, payload } }
+  function failure() { return { type: userConstants.GET_CURRENT_USER_FAILURE } }
+}
+
 function tokenLogin() {
   return dispatch => {
     dispatch(request());
-    AsyncStorage.getItem('@GreyMattersApp:token', function(err, token) {
-      if (err) {
-        console.log('There was an error in getting the token from storage.');
-        dispatch(failure());
-      } else {
-        console.log('Token exists. Now verifying token...');
-        axios({
-          method: 'get',
-          url: '/decode',
-          baseURL,
-          headers: {'x-access-token': token},
-        })
-        .then(res => {
-          if (res.data.success) {
-            console.log('Token has been verified! Token payload has been stored in User Store.');
-            dispatch(success(res.data.payload));
-          } else {
-            console.log(res.data.message);
-            console.log('Token is invalid. Removing token from storage, clearing out current user in the store, and dispatching basicLogin()');
-            dispatch(failure()); // Remove current user in User Store
-            dispatch(basicLogin()); // Remove current user in User Store
-            AsyncStorage.removeItem('@GreyMattersApp:token', function (err) {
-              if (err) {
-                console.log('There was an error in removing the token from storage.');
-              } else {
-                console.log('Token successfully removed from storage.');
-              }
-            });
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      console.log('Token exists. Now verifying token...');
+      axios({
+        method: 'get',
+        url: '/decode',
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          console.log('Token has been verified! Token payload has been stored in User Store.');
+          dispatch(success(res.data.payload));
+          if (res.data.payload._id) {
+            // If _id exists, we have a user logging in, call /me route to fill in all user account data in state.user.user
+            getCurrentUser();
           }
-        })
-        .catch(error => {
-          console.log(error.response.data.message);
+        } else {
+          console.log(res.data.message);
           console.log('Token is invalid. Removing token from storage, clearing out current user in the store, and dispatching basicLogin()');
-          dispatch(failure());
-          dispatch(basicLogin());
+          dispatch(failure()); // Remove current user in User Store
+          dispatch(basicLogin()); // Remove current user in User Store
           AsyncStorage.removeItem('@GreyMattersApp:token', function (err) {
             if (err) {
               console.log('There was an error in removing the token from storage.');
@@ -98,9 +126,26 @@ function tokenLogin() {
               console.log('Token successfully removed from storage.');
             }
           });
-        })
-      }
+        }
+      })
+      .catch(error => {
+        console.log(error.response.data.message);
+        console.log('Token is invalid. Removing token from storage, clearing out current user in the store, and dispatching basicLogin()');
+        dispatch(failure());
+        dispatch(basicLogin());
+        AsyncStorage.removeItem('@GreyMattersApp:token', function (err) {
+          if (err) {
+            console.log('There was an error in removing the token from storage.');
+          } else {
+            console.log('Token successfully removed from storage.');
+          }
+        });
+      })
     })
+    .catch(err => {
+      console.log('There was an error in getting the token from storage.');
+      dispatch(failure());
+    });
   };
 
   function request() { return { type: userConstants.TOKEN_LOGIN_REQUEST } }
