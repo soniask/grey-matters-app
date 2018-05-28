@@ -81,7 +81,7 @@ class AppView extends React.Component {
 
             <Route exact path="/terms" component={Terms} />
             <Route exact path="/terms/:id" component={Term} />
-            <Route exact path="/creatorProfile" component={CreatorProfile} />
+            <Route exact path="/creatorProfile/:id" component={CreatorProfile} />
             <Route exact path="/userProfile" component={UserProfile} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
