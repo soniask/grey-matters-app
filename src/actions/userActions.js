@@ -232,32 +232,40 @@ function sendResetLink() {
   function failure(message) { return { type: userConstants.RESET_LINK_FAILURE, message } }
 }
 
-function signup({ name, email, password, role='reader' }) {
+function signup({ name, email, password, roles=['reader'] }) {
   return dispatch => {
     dispatch(request());
 
-    axios({
-      method: 'post',
-      url: '/createUser',
-      baseURL,
-      data: {
-        name,
-        email,
-        password,
-        role,
-      }
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
-        dispatch(failure(res.data.message));
-        console.log(res.data.message);
-      }
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      axios({
+        method: 'post',
+        url: '/users',
+        baseURL,
+        headers: {'x-access-token': token},
+        data: {
+          name,
+          email,
+          password,
+          roles,
+        }
+      })
+      .then(res => {
+        if (res.data.success) {
+          dispatch(success(res.data.payload));
+        } else {
+          dispatch(failure(res.data.message));
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
+        dispatch(failure('Unable to Complete Request'));
+        console.log(error.response.data.message);
+      });
     })
     .catch(error => {
       dispatch(failure('Unable to Complete Request'));
-      console.log(error.response.data.message);
+      console.log('Cannot get token from storage');
     });
   };
 

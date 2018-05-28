@@ -31,7 +31,7 @@ class UserProfile extends Component {
 		return (
 			<View style={styles.container}>
 					{
-						this.props.user ? (
+						this.props.user._id ? (
 							<ScrollView>
 								<View style={{flex:1}}>
 									<View style={{alignItems: 'center'}}>

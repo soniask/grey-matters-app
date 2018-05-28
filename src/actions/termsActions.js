@@ -1,6 +1,7 @@
 import { push } from 'react-router-redux';
 import axios from 'axios';
 import queryString from 'query-string';
+import { AsyncStorage } from 'react-native';
 import { baseURL } from '../constants';
 
 // Types
@@ -29,22 +30,30 @@ function getTerms(filters = {}) {
   return dispatch => {
     dispatch(request());
 
-    axios({
-      method: 'get',
-      url: `/terms?${query}`,
-      baseURL,
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      axios({
+        method: 'get',
+        url: `/terms?${query}`,
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          dispatch(success(res.data.payload));
+        } else {
+          dispatch(failure());
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
         dispatch(failure());
-        console.log(res.data.message);
-      }
+        console.log(error.response.data.message);
+      });
     })
     .catch(error => {
       dispatch(failure());
-      console.log(error.response.data.message);
+      console.log('Cannot get token from storage');
     });
   };
 

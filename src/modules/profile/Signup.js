@@ -30,7 +30,7 @@ class Signup extends Component {
     let email = !this.email ? this.email : this.email.trim();
     let password = !this.password ? this.password : this.password.trim();
     let confirmPassword = !this.confirmPassword ? this.confirmPassword : this.confirmPassword.trim();
-    let errors = validate({ email, password }, validation);
+    let errors = validate({ email, password, newPassword: confirmPassword }, validation);
     if (errors) {
       for (let key in errors) {
         this.props.errorMessage(errors[key][0]);

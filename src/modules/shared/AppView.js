@@ -78,6 +78,7 @@ class AppView extends React.Component {
             <Route exact path="/events" component={Events} />
             <Route exact path="/events/:id" component={ClubEvent} />
             <Route exact path="/learningsection" component={LearningSection} />
+
             <Route exact path="/terms" component={Terms} />
             <Route exact path="/terms/:id" component={Term} />
             <Route exact path="/creatorProfile" component={CreatorProfile} />

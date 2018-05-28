@@ -28,7 +28,7 @@ class Term extends Component {
   }
 
   componentWillUnmount() {
-    if (this.props.user && this.props.term) {
+    if (this.props.user._id && this.props.term) {
       let index = -1;
       for (let i = 0; i < this.props.user.notes.length; i++) {
         if (this.props.user.notes[i].term == this.props.term._id) {

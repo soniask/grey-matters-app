@@ -17,9 +17,12 @@ class AppHeader extends Component {
 
   getRightComponent() {
     const location = this.props.location.pathname;
+    const noSearchIconList = ['/signup', '/login', '/search', '/settings',
+      '/editProfile', '/changePassword', '/privacyPolicy', '/support',
+      '/forgotPassword'];
     if (location === '/userProfile') {
       return <SettingsIcon />;
-    } else if (['/signup', '/login', '/search', '/settings', '/forgotPassword'].includes(location)) {
+    } else if (noSearchIconList.includes(location)) {
       return null;
     } else {
       return <SearchIcon />;
@@ -48,7 +51,7 @@ class AppHeader extends Component {
   getLeftComponent() {
     const location = this.props.location.pathname;
     const backButtonList = ['/signup', '/login', '/search', '/settings',
-      '/editProfile', '/changePassword', '/privacyPolicy', '/support', 
+      '/editProfile', '/changePassword', '/privacyPolicy', '/support',
       '/forgotPassword'];
     if (backButtonList.includes(location) || /\/\w+\/\w+/.test(location)) {
       return <BackButton />;
