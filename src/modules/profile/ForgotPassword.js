@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { validate } from 'validate.js';
-import validation from './validation';
+import {forgotPasswordValidation} from './validation';
 import {
   Text,
   View
@@ -25,7 +25,7 @@ class Login extends Component {
 
   onPress() {
     let email = !this.email ? this.email : this.email.trim();
-    let errors = validate({ email }, validation);
+    let errors = validate({ email }, forgotPasswordValidation);
     if (errors) {
       for (let key in errors) {
         this.props.errorMessage(errors[key][0]);

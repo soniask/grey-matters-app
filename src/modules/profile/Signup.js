@@ -12,7 +12,7 @@ import { Link } from 'react-router-native';
 import { userActions } from '../../actions';
 import { profileActions } from '../../actions';
 import styles from '../../styles';
-import validation from './validation';
+import {signupValidation} from './validation';
 import PolicyDialog from './PolicyDialog';
 
 
@@ -30,7 +30,7 @@ class Signup extends Component {
     let email = !this.email ? this.email : this.email.trim();
     let password = !this.password ? this.password : this.password.trim();
     let confirmPassword = !this.confirmPassword ? this.confirmPassword : this.confirmPassword.trim();
-    let errors = validate({ email, password, newPassword: confirmPassword }, validation);
+    let errors = validate({ email, password, newPassword: confirmPassword }, signupValidation);
     if (errors) {
       for (let key in errors) {
         this.props.errorMessage(errors[key][0]);

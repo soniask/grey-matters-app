@@ -4,13 +4,14 @@ import {
 
 const styles = StyleSheet.create({
 	container: {
-		paddingTop: 15,
+		paddingTop: 10,
 		paddingLeft: 20,
 		paddingRight: 20,
 	},
 	option: {
 		fontSize: 20,
-		paddingBottom: 15,
+		paddingTop: 10,
+		paddingBottom: 10,
 	},
 	grey: {
 		color: '#C4C4C4',

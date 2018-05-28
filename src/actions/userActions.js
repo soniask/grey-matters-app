@@ -321,10 +321,9 @@ function signup({ name, email, password, roles=['reader'], history }) {
   function failure(message) { return { type: userConstants.SIGNUP_FAILURE, message } }
 }
 
-function updateUser({name, id}) {
+function updateUser({name, id, history}) {
   return dispatch => {
     dispatch(request());
-
     AsyncStorage.getItem('@GreyMattersApp:token')
     .then(token => {
       axios({
@@ -336,8 +335,8 @@ function updateUser({name, id}) {
       })
       .then(res => {
         if (res.data.success) {
-          console.log(res.data.payload);
           dispatch(success(res.data.payload));
+          history.push('/userProfile');
         } else {
           dispatch(failure());
           console.log(res.data.message);
@@ -345,7 +344,7 @@ function updateUser({name, id}) {
       })
       .catch(error => {
         dispatch(failure());
-        console.log(error.response.data.message);
+        console.log(error);
       });
     })
     .catch(error => {

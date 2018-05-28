@@ -1,4 +1,4 @@
-const validation = {
+export const signupValidation = {
   email: {
     presence: {
       message: '^Please enter an email address'
@@ -7,7 +7,6 @@ const validation = {
       message: '^Please enter a valid email address'
     }
   },
-  
   password: {
     presence: {
       message: '^Please enter a password'
@@ -17,10 +16,21 @@ const validation = {
       message: '^Your password must be at least 5 characters'
     }
   },
-  
-  newPassword: {
+}
+
+export const changePasswordValidation = {
+  password: {
     presence: {
       message: '^Please enter a password'
+    },
+    length: {
+      minimum: 5,
+      message: '^Your password must be at least 5 characters'
+    }
+  },
+  newPassword: {
+    presence: {
+      message: '^Please enter a new password'
     },
     length: {
       minimum: 5,
@@ -29,4 +39,21 @@ const validation = {
   }
 }
 
-export default validation;
+export const editProfileValidation = {
+  newName: {
+    presence: {
+      message: '^Please enter what you wish your name to be updated to'
+    },
+  }
+}
+
+export const forgotPasswordValidation = {
+  email: {
+    presence: {
+      message: '^Please enter your email address'
+    },
+    email: {
+      message: '^Invalid email address'
+    }
+  },
+}

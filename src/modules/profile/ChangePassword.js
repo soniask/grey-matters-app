@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, FormInput } from 'react-native-elements';
+import { validate } from 'validate.js';
 import {
 	View,
 	Text,
 	StyleSheet,
 } from 'react-native';
 import { userActions } from '../../actions';
+import { changePasswordValidation } from './validation';
 import styles from './SettingsStyles';
 
 
@@ -20,7 +22,7 @@ class ChangePassword extends Component {
     let password = !this.password ? this.password : this.password.trim();
     let newPassword = !this.newPassword ? this.newPassword : this.newPassword.trim();
     let confirmNewPassword = !this.confirmNewPassword ? this.confirmNewPassword : this.confirmNewPassword.trim();
-    let errors = validate({ newPassword }, validation);
+    let errors = validate({ newPassword }, changePasswordValidation);
     if (errors) {
       for (let key in errors) {
         this.props.errorMessage(errors[key][0]);
@@ -76,6 +78,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	updateUser: userActions.updateUser,
+	clearMessage: userActions.clearMessage,
+  errorMessage: userActions.errorMessage,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
