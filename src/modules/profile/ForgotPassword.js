@@ -33,7 +33,7 @@ class Login extends Component {
       }
     } else {
       this.props.clearMessage();
-      //TODO: dispatch action to send reset link
+      this.props.sendResetLink({ email });
     }
   }
 
@@ -65,6 +65,7 @@ const mapStateToProps = state => ({
 });
   
 const mapDispatchToProps = dispatch => bindActionCreators({
+  sendResetLink: userActions.sendResetLink,
   clearConfirmation: userActions.clearConfirmation,
   clearMessage: userActions.clearMessage,
   errorMessage: userActions.errorMessage,

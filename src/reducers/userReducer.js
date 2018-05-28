@@ -111,7 +111,7 @@ export const userReducer = (state = USER_INITIAL, action) => {
     case userConstants.RESET_LINK_SUCCESS:
       return {
         ...state,
-        confirmation: 'Reset link sent',
+        confirmation: 'Reset link sent. Check your email for further instructions.',
       };
     case userConstants.RESET_LINK_FAILURE:
       return {

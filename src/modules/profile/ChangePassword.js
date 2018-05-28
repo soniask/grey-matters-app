@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { userActions } from '../../actions';
 import { changePasswordValidation } from './validation';
-import styles from './SettingsStyles';
+import styles from '../../styles';
 
 
 class ChangePassword extends Component {
