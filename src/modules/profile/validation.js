@@ -17,6 +17,7 @@ const validation = {
       message: '^Your password must be at least 5 characters'
     }
   },
+  
   newPassword: {
     presence: {
       message: '^Please enter a password'

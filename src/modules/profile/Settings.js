@@ -19,7 +19,7 @@ class Settings extends Component {
 	}
   
 	render() {
-		if (!this.props.user) {
+		if (!this.props.user._id) {
 			return (
 				<View style={styles.container}>
 					<Text style={[styles.option, styles.grey]}>
