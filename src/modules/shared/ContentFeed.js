@@ -30,7 +30,7 @@ const ContentFeed = (props) => (
               <Text style={styles.titleText}>
                 {item.title}
               </Text>
-              { props.user && <BookmarkIcon item={item}/> }
+              { props.user._id && <BookmarkIcon item={item}/> }
             </View>
             <View style={styles.metaData}>
               <View style={styles.author}>

@@ -85,7 +85,7 @@ class ArticleView extends Component {
             >
               {this.props.content.body}
             </ParsedText>
-            {this.props.content.references && <References references={this.props.content.references}/>}
+            {/* {this.props.content.references && <References references={this.props.content.references}/>} */}
           </View>
         </ScrollView>
         {this.props.terms && <TermDialog terms={this.props.terms} />}

@@ -2,6 +2,7 @@ import { push } from 'react-router-redux';
 import axios from 'axios';
 import queryString from 'query-string';
 import { baseURL } from '../constants';
+import { AsyncStorage } from 'react-native';
 
 // Types
 export const contentConstants = {
@@ -63,26 +64,34 @@ function getContents(filters = {}) {
 
 function getContent(id) {
   return dispatch => {
-    dispatch(request());
-
-    axios({
-      method: 'get',
-      url: `/contents/${id}`,
-      baseURL,
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      console.log('Getting content...');
+      dispatch(request());
+      axios({
+        method: 'get',
+        url: `/contents/${id}`,
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          console.log('Successfully got content from server.');
+          dispatch(success(res.data.payload));
+        } else {
+          console.log(res.data.message);
+          dispatch(failure());
+        }
+      })
+      .catch(error => {
+        console.log('Server error: Could not get content with token.');
         dispatch(failure());
-        console.log(res.data.message);
-      }
+      });
     })
     .catch(error => {
-      dispatch(failure());
-      console.log(error.response.data.message);
+      console.log('Could not get token from storage.');
     });
-  };
+  }
 
   function request() { return { type: contentConstants.GET_CONTENT_REQUEST } }
   function success(payload) { return { type: contentConstants.GET_CONTENT_SUCCESS, payload } }
