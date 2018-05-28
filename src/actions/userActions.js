@@ -277,7 +277,7 @@ function sendResetLink() {
   function failure(message) { return { type: userConstants.RESET_LINK_FAILURE, message } }
 }
 
-function signup({ name, email, password, roles=['reader'] }) {
+function signup({ name, email, password, roles=['reader'], history }) {
   return dispatch => {
     dispatch(request());
 
@@ -297,7 +297,7 @@ function signup({ name, email, password, roles=['reader'] }) {
       })
       .then(res => {
         if (res.data.success) {
-          dispatch(success(res.data.payload));
+          dispatch(login({email, password, history}));
         } else {
           dispatch(failure(res.data.message));
           console.log(res.data.message);

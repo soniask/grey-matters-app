@@ -40,7 +40,7 @@ class Signup extends Component {
       this.props.errorMessage('Your password and password confirmation do not match');
     } else {
       this.props.clearMessage();
-      this.props.signup({ name, email, password });
+      this.props.signup({ name, email, password, history: this.props.history });
     }
   }
 
