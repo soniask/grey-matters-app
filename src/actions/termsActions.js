@@ -66,22 +66,30 @@ function getTerm(id) {
   return dispatch => {
     dispatch(request());
 
-    axios({
-      method: 'get',
-      url: `/terms/${id}`,
-      baseURL,
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      axios({
+        method: 'get',
+        url: `/terms/${id}`,
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          dispatch(success(res.data.payload));
+        } else {
+          dispatch(failure());
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
         dispatch(failure());
-        console.log(res.data.message);
-      }
+        console.log(error.response.data.message);
+      });
     })
     .catch(error => {
       dispatch(failure());
-      console.log(error.response.data.message);
+      console.log('Cannot get token from storage');
     });
   };
 
