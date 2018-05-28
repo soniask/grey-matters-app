@@ -27,24 +27,10 @@ class EditProfile extends Component {
 						onChangeText={(text) => this.newName = text}
 					/>
 				</View>
-				<View style={styles.formInput}>
-					<FormInput
-						placeholder='Password'
-						secureTextEntry={true}
-						onChangeText={(text) => this.password = text}
-					/>
-				</View>
 				<Button
-					title='Submit'
-					onPress={() => this.props.updateUser(
-						{
-							name: this.newName, 
-							email: this.props.user.email, 
-							role: this.props.user.role,
-						},
-						this.props.user._id,
-						this.props.token,
-				)}
+					title='Change Name'
+					onPress={() => this.props.updateUser({ name: this.newName, id: this.props.user._id})}
+					buttonStyle={{ marginTop: 20, marginBottom: 20 }}
 				/>
 				{this.props.message && <Text style={[styles.formMessage, styles.red]}>{this.props.message}</Text>}
 			</View>

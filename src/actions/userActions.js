@@ -321,30 +321,36 @@ function signup({ name, email, password, roles=['reader'], history }) {
   function failure(message) { return { type: userConstants.SIGNUP_FAILURE, message } }
 }
 
-function updateUser(fields, id, token) {
+function updateUser({name, id}) {
   return dispatch => {
     dispatch(request());
 
-    axios({
-      method: 'put',
-      url: `/users/${id}`,
-      baseURL,
-      data: {
-        ...fields,
-      },
-      headers: {'x-access-token': token},
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      axios({
+        method: 'put',
+        url: `/users/${id}`,
+        baseURL,
+        data: { name },
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          console.log(res.data.payload);
+          dispatch(success(res.data.payload));
+        } else {
+          dispatch(failure());
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
         dispatch(failure());
-        console.log(res.data.message);
-      }
+        console.log(error.response.data.message);
+      });
     })
     .catch(error => {
-      dispatch(failure());
-      console.log(error.response.data.message);
+      dispatch(failure('Unable to Complete Request'));
+      console.log(error);
     });
   };
 
