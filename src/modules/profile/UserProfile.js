@@ -19,13 +19,6 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
 	}
-	
-	componentDidMount() {
-		if (this.props.user) {
-			this.props.getContents({ contentIds: this.props.user.bookmarks });
-			this.props.getTerms(); //used in Notes
-		}
-	}
 
   render() {
 		return (
@@ -58,7 +51,7 @@ class UserProfile extends Component {
 										</View>
 									</View>
 									{ this.props.showBookmarkList && 
-										(( this.props.contents && this.props.contents.length > 0 && <ContentFeed list={this.props.contents} />) ||
+										(( this.props.user.bookmarks.length > 0 && <ContentFeed list={this.props.user.bookmarks} />) ||
 										<Unavailable message='No bookmarks yet' />) }
 									{ !this.props.showBookmarkList && <Notes list={this.props.user.notes}/> }
 								</View>
@@ -90,7 +83,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	showBookmarks: profileActions.showBookmarks,
 	showNotes: profileActions.showNotes,
 	getContents: contentActions.getContents,
-	getTerms: termsActions.getTerms,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

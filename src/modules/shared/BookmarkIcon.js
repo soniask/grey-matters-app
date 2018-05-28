@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { userActions } from '../../actions';
+import styles from './ContentFeedStyles';
 
 class BookmarkIcon extends React.Component {
   constructor(props) {
@@ -14,23 +15,22 @@ class BookmarkIcon extends React.Component {
 	}
 	
 	render() {
-		let bookmarkIDSet = new Set(this.props.user.bookmarks);
 		return (
 			<Icon
-				name={ bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}
-				color={ bookmarkIDSet.has(this.props.item._id) ? '#ff404e' : '#282828'}
+				name={ this.props.bookmarkIDSet.has(this.props.item._id) ? 'ios-bookmark' : 'ios-bookmark-outline'}
+				color={ this.props.bookmarkIDSet.has(this.props.item._id) ? '#ff404e' : '#282828'}
 				type='ionicon'
-				containerStyle={{position: 'absolute', right: 0}}
+				containerStyle={styles.bookmarkIcon}
 				onPress={() => {
-					if (bookmarkIDSet.has(this.props.item._id)) {
-						let index = this.props.user.bookmarks.indexOf(this.props.item._id)
-						if ( index > -1) {
-							this.props.user.bookmarks.splice(index, 1)
-						}
+					if (this.props.bookmarkIDSet.has(this.props.item._id)) {
+						this.props.bookmarkIDSet.delete(this.props.item._id);
 					} else {
-						this.props.user.bookmarks.push(this.props.item._id)
+						this.props.bookmarkIDSet.add(this.props.item._id);
 					}
-					this.props.updateUser(this.props.user, this.props.user._id, this.props.token)
+					this.props.updateUser({ 
+						fields: {bookmarks: [...this.props.bookmarkIDSet]}, 
+						id: this.props.user._id,
+					});
 				}}
 			/>
 		);
@@ -39,7 +39,7 @@ class BookmarkIcon extends React.Component {
 
 const mapStateToProps = state => ({
 	user: state.user.user,
-	token: state.user.token,
+	bookmarkIDSet: state.user.bookmarkIDSet,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

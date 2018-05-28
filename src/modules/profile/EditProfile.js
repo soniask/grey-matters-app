@@ -24,22 +24,16 @@ class EditProfile extends Component {
   }
 
 	onPress() {
-		console.log('onPress called')
 		let newName = !this.newName ? this.newName : this.newName.trim();
-		console.log(`newName: ${newName}`)
 		let errors = validate({ newName }, editProfileValidation);
-		console.log(`errors: ${errors}`);
 		if (errors) {
-			console.log(`entered errors case`)
 			for (let key in errors) {
-				console.log(errors[key]);
 				this.props.errorMessage(errors[key][0]);
 				break;
 			}
 		} else {
-			console.log('no errors detected')
 			this.props.clearMessage();
-			this.props.updateUser({ name: this.newName, id: this.props.user._id, history: this.props.history });
+			this.props.updateUser({ fields: {name: this.newName}, id: this.props.user._id, history: this.props.history });
 		}
 	}
 

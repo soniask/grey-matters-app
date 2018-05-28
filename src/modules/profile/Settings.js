@@ -28,11 +28,6 @@ class Settings extends Component {
 					<Text style={[styles.option, styles.grey]}>
 						Change Password
 					</Text>
-					<Link to="/signup" underlayColor={colors.lightGrey}>
-						<Text style={styles.option}>
-							Sign Up
-						</Text>
-					</Link>
 					<Link to="/privacyPolicy" underlayColor={colors.lightGrey}>
 						<Text style={styles.option}>
 							Privacy Policy
@@ -41,6 +36,11 @@ class Settings extends Component {
 					<Link to="/support" underlayColor={colors.lightGrey}>
 						<Text style={styles.option}>
 							Support
+						</Text>
+					</Link>
+					<Link to="/signup" underlayColor={colors.lightGrey}>
+						<Text style={styles.option}>
+							Sign Up
 						</Text>
 					</Link>
 				</View>
@@ -58,12 +58,6 @@ class Settings extends Component {
 						Change Password
 					</Text>
 				</Link>
-				<Text 
-					style={styles.option}
-					onPress={() => this.props.logout({ history: this.props.history })}
-				>
-					Logout
-				</Text>
 				<Link to="/privacyPolicy" underlayColor={colors.lightGrey}>
 					<Text style={styles.option}>
 						Privacy Policy
@@ -74,6 +68,12 @@ class Settings extends Component {
 						Support
 					</Text>
 				</Link>
+				<Text 
+					style={styles.option}
+					onPress={() => this.props.logout({ history: this.props.history })}
+				>
+					Logout
+				</Text>
 			</View>
 	  );
 	}

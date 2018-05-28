@@ -77,7 +77,15 @@ const styles = StyleSheet.create({
   },
   blue: {
     color: '#1ba5b8'
-  }
+  },
+  bookmarkIcon: {
+    position: 'absolute', 
+    right: -15, 
+    top: -15, 
+    paddingRight: 15, 
+    paddingTop: 15, 
+    paddingLeft: 15,
+  },
 });
 
 export default styles;

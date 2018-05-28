@@ -112,7 +112,7 @@ function tokenLogin() {
               dispatch(success(res.data.payload));
               if (res.data.payload._id) {
                 // If _id exists, we have a user logging in, call /me route to fill in all user account data in state.user.user
-                getCurrentUser();
+                dispatch(getCurrentUser());
               }
             } else {
               console.log(res.data.message);
@@ -318,7 +318,7 @@ function signup({ name, email, password, roles = ['reader'], history }) {
   function failure(message) { return { type: userConstants.SIGNUP_FAILURE, message } }
 }
 
-function updateUser({ name, id, history }) {
+function updateUser({ fields, id, history = null }) {
   return dispatch => {
     dispatch(request());
     AsyncStorage.getItem('@GreyMattersApp:token')
@@ -327,13 +327,15 @@ function updateUser({ name, id, history }) {
           method: 'put',
           url: `/users/${id}`,
           baseURL,
-          data: { name },
+          data: { ...fields },
           headers: { 'x-access-token': token },
         })
           .then(res => {
             if (res.data.success) {
               dispatch(success(res.data.payload));
-              history.push('/userProfile');
+              if (history) {
+                history.push('/userProfile');
+              }
             } else {
               dispatch(failure());
               console.log(res.data.message);
