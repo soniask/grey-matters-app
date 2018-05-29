@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+	ScrollView,
 	Text,
 	View,
-	StyleSheet,
 } from 'react-native';
 import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
@@ -19,57 +19,50 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
 	}
-	
-	componentDidMount() {
-		if (this.props.user) {
-			console.log(`this.props.user.bookmarks: ${this.props.user.bookmarks}`);
-			this.props.getContents({ contentIds: this.props.user.bookmarks });
-			this.props.getTerms(); //used in Notes
-		}
-	}
 
   render() {
-		console.log(`this.props.contents: ${this.props.contents}`);
 		return (
-			<View style={{flex:1}}>
+			<View style={styles.container}>
 					{
-						this.props.user ? (
-							<View style={{flex:1}}>
-								<View style={{alignItems: 'center'}}>
-									<Avatar
-										xlarge
-										rounded
-										title={this.props.user.name.substring(0, 1)}
-										containerStyle={{marginTop: 20, marginBottom: 15}}
-									/>
-									<Text style={styles.name}>{this.props.user.name}</Text>
-									<View style={styles.tabs}>
-										<Text 
-											style={[styles.tab, styles.tabLeft, this.props.showBookmarkList ? styles.tabSelected : null]}
-											onPress={() => this.props.showBookmarks()}
-										>
-											Bookmarks
-										</Text>
-										<Text
-											style={[styles.tab, styles.tabRight, !this.props.showBookmarkList ? styles.tabSelected : null]}
-											onPress={() => this.props.showNotes()}
-										>
-											Notes
-										</Text>
+						this.props.user._id ? (
+							<ScrollView>
+								<View style={{flex:1}}>
+									<View style={{alignItems: 'center'}}>
+										<Avatar
+											xlarge
+											rounded
+											title={this.props.user.name.substring(0, 1)}
+											containerStyle={{marginBottom: 15}}
+										/>
+										<Text style={styles.name}>{this.props.user.name}</Text>
+										<View style={styles.tabs}>
+											<Text 
+												style={[styles.tab, styles.tabLeft, this.props.showBookmarkList ? styles.tabSelected : null]}
+												onPress={() => this.props.showBookmarks()}
+											>
+												Bookmarks
+											</Text>
+											<Text
+												style={[styles.tab, styles.tabRight, !this.props.showBookmarkList ? styles.tabSelected : null]}
+												onPress={() => this.props.showNotes()}
+											>
+												Notes
+											</Text>
+										</View>
 									</View>
+									{ this.props.showBookmarkList && 
+										(( this.props.user.bookmarks.length > 0 && <ContentFeed list={this.props.user.bookmarks} />) ||
+										<Unavailable message='No bookmarks yet' />) }
+									{ !this.props.showBookmarkList && <Notes list={this.props.user.notes}/> }
 								</View>
-								{ this.props.showBookmarkList && 
-									(( this.props.contents && this.props.contents.length > 0 && <ContentFeed list={this.props.contents} />) ||
-									<Unavailable message='No bookmarks yet' />) }
-								{ !this.props.showBookmarkList && <Notes list={this.props.user.notes}/> }
-							</View>
+							</ScrollView>
 						) : (
 							<View style={{alignItems: 'center'}}>
 								<Avatar
 									xlarge
 									rounded
 									icon={{name: 'person'}}
-									containerStyle={{marginTop: 20, marginBottom: 15}}
+									containerStyle={{ marginBottom: 15}}
 								/>
 								<Text>Sign up under settings to unlock bookmarks</Text>
 							</View>
@@ -90,7 +83,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	showBookmarks: profileActions.showBookmarks,
 	showNotes: profileActions.showNotes,
 	getContents: contentActions.getContents,
-	getTerms: termsActions.getTerms,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

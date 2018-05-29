@@ -6,9 +6,10 @@ import {
 import { Icon } from 'react-native-elements';
 import { Link } from 'react-router-native';
 import styles from './EventsItemStyles';
+import { colors } from '../../constants';
 
 const EventsItem = (props) => (
-  <Link to={`/events/${props.event._id}`} >
+  <Link to={`/events/${props.event._id}`} underlayColor={colors.lightGrey}>
     <View style={styles.event}>
       <View style={styles.eventHeader}>
         <View style={styles.dateBox}>

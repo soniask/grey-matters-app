@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Link } from 'react-router-native';
 import { termsActions } from '../../actions';
+import { colors } from '../../constants';
 import styles from './TermsStyles';
 import Loading from '../shared/Loading';
 import Unavailable from '../shared/Unavailable';
@@ -27,19 +28,22 @@ class Terms extends Component {
     if(this.props.isGettingTerms) {
       return (
         <Loading />
-      )
+      );
     }
     if (!this.props.terms || this.props.terms.length == 0) {
       return (
         <Unavailable message='No terms available' />
-      )
+      );
     }
+    this.props.terms.sort((term1, term2) => {
+      return term1.term.localeCompare(term2.term);
+    });
     return (
       <ScrollView>
         <View style={[styles.content]}>
         {
           this.props.terms.map((term) => (
-            <Link key={term._id} to={`/terms/${term._id}`}>
+            <Link key={term._id} to={`/terms/${term._id}`} underlayColor={colors.lightGrey}>
               <View style={styles.box}>
                 <Text style={styles.word}>
                   {term.term}

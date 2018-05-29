@@ -1,7 +1,8 @@
 import { contentConstants } from '../actions/contentActions';
 
 const CONTENT_INITIAL = {
-  contents: null,
+	contents: null,
+	content: null,
   isGettingContents: false,
 };
 
@@ -13,7 +14,6 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 				isGettingContents: true,
 			};
 		case contentConstants.GET_CONTENTS_SUCCESS:
-			console.log(`action.payload inside reducer: ${action.payload}`);
 			return {
 				...state,
 				contents: action.payload,
@@ -27,21 +27,38 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 			};
 		case contentConstants.GET_CONTENT_REQUEST:
 			return {
-			...state,
-			isGettingContent: true,
+				...state,
+				isGettingContent: true,
 			};
 		case contentConstants.GET_CONTENT_SUCCESS:
 			return {
-			...state,
-			content: action.payload,
-			isGettingContent: false,
+				...state,
+				content: action.payload,
+				isGettingContent: false,
 			};
 		case contentConstants.GET_CONTENT_FAILURE:
 			return {
-			...state,
-			content: null,
-			isGettingContent: false,
+				...state,
+				content: null,
+				isGettingContent: false,
 			};
+		case contentConstants.GET_CREATOR_REQUEST:
+			return {
+				...state,
+				isGettingCreator: true,
+			}
+		case contentConstants.GET_CREATOR_SUCCESS:
+			return {
+				...state,
+				isGettingCreator: false,
+				creator: action.payload,
+			}
+		case contentConstants.GET_CREATOR_FAILURE:
+			return {
+				...state,
+				isGettingCreator: false,
+				creator: null,
+			}
 		case contentConstants.CLEAR_CONTENTS:
 			return {
 				...state,
@@ -50,4 +67,4 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 		default:
 			return state;
 	}
-}  
+}

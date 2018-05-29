@@ -10,6 +10,7 @@ import {
 import Loading from '../shared/Loading';
 import Unavailable from '../shared/Unavailable';
 import styles from './NotesStyles';
+import { colors } from '../../constants';
 
 
 class Notes extends Component {
@@ -33,24 +34,25 @@ class Notes extends Component {
     return (
 			<ScrollView>
 				<View style={styles.content}>
-					{this.props.list.map(item => (
-						<Link to={`/terms/${item.term}`} key={item.term}>
+					{this.props.list.map(item => {
+						return (
+						<Link 
+							to={`/terms/${item.term._id}`} 
+							key={item.term} 
+							underlayColor={colors.lightGrey}
+						>
 							<View style={styles.box}>
 								<View>
-									<Text style={styles.titleText}>{this.props.termsMap[item.term]}</Text>
+									<Text style={styles.titleText}>{item.term.term}</Text>
 								</View>
 								<Text style={styles.text}>{item.body}</Text>
 							</View>
 						</Link>
-					))}
+					)})}
 				</View>
 			</ScrollView>
     );
   }
 }
 
-const mapStateToProps = state => ({
-	termsMap: state.terms.termsMap,
-});
-
-export default connect(mapStateToProps)(Notes);
+export default Notes;

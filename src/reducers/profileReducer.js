@@ -16,6 +16,16 @@ export const profileReducer = (state = PROFILE_INITIAL, action) => {
 				...state,
 				showBookmarkList: false,
 			};
+		case profileConstants.SHOW_PRIVACY_POLICY:
+			return {
+				...state,
+				privacyPolicyVisible: true,
+			};
+		case profileConstants.HIDE_PRIVACY_POLICY:
+			return {
+				...state,
+				privacyPolicyVisible: false,
+			};
 		default:
 			return state;
 	}

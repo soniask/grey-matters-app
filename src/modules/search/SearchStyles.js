@@ -19,9 +19,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		padding: 20,
 	},
-	resultsContainer: {
-		marginTop: 45,
-	},
 	tabsContainer: {
 		alignItems: 'center', 
 		position: 'absolute', 

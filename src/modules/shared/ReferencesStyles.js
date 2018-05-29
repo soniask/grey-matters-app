@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   StyleSheet
 } from 'react-native';
 
@@ -9,12 +10,23 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ff404e',
   },
   referenceHeader: {
+    fontSize: 17,
     fontWeight: 'bold',
     paddingTop: 20,
   },
   references: {
     paddingTop: 10,
-  }
+  },
+  reference: {
+    flexDirection: 'row',
+    paddingBottom: 10,
+  },
+  number: {
+    width: 30,
+  },
+  citation: {
+    paddingRight: 20,
+  },
 })
 
 export default styles;

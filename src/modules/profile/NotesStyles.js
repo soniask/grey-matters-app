@@ -6,8 +6,8 @@ import {
 const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 20,
+    marginRight: 20,
   },
   box: {
     width: Dimensions.get('window').width - 20,

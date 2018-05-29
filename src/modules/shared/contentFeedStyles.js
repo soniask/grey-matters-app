@@ -1,12 +1,13 @@
 import {
   StyleSheet,
 } from 'react-native';
+import { colors } from '../../constants';
 
 const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   contentListItem: {
     flexDirection: 'row', 
@@ -42,25 +43,28 @@ const styles = StyleSheet.create({
   },
   metaData: {
     flexDirection: 'row', 
-    borderTopColor: '#ff404e',
+    borderTopColor: colors.red,
     borderTopWidth: 1,
-    borderBottomColor: '#ff404e',
+    borderBottomColor: colors.red,
     borderBottomWidth: 1,
   },
   author: {
-    flex: 2,
     marginTop: 5,
     marginBottom: 5,
-    borderRightColor: '#ff404e',
-    borderRightWidth: 1,
     alignItems: 'flex-start',
+    borderRightColor: colors.red,
+    borderRightWidth: 1,
+    paddingRight: 10,
   },
   date: {
     flex: 1,
+    position: 'absolute',
+    right: 0,
     marginTop: 5,
     marginBottom: 5,
+    paddingLeft: 5,
     alignItems: 'flex-end',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   description: {
     paddingTop: 5,
@@ -73,7 +77,15 @@ const styles = StyleSheet.create({
   },
   blue: {
     color: '#1ba5b8'
-  }
+  },
+  bookmarkIcon: {
+    position: 'absolute', 
+    right: -15, 
+    top: -15, 
+    paddingRight: 15, 
+    paddingTop: 15, 
+    paddingLeft: 15,
+  },
 });
 
 export default styles;

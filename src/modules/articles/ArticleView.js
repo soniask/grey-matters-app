@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 import ParsedText from 'react-native-parsed-text';
+import { Link } from 'react-router-native';
 import {
 	Dimensions,
   Text,
@@ -32,6 +32,11 @@ class ArticleView extends Component {
   }
 
 	render() {
+    let references = [
+      {number: 1, citation: 'Marrocco, S. (2017, April 28). ‘Big’ John McCarthy says weight-cutting more dangerous than PEDs in MMA. MMAJunkie.com.'},
+      {number: 2, citation: 'Martin, D. (2014, February 18). Daniel Cormier remembers the weight cut that almost killed him. FoxSports.com'},
+      {number: 3, citation: 'Ting, L. et al. (2016). Brain Formaldehyde is Related to Water Intake Behavior. Aging and Disease, 7(5), 561-584.'},
+    ];
     return (
       <View>
         <ScrollView>
@@ -41,19 +46,40 @@ class ArticleView extends Component {
               {this.props.content.title}
             </Text>
             <View style={styles.metaData}>
-              <View style={[styles.rightBorder, styles.metaDataBox]}>
+              <View style={[styles.author]}>
                 <Text>AUTHOR</Text>
-                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
+                {
+                  this.props.content.creators && this.props.content.creators.map((creator) => (
+                    <Link
+                      to={`/creatorProfile/${creator._id}`}
+                      underlayColor='white'
+                      key={creator._id}
+                    >
+                      <Text style={styles.blue}>{creator.name}</Text>
+                    </Link>
+                  ))
+                }
               </View>
-              <View style={[styles.rightBorder, styles.metaDataBox]}>
+              <View style={[styles.artist]}>
                 <Text>ARTIST</Text>
-                {/* <Text style={styles.blue}>{this.props.content.creators[0]}</Text> */}
+                {
+                  this.props.content.artists && this.props.content.artists.map((artist) => (
+                    <Link
+                      to={`/creatorProfile/${artist._id}`}
+                      underlayColor='white'
+                      key={artist._id}
+                    >
+                      <Text style={styles.blue}>{artist.name}</Text>
+                    </Link>
+                  ))
+                }
               </View>
-              <View style={[styles.metaDataBox]}>
+              <View style={[styles.date]}>
                 <Text>{ new Date(this.props.content.publishTime).toLocaleDateString()}</Text>
               </View>
             </View>
             <ParsedText
+              style={styles.body}
               parse={
                 [
                   {pattern: /<h2>([\S\s]+)<\/h2>/, style: styles.sectionTitle, renderText: this.renderText},
@@ -63,7 +89,7 @@ class ArticleView extends Component {
             >
               {this.props.content.body}
             </ParsedText>
-            {this.props.content.references && <References references={this.props.content.references}/>}
+            {references && <References references={references}/>}
           </View>
         </ScrollView>
         {this.props.terms && <TermDialog terms={this.props.terms} />}

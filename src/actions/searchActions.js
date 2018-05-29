@@ -1,8 +1,8 @@
 import { push } from 'react-router-redux';
 import axios from 'axios';
 import queryString from 'query-string';
-
-import { baseURL } from './index';
+import { AsyncStorage } from 'react-native';
+import { baseURL } from '../constants';
 
 
 export const searchConstants = {
@@ -27,25 +27,29 @@ function getSearch(filters = {}) {
   const query = queryString.stringify(filters);
   return dispatch => {
     dispatch(request(filters.q));
-
-    axios({
-      method: 'get',
-      url: `/search?${query}`,
-      baseURL,
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      axios({
+        method: 'get',
+        url: `/search?${query}`,
+        baseURL,
+        headers: { 'x-access-token': token },
+      })
+      .then(res => {
+        if (res.data.success) {
+          dispatch(success(res.data.payload));
+        } else {
+          dispatch(failure());
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
         dispatch(failure());
-        console.log(error);
-        // dispatch(alertActions.error(res.data.message));
-      }
+        console.log(error.response.data.message);
+      });
     })
     .catch(error => {
-      dispatch(failure());
-      console.log(error);
-      // dispatch(alertActions.error('Unable to Get Contents'));
+      console.log('Could not get token from storage.');
     });
   };
 

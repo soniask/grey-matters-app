@@ -31,7 +31,7 @@ class TermDialog extends Component {
 							this.props.terms.length > 0 ? (
 								<View>
 									<Text style={styles.term}>{this.props.terms[0].term}</Text>
-									<Link to={`/terms/${this.props.terms[0]._id}`}>
+									<Link to={`/terms/${this.props.terms[0]._id}`} underlayColor={'white'}>
 										<Text>{this.props.terms[0].definition}</Text>
 									</Link>
 								</View>

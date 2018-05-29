@@ -1,9 +1,8 @@
 import { push } from 'react-router-redux';
-// import { alertActions } from './';
 import axios from 'axios';
 import queryString from 'query-string';
-
-import { baseURL } from './index';
+import { AsyncStorage } from 'react-native';
+import { baseURL } from '../constants';
 
 // Types
 export const termsConstants = {
@@ -31,22 +30,30 @@ function getTerms(filters = {}) {
   return dispatch => {
     dispatch(request());
 
-    axios({
-      method: 'get',
-      url: `/terms?${query}`,
-      baseURL,
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      axios({
+        method: 'get',
+        url: `/terms?${query}`,
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          dispatch(success(res.data.payload));
+        } else {
+          dispatch(failure());
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
         dispatch(failure());
-        // dispatch(alertActions.error(res.data.message));
-      }
+        console.log(error.response.data.message);
+      });
     })
     .catch(error => {
-      dispatch(failure(error));
-      // dispatch(alertActions.error('Unable to Get Terms'));
+      dispatch(failure());
+      console.log('Cannot get token from storage');
     });
   };
 
@@ -59,22 +66,30 @@ function getTerm(id) {
   return dispatch => {
     dispatch(request());
 
-    axios({
-      method: 'get',
-      url: `/terms/${id}`,
-      baseURL,
-    })
-    .then(res => {
-      if (res.data.success) {
-        dispatch(success(res.data.payload));
-      } else {
+    AsyncStorage.getItem('@GreyMattersApp:token')
+    .then(token => {
+      axios({
+        method: 'get',
+        url: `/terms/${id}`,
+        baseURL,
+        headers: {'x-access-token': token},
+      })
+      .then(res => {
+        if (res.data.success) {
+          dispatch(success(res.data.payload));
+        } else {
+          dispatch(failure());
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
         dispatch(failure());
-        // dispatch(alertActions.error(res.data.message));
-      }
+        console.log(error.response.data.message);
+      });
     })
     .catch(error => {
-      dispatch(failure(error));
-      // dispatch(alertActions.error('Unable to Get Term'));
+      dispatch(failure());
+      console.log('Cannot get token from storage');
     });
   };
 

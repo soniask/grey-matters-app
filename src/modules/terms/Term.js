@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { TextArea } from 'react-native-ui-lib';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   KeyboardAvoidingView,
@@ -28,10 +27,10 @@ class Term extends Component {
   }
 
   componentWillUnmount() {
-    if (this.props.user && this.props.term) {
+    if (this.props.user._id && this.props.term) {
       let index = -1;
       for (let i = 0; i < this.props.user.notes.length; i++) {
-        if (this.props.user.notes[i].term == this.props.term._id) {
+        if (this.props.user.notes[i].term._id == this.props.term._id) {
           index = i;
           break;
         }
@@ -50,7 +49,10 @@ class Term extends Component {
             this.props.user.notes.push({body: this.notes, term: this.props.term._id});
           }
         }
-        this.props.updateUser(this.props.user, this.props.user._id, this.props.token);
+        this.props.updateUser({ 
+          fields: {notes: this.props.user.notes}, 
+          id: this.props.user._id
+        });
       }
     }
   }
@@ -68,15 +70,16 @@ class Term extends Component {
       )
     }
 
-    if (this.props.user) {
+    if (this.props.user._id) {
       this.notes = null;
       for (let i = 0; i < this.props.user.notes.length; i++) {
-        if (this.props.user.notes[i].term == this.props.term._id) {
+        if (this.props.user.notes[i].term._id == this.props.term._id) {
           this.notes = this.props.user.notes[i].body;
           break;
         }
       }
     }
+    
     return (
       <KeyboardAwareScrollView 
         enableResetScrollToCoords={false} 
@@ -92,7 +95,7 @@ class Term extends Component {
             <Text style={styles.paragraph}>{this.props.term.definition}</Text>
           </View>
           {
-            this.props.user ? (
+            this.props.user._id ? (
               <View>
                 <View style={styles.sectionHeaderBox}>
                   <Text style={styles.sectionHeader}>Notes</Text>

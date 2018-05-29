@@ -26,17 +26,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 10,
   },
-  metaDataBox: {
-    flex: 1,
-    marginTop: 5,
-    marginBottom: 5,
-    paddingLeft: 13,
-    alignItems: 'flex-start',
-  },
-  rightBorder: {
-		borderRightColor: '#ff404e',
-    borderRightWidth: 1,
-	},
   author: {
     flex: 3,
     marginTop: 10,
@@ -45,12 +34,21 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     alignItems: 'flex-start',
   },
+  artist: {
+    flex: 3,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRightColor: '#ff404e',
+    borderRightWidth: 1,
+    alignItems: 'flex-start',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
   date: {
     flex: 2,
     marginTop: 10,
     marginBottom: 10,
     alignItems: 'flex-end',
-    justifyContent: 'center'
   },
   blue: {
     color: '#1ba5b8',
@@ -68,6 +66,10 @@ const styles = StyleSheet.create({
   description: {
     paddingTop: 5,
   },
+  body: {
+    lineHeight: 30,
+    fontSize: 17,
+  }
 })
 
 export default styles;

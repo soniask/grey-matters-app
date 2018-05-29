@@ -11,6 +11,8 @@ export const routes = [
   { path:"/store", component:"Store", name:"Store" },
   { path:"/userProfile", component:"UserProfile", name:"Profile" },
   { path:"/settings", component:"Settings", name:"Settings" },
+  { path:"/privacyPolicy", component:"PrivacyPolicy", name:"Privacy Policy" },
+  { path:"/support", component:"Support", name:"Support" },
 ];
 
 export const creatorTitles = {
@@ -18,3 +20,13 @@ export const creatorTitles = {
   podcast: "host",
   video: "producer",
 };
+
+export const colors = {
+  blue: '#1ba5b8',
+  red: '#ff404e',
+  darkGrey: '#282828',
+  lightGrey: '#BCBEC1',
+}
+
+export const baseURL = 'http://ec2-34-218-235-4.us-west-2.compute.amazonaws.com:8080/1.0/'; // remote
+// export const baseURL = 'http://localhost:8080/1.0/'; // local
