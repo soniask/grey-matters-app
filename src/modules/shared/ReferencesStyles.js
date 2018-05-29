@@ -18,15 +18,13 @@ const styles = StyleSheet.create({
   },
   reference: {
     flexDirection: 'row',
+    paddingBottom: 10,
   },
   number: {
     width: 30,
-    backgroundColor: 'cornflowerblue',
   },
   citation: {
-    paddingLeft: 15,
-    backgroundColor: 'forestgreen',
-    width: Dimensions.get('window').width - 75
+    paddingRight: 20,
   },
 })
 
