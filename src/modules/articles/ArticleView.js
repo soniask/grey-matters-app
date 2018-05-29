@@ -79,6 +79,7 @@ class ArticleView extends Component {
               </View>
             </View>
             <ParsedText
+              style={styles.body}
               parse={
                 [
                   {pattern: /<h2>([\S\s]+)<\/h2>/, style: styles.sectionTitle, renderText: this.renderText},
