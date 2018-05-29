@@ -6,6 +6,8 @@ import thunk from "redux-thunk";
 import { createMemoryHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from './reducers'; //Import the reducer
+import { GoogleAnalyticsTracker } from "react-native-google-analytics-bridge";
+let tracker = new GoogleAnalyticsTracker("UA-12345-1");
 
 const persistConfig = {
 	key: 'root',
