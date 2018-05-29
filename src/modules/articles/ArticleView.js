@@ -32,6 +32,11 @@ class ArticleView extends Component {
   }
 
 	render() {
+    let references = [
+      {number: 1, citation: 'Marrocco, S. (2017, April 28). ‘Big’ John McCarthy says weight-cutting more dangerous than PEDs in MMA. MMAJunkie.com.'},
+      {number: 2, citation: 'Martin, D. (2014, February 18). Daniel Cormier remembers the weight cut that almost killed him. FoxSports.com'},
+      {number: 3, citation: 'Ting, L. et al. (2016). Brain Formaldehyde is Related to Water Intake Behavior. Aging and Disease, 7(5), 561-584.'},
+    ];
     return (
       <View>
         <ScrollView>
@@ -83,7 +88,7 @@ class ArticleView extends Component {
             >
               {this.props.content.body}
             </ParsedText>
-            {/* {this.props.content.references && <References references={this.props.content.references}/>} */}
+            {references && <References references={references}/>}
           </View>
         </ScrollView>
         {this.props.terms && <TermDialog terms={this.props.terms} />}

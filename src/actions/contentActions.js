@@ -132,8 +132,7 @@ function getCreator(id) {
           });
       })
       .catch(error => {
-        dispatch(failure('Unable to Complete Request'));
-        console.log(error);
+        console.log('Could not get token from storage.');
       });
   };
 

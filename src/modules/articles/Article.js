@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ParsedText from 'react-native-parsed-text';
 import {
   Text,
   ScrollView,
@@ -13,8 +12,6 @@ import { contentActions } from '../../actions';
 import { termsActions } from '../../actions';
 import Loading from '../shared/Loading';
 import Unavailable from '../shared/Unavailable';
-import References from '../shared/References';
-import TermDialog from './TermDialog';
 import ArticleView from './ArticleView';
 
 class Article extends Component {
