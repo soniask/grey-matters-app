@@ -42,6 +42,23 @@ export const contentReducer = (state = CONTENT_INITIAL, action) => {
 				content: null,
 				isGettingContent: false,
 			};
+		case contentConstants.GET_CREATOR_REQUEST:
+			return {
+				...state,
+				isGettingCreator: true,
+			}
+		case contentConstants.GET_CREATOR_SUCCESS:
+			return {
+				...state,
+				isGettingCreator: false,
+				creator: action.payload,
+			}
+		case contentConstants.GET_CREATOR_FAILURE:
+			return {
+				...state,
+				isGettingCreator: false,
+				creator: null,
+			}
 		case contentConstants.CLEAR_CONTENTS:
 			return {
 				...state,

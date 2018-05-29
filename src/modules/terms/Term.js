@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { TextArea } from 'react-native-ui-lib';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   KeyboardAvoidingView,

@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   ScrollView,
-	Text,
+  Text,
+  TextInput,
 	View,
 } from 'react-native';
 import { Avatar, Header } from 'react-native-elements';
 import ContentFeed from '../shared/ContentFeed';
 import styles from './ProfileStyles';
-import { profileActions } from '../../actions';
 import { contentActions } from '../../actions';
-import { termsActions } from '../../actions';
+import { userActions } from '../../actions';
 import Notes from './Notes';
+import Loading from '../shared/Loading';
 import Unavailable from '../shared/Unavailable';
 
 class UserProfile extends Component {
@@ -21,42 +22,47 @@ class UserProfile extends Component {
 	}
 	
 	componentDidMount() {
-    // get creator by id
-    this.props.getContents();
+    this.props.getCreator(this.props.match.params.id);
   }
   
   componentWillUnmount() {
-    let creator = {
-      id: 1,
-      name: 'Benjamin Cordy',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus eros nec lacus maximus blandit. Aenean eget augue non leo viverra ornare. Nam dictum tempus suscipit. Duis non dolor vehicula ante condimentum consectetur. '
-    }
-    if (this.props.user && this.props.user.id == creator.id && this.bio) {
-      //Call action to call API to update creator bio
+    if (this.props.user && this.props.creator 
+      && this.props.user._id == this.props.creator._id && this.bio) {
+      this.props.updateUser({ 
+        fields: {bio: this.bio}, 
+        id: this.props.user._id
+      });
     }
   }
 
   render() {
-    let creator = {
-      id: 1,
-      name: 'Benjamin Cordy',
-      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus eros nec lacus maximus blandit. Aenean eget augue non leo viverra ornare. Nam dictum tempus suscipit. Duis non dolor vehicula ante condimentum consectetur. '
+    if (this.props.isGettingCreator) {
+      return (
+        <Loading />
+      );
     }
+
+    if (!this.props.creator) {
+      return (
+        <Unavailable message='Could not fetch data' />
+      );
+    }
+    
 		return (
       <ScrollView>
         <View style={styles.container}>
           <View style={{flex:1}}>
-            <View style={{alignItems: 'center'}}>
-              <Text style={styles.name}>{creator.name}</Text>
-              { this.props.user && this.props.user.id == creator.id ? (
+            <View style={{alignItems: 'center', flex: 1}}>
+              <Text style={styles.name}>{this.props.creator.name}</Text>
+              { this.props.user && this.props.user._id == this.props.creator._id ? (
                 <TextInput
                   multiline = {true}
-                  defaultValue={creator.bio}
-                  style={styles.bio}
+                  defaultValue={this.props.creator.bio}
+                  style={[styles.bio]}
                   onChangeText={(text) => this.bio = text}
                 />
               ) : (
-                <Text style={styles.bio}>{creator.bio}</Text>
+                <Text style={styles.bio}>{this.props.creator.bio}</Text>
               )}
             </View>
             <View style={styles.tabs}>
@@ -66,7 +72,14 @@ class UserProfile extends Component {
                 Latest
               </Text>
             </View>
-            { this.props.contents && this.props.contents.length > 0 && <ContentFeed list={this.props.contents} /> }
+            { 
+              this.props.creator.contributions 
+              && this.props.creator.contributions.length > 0 ? (
+                <ContentFeed list={this.props.creator.contributions} />
+              ) : (
+                <Unavailable message='No published content' />
+              )  
+            }
           </View>
         </View>
       </ScrollView>
@@ -75,12 +88,14 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.user.user,
-	contents: state.content.contents,
+  user: state.user.user,
+  creator: state.content.creator,
+  isGettingCreator: state.content.isGettingCreator,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	getContents: contentActions.getContents,
+  getCreator: contentActions.getCreator,
+  updateUser: userActions.updateUser,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

@@ -1,6 +1,8 @@
 import {
+	Dimensions,
 	StyleSheet,
 } from 'react-native';
+import { colors } from '../../constants';
 
 const styles = StyleSheet.create({
 	container: {
@@ -32,9 +34,8 @@ const styles = StyleSheet.create({
 		color: 'black',
 	},
 	bio: {
-		paddingLeft: 30,
-		paddingRight: 30,
-		paddingBottom: 30,
+		width: Dimensions.get('window').width - 120,
+		marginBottom: 30,
 	}
 })
 
